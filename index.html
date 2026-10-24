@@ -165,6 +165,7 @@ body.drawer #p2 .side{display:flex}
 .pop button{flex:1;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 8px;font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}
 .pop button:hover{border-color:var(--acc);background:#eef1ff}
 .unh{margin-left:auto;border:none;background:#fff4d6;color:#8a5a00;font:600 12.5px 'Be Vietnam Pro',sans-serif;padding:5px 12px;border-radius:10px 10px 0 0;cursor:pointer}
+.cb.hide{display:none}
 </style></head><body>
 <header><button class="btn" id="sbT" style="display:none" title="Ẩn / hiện thanh công cụ"><svg class="ic" viewBox="0 0 24 24" style="stroke:#fff"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><h1><span class="logo"><svg viewBox="0 0 24 24"><path d="M4 20V5l15 15z"/><path d="M4 12a8 8 0 0 1 8 8"/></svg></span>Hình học THCS</h1>
 <div class="tabs"><button class="btn on" id="t2">Hình học phẳng</button><button class="btn" id="t3">Hình học không gian</button></div></header>
@@ -269,7 +270,7 @@ body.drawer #p2 .side{display:flex}
 <div class="it"><b>Thu phóng, bàn tay, toàn màn hình</b><div>Dấu + và − (hoặc Ctrl + cuộn chuột) phóng to, thu nhỏ bảng; bấm số % để về 100%. Bàn tay (H) kéo bảng đi các hướng. Nút ngoài cùng bên phải bật chế độ toàn màn hình.</div></div>
 <div class="it"><b>Trang (Sheet)</b><div>Các tab ở dưới bảng là các trang giấy riêng. Bấm ＋ để thêm trang, nhấp đúp vào tên để đổi tên, bấm × để xóa trang.</div></div>
 <h3>Thanh bổ trợ khi chọn đối tượng</h3>
-<p>Chọn một hoặc nhiều đối tượng (bấm vào nét, hoặc giữ chuột rê vùng) thì một thanh bổ trợ hiện ở đầu bảng:</p>
+<p>Chọn một hoặc nhiều đối tượng (bấm vào nét, hoặc giữ chuột rê vùng) thì một thanh bổ trợ hiện ở đầu bảng. Rê chuột cũng chọn được các <b>điểm</b> (chấm) nằm trong vùng; giữ Shift và bấm vào chấm để thêm hoặc bớt. Nhấn Delete: điểm tự do bị xóa hẳn, còn điểm là đầu mút của một đoạn thì chỉ bị ẩn chấm và tên (đoạn thẳng vẫn còn). Hoàn tác được.</p>
 <div class="it"><b>Đặt tên điểm, Ẩn tên điểm, Ẩn chấm tròn</b><div>Áp dụng cho các đầu mút (đoạn thẳng), đỉnh (ký hiệu góc) hoặc tâm (cung) của đối tượng đang chọn: hiện tên tự động, ẩn tên nhưng giữ chấm, hoặc ẩn cả chấm (nút đổi thành “Hiện chấm tròn” khi chấm đang ẩn).</div></div>
 <div class="it"><b>Kiểu điểm</b><div>Chọn chấm đặc, vòng tròn hoặc dấu chéo, kích thước nhỏ, vừa hoặc lớn.</div></div>
 <div class="it"><b>Kiểu đường</b><div>Nét liền, nét đứt hoặc nét chấm; độ dày mảnh, vừa hoặc dày.</div></div>
@@ -347,8 +348,8 @@ const toL=(T,p)=>{const c=Math.cos(T.a),s=Math.sin(T.a),dx=p.x-T.x,dy=p.y-T.y;re
 const toW=(T,q)=>{const c=Math.cos(T.a),s=Math.sin(T.a);return{x:T.x+q.x*c-q.y*s,y:T.y+q.x*s+q.y*c}};
 const nameOf=i=>String.fromCharCode(65+i%26)+(i>=26?Math.floor(i/26):'');
 const norm=a=>Math.atan2(Math.sin(a),Math.cos(a)),deg=a=>a*180/PI;
-const snapPt=(p,r)=>S.pts.find(q=>d2(q,p)<r);
-function addPt(p){let f=S.pts.find(q=>d2(q,p)<2);if(!f){f={x:p.x,y:p.y,vis:false,n:++SEQ};S.pts.push(f)}return f}
+const snapPt=(p,r)=>S.pts.find(q=>!q.dead&&d2(q,p)<r);
+function addPt(p){let f=S.pts.find(q=>!q.dead&&d2(q,p)<2);if(!f){f={x:p.x,y:p.y,vis:false,n:++SEQ};S.pts.push(f)}return f}
 function showPt(q,v){q.vis=v;if(v){q.lab=true;if(!q.name&&$('an').checked)q.name=autoName()}}
 const pn=q=>q.name?'điểm '+q.name:'một đầu mút';
 const proj=(p,A,B)=>{const dx=B.x-A.x,dy=B.y-A.y,t=Math.max(0,Math.min(1,((p.x-A.x)*dx+(p.y-A.y)*dy)/(dx*dx+dy*dy||1)));return{x:A.x+t*dx,y:A.y+t*dy}};
@@ -416,7 +417,7 @@ svg.onpointerdown=e=>{svg.setPointerCapture(e.pointerId);const p=pt(e);msg='';
   if(drag&&drag.k=='cpen'){C.a0=C.phi;C.sw=0}
   if(!drag){const q=snapPt(p,10),L=S.pts.find(o=>hasLab(o)&&d2(o,p)>6&&lblHit(o,p));
    if(L)drag={k:'lbl',q:L,o:{x:p.x-L.x-(L.lx!=null?L.lx:7),y:p.y-L.y-(L.ly!=null?L.ly:-7)}};
-   else if(q)drag={k:'ptc',q};
+   else if(q){if(e.shiftKey&&q.vis)selPts=selPts.includes(q)?selPts.filter(x=>x!==q):selPts.concat(q);else drag={k:'ptc',q}}
    else{const h=hitShape(p);if(!h||e.shiftKey)startSel(p,h,e);else{setSel(h.s);if(h.s.t=='html')drag={k:'tbox',s:h.s,o:{x:p.x-h.s.x,y:p.y-h.s.y}}}}}}
  render()};
 svg.onpointermove=e=>{const p=pt(e);hov=p;
@@ -524,13 +525,13 @@ function render(){syncBoxes();[['tbR','r'],['tbC','c'],['tbG','p'],['tbE','e']].
    h+=`<polyline class="ink"${st(s)} points="${v.x+u.x*k},${v.y+u.y*k} ${v.x+(u.x+w.x)*k},${v.y+(u.y+w.y)*k} ${v.x+w.x*k},${v.y+w.y*k}"/>`}
    else h+=`<path class="ink"${st(s)} d="${arcD(v.x,v.y,s.r,s.a1,s.sw)}"/>`}
   else h+=`<polyline class="ink"${st(s)} points="${pl(s.d)}"${s.dash?' stroke-dasharray="7 5"':''}/>`});
- S.pts.filter(q=>q.vis).forEach(q=>h+=`${ptSvg(q)}<text x="${q.x+(q.lx!=null?q.lx:7)}" y="${q.y+(q.ly!=null?q.ly:-7)}" font-size="15" font-weight="600" fill="#1f2a44">${q.lab===false?'':esc(q.name||'')}</text>`);
- const hq=hov&&mode!='write'&&mode!='type'?S.pts.find(q=>!q.vis&&d2(q,hov)<10):null;if(hq)h+=`<circle cx="${hq.x}" cy="${hq.y}" r="6" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`;
+ S.pts.filter(q=>q.vis&&!q.dead).forEach(q=>h+=`${ptSvg(q)}<text x="${q.x+(q.lx!=null?q.lx:7)}" y="${q.y+(q.ly!=null?q.ly:-7)}" font-size="15" font-weight="600" fill="#1f2a44">${q.lab===false?'':esc(q.name||'')}</text>`);
+ const hq=hov&&mode!='write'&&mode!='type'?S.pts.find(q=>!q.vis&&!q.dead&&d2(q,hov)<10):null;if(hq)h+=`<circle cx="${hq.x}" cy="${hq.y}" r="6" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`;
  ink.concat(pend).forEach(s=>h+=`<polyline class="ink" stroke="#3b4a66" stroke-width="2.2" points="${pl(s.x.map((x,i)=>({x,y:s.y[i]})))}"/>`);
  if(draw)h+=draw.lock?`<line class="ink" style="stroke:${PEN.col};stroke-width:${PEN.lw}" x1="${draw.s.x}" y1="${draw.s.y}" x2="${draw.cur.x}" y2="${draw.cur.y}"/>`:`<polyline class="ink" style="stroke:${PEN.col};stroke-width:${PEN.lw}" points="${pl(draw.path)}"/>`;
  if((mode=='point'||mode=='name')&&hov){const t=snapAny(hov);if(t)h+=`<circle cx="${t.x}" cy="${t.y}" r="8" fill="#3d5afe22" stroke="#3d5afe" stroke-width="2"/><circle cx="${t.x}" cy="${t.y}" r="2.5" fill="#3d5afe"/>`}
- if(mode=='name'){inters().forEach(i=>h+=`<circle cx="${i.x}" cy="${i.y}" r="5" fill="none" stroke="#2c5d8a" stroke-dasharray="2 2"/>`);S.pts.filter(q=>!q.vis).forEach(q=>h+=`<circle cx="${q.x}" cy="${q.y}" r="5" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`)}
- if(mode=='pen'||mode=='move'){const L=selAll.filter(x=>!x.dead&&S.shapes.includes(x));L.forEach(x=>h+=selSvg(x,L.length>1));if(sel&&!L.includes(sel)&&!sel.dead&&S.shapes.includes(sel))h+=selSvg(sel);h+=mqSvg()}
+ if(mode=='name'){inters().forEach(i=>h+=`<circle cx="${i.x}" cy="${i.y}" r="5" fill="none" stroke="#2c5d8a" stroke-dasharray="2 2"/>`);S.pts.filter(q=>!q.vis&&!q.dead).forEach(q=>h+=`<circle cx="${q.x}" cy="${q.y}" r="5" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`)}
+ if(mode=='pen'||mode=='move'){const L=selAll.filter(x=>!x.dead&&S.shapes.includes(x));L.forEach(x=>h+=selSvg(x,L.length>1));if(sel&&!L.includes(sel)&&!sel.dead&&S.shapes.includes(sel))h+=selSvg(sel);selPts.forEach(q=>{if(q.vis&&!q.dead)h+=`<circle cx="${q.x}" cy="${q.y}" r="10" fill="#3d5afe22" stroke="#3d5afe" stroke-width="1.6"/>`});h+=mqSvg()}
  if(show.p)h+=protSvg();if(show.e)h+=ekeSvg();if(show.r)h+=rulerSvg();if(show.c)h+=compSvg();
  if(mode=='pen'||mode=='aux'){const p=draw?draw.cur:hov;if(p)h+=handSvg(p)}
  LY.innerHTML=h;$('stat').textContent=readout();if(document.activeElement!==$('cr'))$('cr').value=(C.r/U).toFixed(1);updCtx()}
@@ -674,7 +675,7 @@ document.addEventListener('paste',async e=>{if(!dlg.classList.contains('hide')||
  if(CLIPFRESH&&CLIP.length){e.preventDefault();pasteClip();return}
  if(!e.clipboardData||!e.clipboardData.types.length)return;
  e.preventDefault();const g=await gather(e.clipboardData);if(g.html.replace(/<br>|\s|&nbsp;/g,'')||/<(img|math)/.test(g.html))newBox(g.html,hov?{x:hov.x,y:hov.y}:{x:80,y:80});msg=g.msg;render()});
-document.addEventListener('keydown',e=>{if(!$('p2').classList.contains('hide')&&dlg.classList.contains('hide')&&$('gdlg').classList.contains('hide')&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName||'')){if((e.key=='Delete'||e.key=='Backspace')&&(sel||selAll.length)){e.preventDefault();delSel()}else if(e.key=='Escape'){if(sel||selAll.length){sel=null;selAll=[];render()}else backToMain()}}});
+document.addEventListener('keydown',e=>{if(!$('p2').classList.contains('hide')&&dlg.classList.contains('hide')&&$('gdlg').classList.contains('hide')&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName||'')){if((e.key=='Delete'||e.key=='Backspace')&&(sel||selAll.length||selPts.length)){e.preventDefault();delSel()}else if(e.key=='Escape'){if(sel||selAll.length||selPts.length){sel=null;selAll=[];selPts=[];render()}else backToMain()}}});
 svg.ondragover=e=>e.preventDefault();
 svg.ondrop=e=>{const fs=[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/'));if(!fs.length)return;e.preventDefault();const p=pt(e);
  fs.forEach((f,i)=>{const r=new FileReader();r.onload=()=>newBox('<img src="'+r.result+'">',{x:p.x+i*20,y:p.y+i*20});r.readAsDataURL(f)})};
@@ -698,10 +699,10 @@ const lblHit=(q,p)=>{const lx=q.x+(q.lx!=null?q.lx:7),ly=q.y+(q.ly!=null?q.ly:-7
 const nin=$('nin');let nq=null;
 function editName(q){nq=q;const sc=svg.clientWidth/BW;nin.style.left=((q.x+(q.lx!=null?q.lx:7))*sc-4)+'px';nin.style.top=((q.y+(q.ly!=null?q.ly:-7))*sc-22)+'px';nin.value=q.name||autoName();nin.classList.remove('hide');setTimeout(()=>{nin.focus();nin.select()},0)}
 function endName(ok){if(!nq)return;const q=nq;nq=null;nin.classList.add('hide');if(!ok)return;const v=nin.value.trim();
- if(!v){q.vis=false;q.name=''}else if(S.pts.some(o=>o!=q&&o.name==v))msg='Tên “'+v+'” đã dùng cho điểm khác.';else{q.name=v;q.vis=true;q.lab=true;afterAction()}render()}
+ if(!v){q.vis=false;q.name=''}else if(S.pts.some(o=>o!=q&&!o.dead&&o.name==v))msg='Tên “'+v+'” đã dùng cho điểm khác.';else{q.name=v;q.vis=true;q.lab=true;afterAction()}render()}
 nin.onkeydown=e=>{if(e.key=='Enter')endName(true);else if(e.key=='Escape')endName(false);e.stopPropagation()};
 nin.onblur=()=>endName(true);
-function autoName(){const used=new Set(S.pts.map(o=>o.name));let i=0,n;do{n=nameOf(i++)}while(used.has(n));return n}
+function autoName(){const used=new Set(S.pts.filter(o=>!o.dead).map(o=>o.name));let i=0,n;do{n=nameOf(i++)}while(used.has(n));return n}
 function inters(){const L=S.shapes.filter(s=>!s.dead&&!s.hid&&(s.t=='l'||s.t=='a')),o=[];
  const inArc=(s,x,y)=>{if(s.t!='a')return true;const a=Math.atan2(y-s.y,x-s.x);let d=s.sw>=0?a-s.a0:s.a0-a;d=((d%(2*PI))+2*PI)%(2*PI);return Math.abs(s.sw)>=6.2||d<=Math.abs(s.sw)+1e-6};
  for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){const A=L[i],B=L[j];
@@ -792,7 +793,7 @@ function straightLine(path){const s=path[0],e=path[path.length-1],A=resolveEnd(s
  if(!B){const t=Math.atan2(b.y-a.y,b.x-a.x),m=((t%PI)+PI)%PI;if(m<.045||m>PI-.045)b={x:b.x,y:a.y};else if(Math.abs(m-PI/2)<.045)b={x:a.x,y:b.y}}
  return d2(a,b)>4?{a,b}:null}
 function penHit(p){const hh=hit(p);if(!hh)return null;if(mode=='pen'&&['rmov','emov','pmov'].includes(hh.k)&&edge(p))return null;return hh}
-const hasLab=o=>o.vis&&o.name&&o.lab!==false;
+const hasLab=o=>o.vis&&!o.dead&&o.name&&o.lab!==false;
 function afterAction(){}
 function backToMain(){if(mode!='pen'&&mode!='move')setMode('pen')}
 function snapAny(p){const q=snapPt(p,14);if(q)return{x:q.x,y:q.y,pt:q};
@@ -824,8 +825,8 @@ document.addEventListener('keydown',e=>{if($('p2').classList.contains('hide')||!
  const M={v:()=>setMode('move'),p:()=>setMode(mode=='pen'?'move':'pen'),o:()=>setMode('name'),n:()=>setMode('point'),a:()=>setMode('aux'),w:()=>setMode('write'),t:()=>setMode('type'),h:()=>setMode(mode=='pan'?'pen':'pan')},T={r:'sR',c:'sC',g:'sP',e:'sE'};
  if(M[k]){e.preventDefault();M[k]()}else if(T[k]){e.preventDefault();$(T[k]).click()}});
 /* --- chọn nhiều đối tượng bằng cách rê chuột --- */
-let mq=null,selAll=[];
-function setSel(s){sel=s||null;selAll=s?[s]:[]}
+let mq=null,selAll=[],selPts=[];
+function setSel(s){sel=s||null;selAll=s?[s]:[];selPts=[]}
 function shapePts(s){const o=[],seg=(a,b)=>{const n=Math.max(1,Math.ceil(d2(a,b)/6));for(let i=0;i<=n;i++)o.push({x:a.x+(b.x-a.x)*i/n,y:a.y+(b.y-a.y)*i/n})};
  if(s.t=='l')seg(s.a,s.b);
  else if(s.t=='a'){const n=Math.max(8,Math.ceil(Math.abs(s.sw)*s.r/6));for(let i=0;i<=n;i++){const a=s.a0+s.sw*i/n;o.push({x:s.x+s.r*Math.cos(a),y:s.y+s.r*Math.sin(a)})}}
@@ -839,13 +840,18 @@ function mqSelect(m){const r=mqRect(m),inb=q=>q.x>=r.x&&q.x<=r.x+r.w&&q.y>=r.y&&
   if(bb)return r.win?(bb.x>=r.x&&bb.y>=r.y&&bb.x+bb.w<=r.x+r.w&&bb.y+bb.h<=r.y+r.h):!(bb.x>r.x+r.w||bb.x+bb.w<r.x||bb.y>r.y+r.h||bb.y+bb.h<r.y);
   const P=shapePts(s);if(!P.length)return false;return r.win?P.every(inb):P.some(inb)})}
 function startSel(p,h,e){
+ if(e.shiftKey){const q=S.pts.find(o=>o.vis&&!o.dead&&d2(o,p)<10);if(q){selPts=selPts.includes(q)?selPts.filter(x=>x!==q):selPts.concat(q);mq=null;return}}
  if(h&&e.shiftKey){selAll=selAll.includes(h.s)?selAll.filter(x=>x!==h.s):selAll.concat(h.s);sel=selAll.length==1?selAll[0]:null;mq=null;return}
  if(!h){if(!e.shiftKey)setSel(null);mq={x0:p.x,y0:p.y,x1:p.x,y1:p.y,add:e.shiftKey}}}
+function mqPts(m){const r=mqRect(m);return S.pts.filter(q=>q.vis&&!q.dead&&q.x>=r.x&&q.x<=r.x+r.w&&q.y>=r.y&&q.y<=r.y+r.h)}
 function mqUp(){const m=mq;mq=null;if(!m)return;if(Math.abs(m.x1-m.x0)<=4&&Math.abs(m.y1-m.y0)<=4)return;
- const f=mqSelect(m);selAll=m.add?[...new Set(selAll.concat(f))]:f;sel=selAll.length==1?selAll[0]:null}
+ const f=mqSelect(m),fp=mqPts(m);selAll=m.add?[...new Set(selAll.concat(f))]:f;selPts=m.add?[...new Set(selPts.concat(fp))]:fp;sel=selAll.length==1&&!selPts.length?selAll[0]:null}
 function mqSvg(){if(!mq||(Math.abs(mq.x1-mq.x0)<=4&&Math.abs(mq.y1-mq.y0)<=4))return'';const r=mqRect(mq),c=r.win?'#3d5afe':'#1f9d6a';
  return`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${c}" fill-opacity=".09" stroke="${c}" stroke-width="1.5"${r.win?'':' stroke-dasharray="6 4"'}/>`}
-function delSel(){const L=selAll.filter(x=>!x.dead);if(!L.length&&sel&&!sel.dead)L.push(sel);if(!L.length)return;L.forEach(t=>{t.dead=true});H.push({u:()=>L.forEach(t=>{t.dead=false}),r:()=>L.forEach(t=>{t.dead=true})});RD.length=0;sel=null;selAll=[];render()}
+function delSel(){const L=selAll.filter(x=>!x.dead);if(!L.length&&sel&&!sel.dead)L.push(sel);const Pt=selPts.filter(q=>!q.dead);if(!L.length&&!Pt.length)return;
+ const prev=Pt.map(q=>[q,q.vis,q.lab]),free=q=>!S.shapes.some(s=>!s.dead&&(s.a==q||s.b==q||s.v==q));
+ const apply=()=>{L.forEach(t=>{t.dead=true});Pt.forEach(q=>{q.vis=false;if(free(q))q.dead=true;if(P.lock==q)P.lock=null;if(E.lock==q)E.lock=null})};
+ apply();H.push({u:()=>{L.forEach(t=>{t.dead=false});prev.forEach(([q,v,l])=>{q.dead=false;q.vis=v;q.lab=l})},r:apply});RD.length=0;sel=null;selAll=[];selPts=[];render()}
 /* --- đồ thị hàm số --- */
 const FN={sin:Math.sin,cos:Math.cos,tan:Math.tan,cot:x=>1/Math.tan(x),asin:Math.asin,acos:Math.acos,atan:Math.atan,sqrt:Math.sqrt,abs:Math.abs,ln:Math.log,log:Math.log10,exp:Math.exp};
 const FNAMES=['asin','acos','atan','sqrt','sin','cos','tan','cot','abs','exp','log','ln','pi','x','e'];
@@ -938,7 +944,7 @@ $('tbZi').onclick=()=>setZoom(ZOOM+.25);$('tbZo').onclick=()=>setZoom(ZOOM-.25);
 wrap.addEventListener('wheel',e=>{if(e.ctrlKey){e.preventDefault();setZoom(ZOOM+(e.deltaY<0?.1:-.1))}},{passive:false});
 let SH=[{name:'Sheet 1',S,H,RD,BH}],CUR=0;
 function saveSheet(){const t=SH[CUR];t.S=S;t.H=H;t.RD=RD;t.BH=BH}
-function applySheet(){const t=SH[CUR];if(!t.S){t.S={shapes:[],pts:[]};t.H=[];t.RD=[];t.BH=600}S=t.S;H=t.H;RD=t.RD;BH=t.BH;sel=null;selAll=[];mq=null;draw=null;drag=null;P.lock=null;E.lock=null;ink=[];pend=[];msg='';setBoard();wrap.scrollTop=0;renderSheets();render()}
+function applySheet(){const t=SH[CUR];if(!t.S){t.S={shapes:[],pts:[]};t.H=[];t.RD=[];t.BH=600}S=t.S;H=t.H;RD=t.RD;BH=t.BH;sel=null;selAll=[];selPts=[];mq=null;draw=null;drag=null;P.lock=null;E.lock=null;ink=[];pend=[];msg='';setBoard();wrap.scrollTop=0;renderSheets();render()}
 function loadSheet(i){if(i==CUR)return;saveSheet();CUR=i;applySheet()}
 function addSheet(){saveSheet();let n=SH.length+1;while(SH.some(x=>x.name=='Sheet '+n))n++;SH.push({name:'Sheet '+n});CUR=SH.length-1;applySheet()}
 function delSheet(i){if(SH.length<2||!confirm('Xóa “'+SH[i].name+'”?'))return;saveSheet();SH.splice(i,1);if(i<CUR)CUR--;else if(i==CUR)CUR=Math.min(CUR,SH.length-1);applySheet()}
@@ -955,14 +961,16 @@ function ptSvg(q){const r=q.pr||3.2,ps=q.ps||'dot';
  if(ps=='ring')return`<circle cx="${q.x}" cy="${q.y}" r="${r+1}" fill="#fff" stroke="#c2255c" stroke-width="2"/>`;
  if(ps=='cross'){const k=r*1.3;return`<path d="M${q.x-k} ${q.y-k}L${q.x+k} ${q.y+k}M${q.x-k} ${q.y+k}L${q.x+k} ${q.y-k}" stroke="#c2255c" stroke-width="2" stroke-linecap="round"/>`}
  return`<circle cx="${q.x}" cy="${q.y}" r="${r}" fill="#c2255c"/>`}
-function updCtx(){const L=(mode=='pen'||mode=='move')?selList():[],bar=$('ctxbar');
+function selPtsLive(){return selPts.filter(q=>!q.dead)}
+function allSelPts(L){const o=ptsOfShapes(L);selPtsLive().forEach(q=>{if(!o.includes(q))o.push(q)});return o}
+function updCtx(){const main=mode=='pen'||mode=='move',L=main?selList():[],SP=main?selPtsLive():[],bar=$('ctxbar');
  {const n=S.shapes.filter(s=>s.hid&&!s.dead).length,u=$('unh');if(u){u.style.display=n?'':'none';u.textContent='Hiện '+n+' đối tượng ẩn'}}
- if(!L.length||!$('dlg').classList.contains('hide')){bar.classList.add('hide');['popPS','popLS'].forEach(i=>$(i).classList.add('hide'));return}
- bar.classList.remove('hide');const P0=ptsOfShapes(L);
+ if((!L.length&&!SP.length)||!$('dlg').classList.contains('hide')){bar.classList.add('hide');['popPS','popLS'].forEach(i=>$(i).classList.add('hide'));return}
+ bar.classList.remove('hide');const P0=allSelPts(L);
  $('cgPts').classList.toggle('hide',!P0.length);$('cgLine').classList.toggle('hide',!L.some(s=>['l','a','f','ang'].includes(s.t)));
- $('cbDotT').textContent=P0.some(q=>q.vis)?'Ẩn chấm tròn':'Hiện chấm tròn';
-}
-function ctxDo(fn){const L=selList();if(!L.length)return;fn(L,ptsOfShapes(L));render()}
+ ['cbHide','cbCopy','cbDup','cbCut'].forEach(i=>$(i).classList.toggle('hide',!L.length));
+ $('cbDotT').textContent=P0.some(q=>q.vis)?'Ẩn chấm tròn':'Hiện chấm tròn'}
+function ctxDo(fn){const L=selList(),P0=allSelPts(L);if(!L.length&&!P0.length)return;fn(L,P0);render()}
 $('cbName').onclick=()=>ctxDo((L,P0)=>P0.forEach(q=>{q.vis=true;if(!q.name)q.name=autoName();q.lab=true}));
 $('cbHName').onclick=()=>ctxDo((L,P0)=>P0.forEach(q=>{q.lab=false}));
 $('cbDot').onclick=()=>ctxDo((L,P0)=>{const v=!P0.some(q=>q.vis);P0.forEach(q=>{q.vis=v;if(v&&q.name&&q.lab===undefined)q.lab=true})});
