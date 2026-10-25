@@ -197,6 +197,7 @@ body.drawer #p2 .side{display:flex}
 <div class="cg" id="cgPts"><button class="cb" id="cbName"><svg class="ic" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span>Đặt tên điểm</span></button><button class="cb" id="cbHName"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M20 12l-3.5 3.5M9 3H3v8l9 9"/></svg><span>Ẩn tên điểm</span></button><button class="cb" id="cbDot"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8"/></svg><span id="cbDotT">Ẩn chấm tròn</span></button>
 <div class="dd"><button class="cb" id="cbPS"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg><span>Kiểu điểm</span><i class=chev></i></button><div class="pop hide" id="popPS"><div class="row"><button data-ps="dot">● Chấm</button><button data-ps="ring">○ Vòng</button><button data-ps="cross">✕ Chéo</button></div><div class="row"><button data-pr="2.4">Nhỏ</button><button data-pr="3.6">Vừa</button><button data-pr="5.4">Lớn</button></div></div></div></div>
 <div class="cg" id="cgLine"><div class="dd"><button class="cb" id="cbLS"><svg class="ic" viewBox="0 0 24 24"><path d="M4 18L20 6"/><path d="M4 8h5M15 8h5" stroke-dasharray="1 3"/></svg><span>Kiểu đường</span><i class=chev></i></button><div class="pop hide" id="popLS"><div class="row"><button data-ls="solid">Nét liền</button><button data-ls="dash">Nét đứt</button><button data-ls="dot">Nét chấm</button></div><div class="row"><button data-lw="1.7">Mảnh</button><button data-lw="3.2">Vừa</button><button data-lw="5.5">Dày</button></div></div></div></div>
+<div class="cg hide" id="cgTwo"><button class="cb" id="cbSeg" title="Vẽ đoạn thẳng nối hai điểm đang chọn"><svg class="ic" viewBox="0 0 24 24"><path d="M5 17L19 7"/><circle cx="5" cy="17" r="1.8" fill="currentColor"/><circle cx="19" cy="7" r="1.8" fill="currentColor"/></svg><span id="cbSegT">Đoạn thẳng</span></button><button class="cb" id="cbRay" title="Vẽ tia gốc là điểm chọn trước, vượt qua điểm chọn sau khoảng 2 cm"><svg class="ic" viewBox="0 0 24 24"><path d="M5 17L21 5M16.6 4.6L21 5l-1.3 4.3"/><circle cx="5" cy="17" r="1.8" fill="currentColor"/></svg><span id="cbRayT">Tia</span></button><button class="cb" id="cbLn" title="Vẽ đường thẳng qua hai điểm, vượt mỗi điểm khoảng 1,5 cm"><svg class="ic" viewBox="0 0 24 24"><path d="M3 20L21 4M3 20l.6-4.4M3 20l4.4-.6M21 4l-.6 4.4M21 4l-4.4.6"/><circle cx="9.5" cy="14.4" r="1.7" fill="currentColor"/><circle cx="15" cy="9.5" r="1.7" fill="currentColor"/></svg><span id="cbLnT">Đường thẳng</span></button></div>
 <span class="csep"></span><button class="cb" id="cbHide"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A9.8 9.8 0 0 1 12 5c5 0 8.5 4.2 9.5 7-.4 1.1-1.1 2.3-2.2 3.4M6.5 6.7C4.5 8 3.2 10.1 2.5 12c1 2.8 4.5 7 9.5 7 1.5 0 2.8-.4 4-.9"/></svg><span>Ẩn</span></button><button class="cb" id="cbCopy"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Sao chép</span></button><button class="cb" id="cbDup"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M14 11.5v5M11.5 14h5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Nhân bản</span></button><button class="cb" id="cbCut"><svg class="ic" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 4L8 15.5M20 20L8 8.5"/></svg><span>Cắt</span></button><button class="cb" id="cbDel"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><span>Xóa</span></button>
 </div>
 <aside class="side">
@@ -209,7 +210,7 @@ body.drawer #p2 .side{display:flex}
 <details class="grp" id="gModes" open><summary>Chế độ làm việc</summary><div class="in">
 <div class="duo"><button class="btn tile on" id="mMove" title="Di chuyển và chọn đối tượng (V). Chọn rồi nhấn Delete để xóa."><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/></svg><span>Di chuyển</span><kbd>V</kbd></button><button class="btn tile on" id="mPen" title="Vẽ đoạn thẳng (P). Bấm lần nữa để tắt bút, chỉ còn chọn và di chuyển."><svg class="ic" viewBox="0 0 24 24"><path d="M4 20l4-1L19 8a2.1 2.1 0 0 0-3-3L5 16l-1 4z"/><path d="M14 7l3 3"/></svg><span>Bút chì</span><kbd>P</kbd></button></div>
 <div class="list" style="display:flex;flex-direction:column;gap:3px">
-<button class="rowm" id="mName" title="Bấm một lần hiện điểm chưa có tên. Nhấp đúp hoặc nhấn giữ kéo để hiện tên điểm."><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg><span>Điểm</span><kbd>O</kbd></button>
+<button class="rowm" id="mName" title="Bấm một lần hiện chấm điểm chưa có tên, ở bất kỳ chỗ nào trên bảng. Nhấp đúp hoặc nhấn giữ kéo để hiện tên điểm."><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg><span>Điểm</span><kbd>O</kbd></button>
 <button class="rowm" id="mPoint" title="Bấm vào bảng để đặt điểm có tên, tự dính vào đoạn, giao điểm, cạnh dụng cụ."><svg class="ic" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span>Đặt tên</span><kbd>N</kbd></button>
 <button class="rowm" id="mAux" title="Vẽ tay: nối hai điểm thành đoạn thẳng, nối hai cạnh góc thành ký hiệu góc."><svg class="ic" viewBox="0 0 24 24"><path d="M3 17c3-9 6 3 9-4s6-1 9-7" stroke-dasharray="2.5 2.5"/></svg><span>Đường phụ (vẽ tay)</span><kbd>A</kbd></button>
 <button class="rowm" id="mWrite" title="Viết bằng chuột hoặc bút; giữ nguyên nét chữ viết tay."><svg class="ic" viewBox="0 0 24 24"><path d="M3 19c3 0 4-5 6-5s1.5 3 4 3 3-3 5-3"/><path d="M15 4l5 5-8 8-5 1 1-5z"/></svg><span>Viết tay</span><kbd>W</kbd></button>
@@ -287,6 +288,7 @@ body.drawer #p2 .side{display:flex}
 </main></section>
 
 <div id="gdlg" class="hide"><div class="dbox gbox"><div class="ghead"><b id="gt">Hướng dẫn sử dụng</b><button class="btn" id="gx">Đóng</button></div><div class="gbody" id="gp2">
+<p class="fnote">Bản cập nhật 25/10/2026 (17:25): tia và đường thẳng qua hai điểm vẽ như nét thẳng thường, không mũi tên.</p>
 <h3>Bắt đầu nhanh</h3>
 <p>Khi mở trang, bảng là một trang giấy ô li trắng. Bấm <b>Thước thẳng</b> (hoặc phím R) để đưa thước ra giữa bảng, rồi dùng <b>Bút chì</b> kéo dọc mép thước để vẽ đoạn thẳng. Vẽ sai thì bấm <b>Hoàn tác</b> (Ctrl+Z). Thanh công cụ phía trên chứa chế độ làm việc, màu và độ dày nét, dụng cụ vẽ hình và đồ thị; nút ☰ mở bảng tùy chọn (compa, đồ thị, nét vẽ, nền, cỡ chữ).</p>
 
@@ -304,22 +306,23 @@ body.drawer #p2 .side{display:flex}
 <div class="it"><b>Đặt tên điểm, Ẩn tên điểm, Ẩn chấm tròn</b><div>Áp dụng cho các đầu mút (đoạn thẳng), đỉnh (ký hiệu góc) hoặc tâm (cung) của đối tượng đang chọn: hiện tên tự động, ẩn tên nhưng giữ chấm, hoặc ẩn cả chấm (nút đổi thành “Hiện chấm tròn” khi chấm đang ẩn).</div></div>
 <div class="it"><b>Kiểu điểm</b><div>Chọn chấm đặc, vòng tròn hoặc dấu chéo, kích thước nhỏ, vừa hoặc lớn.</div></div>
 <div class="it"><b>Kiểu đường</b><div>Nét liền, nét đứt hoặc nét chấm; độ dày mảnh, vừa hoặc dày.</div></div>
+<div class="it"><b>Vẽ nhanh qua hai điểm</b><div>Chọn đúng hai điểm (giữ Ctrl rồi bấm từng chấm) thì thanh bổ trợ hiện thêm ba nút: <b>Đoạn thẳng</b> nối hai điểm, <b>Tia</b> có gốc là điểm chọn trước và đi qua điểm chọn sau, <b>Đường thẳng</b> đi qua hai điểm. Tia vượt qua điểm thứ hai khoảng 2 cm, đường thẳng vượt qua mỗi điểm khoảng 1,5 cm; đều chỉ là nét thẳng thường, không có mũi tên. Nét vẽ ra là đối tượng thường: chọn, đổi màu, đổi kiểu đường, xóa được; hoàn tác được.</div></div>
 <div class="it"><b>Ẩn</b><div>Ẩn đối tượng khỏi bảng (không còn bị bắt điểm). Nút “Hiện … đối tượng ẩn” ở góc dưới bên phải bảng đưa chúng trở lại.</div></div>
 <div class="it"><b>Sao chép, Nhân bản, Cắt, Xóa</b><div>Sao chép (Ctrl+C) rồi dán bằng Ctrl+V, mỗi lần dán lệch một chút; Nhân bản (Ctrl+D) tạo ngay một bản lệch chỗ; Cắt (Ctrl+X); Xóa (Delete). Hoàn tác được tất cả.</div></div>
 <h3>Chế độ làm việc</h3>
-<div class="it"><b>Di chuyển <kbd>V</kbd></b><div>Chế độ chọn và di chuyển. Bấm vào một nét để chọn (viền xanh) rồi nhấn <b>Delete</b> để xóa. Nhấn giữ chuột trái ở chỗ trống và rê để chọn nhiều đối tượng: rê từ trái sang phải chỉ chọn những đối tượng nằm trọn trong khung, rê từ phải sang trái chọn mọi đối tượng chạm vào khung. Giữ <b>Shift</b> để thêm hoặc bớt đối tượng, nhấn <b>Esc</b> để bỏ chọn. Kéo thước, eke, compa, thước đo độ hoặc tên điểm để di chuyển chúng. Bấm vào đầu mút để hiện hoặc ẩn điểm. Nhấp đúp vào điểm hoặc tên để đổi tên. Khung văn bản và ảnh: bấm chọn, kéo thân để dời, kéo ô vuông xanh ở góc để đổi độ rộng.</div></div>
+<div class="it"><b>Di chuyển <kbd>V</kbd></b><div>Chế độ chọn và di chuyển. Bấm vào một nét để chọn (viền xanh) rồi nhấn <b>Delete</b> để xóa. Nhấn giữ chuột trái ở chỗ trống và rê để chọn nhiều đối tượng: rê từ trái sang phải chỉ chọn những đối tượng nằm trọn trong khung, rê từ phải sang trái chọn mọi đối tượng chạm vào khung. Giữ <b>Ctrl</b> (hoặc Shift) rồi bấm từng đối tượng, từng điểm để thêm hoặc bớt khỏi vùng chọn; nhấn <b>Esc</b> để bỏ chọn. Kéo thước, eke, compa, thước đo độ hoặc tên điểm để di chuyển chúng. Bấm vào đầu mút để hiện hoặc ẩn điểm. Nhấp đúp vào điểm hoặc tên để đổi tên. Khung văn bản và ảnh: bấm chọn, kéo thân để dời, kéo ô vuông xanh ở góc để đổi độ rộng.</div></div>
 <div class="it"><b>Bút chì <kbd>P</kbd></b><div>Kéo chuột để vẽ <b>đoạn thẳng</b>. Mọi nét, dù ngắn hay cong, đều thành đoạn thẳng nối điểm đầu và điểm cuối. Đầu nét tự dính vào điểm, giao điểm, đoạn thẳng hoặc cung có sẵn. Nét gần nằm ngang hoặc thẳng đứng sẽ thành nằm ngang hoặc thẳng đứng hẳn. Kéo sát mép thước, eke hoặc đường kính thước đo độ để vẽ dọc mép dụng cụ. Khi bút chì đang bật bạn vẫn kéo được dụng cụ và tên điểm. Giữ <b>Shift</b> và rê chuột để chọn vùng. Bấm lại nút Bút chì để <b>tắt bút</b>, chỉ còn chế độ chọn và di chuyển.</div></div>
-<div class="it"><b>Điểm <kbd>O</kbd></b><div>Bấm một lần vào đầu mút, giao điểm hoặc một chỗ trên đoạn thẳng, cung, thì hiện <b>chấm điểm chưa có tên</b>. Nhấp đúp hoặc nhấn giữ rồi kéo từ điểm để hiện <b>tên điểm</b> (tự đặt A, B, C...). Vòng tròn xanh khi rê chuột báo trước chỗ điểm sẽ bắt.</div></div>
+<div class="it"><b>Điểm <kbd>O</kbd></b><div>Bấm một lần vào đầu mút, giao điểm, một chỗ trên đoạn thẳng, cung, hoặc <b>bất kỳ chỗ trống nào trên bảng</b> (kể cả khi bảng chưa có nét vẽ), thì hiện <b>chấm điểm chưa có tên</b>. Nhấp đúp hoặc nhấn giữ rồi kéo từ điểm để hiện <b>tên điểm</b> (tự đặt A, B, C...). Vòng tròn xanh khi rê chuột báo trước chỗ điểm sẽ bắt.</div></div>
 <div class="it"><b>Đặt tên <kbd>N</kbd></b><div>Bấm vào bảng để đặt ngay một điểm có tên tự động. Điểm tự dính vào điểm có sẵn, giao điểm, đoạn thẳng, cung và cạnh dụng cụ; không có gì gần thì nằm đúng chỗ bấm. Nhấp đúp vào điểm hoặc tên để sửa tên, nhấn giữ và kéo tên để dời sang chỗ khác.</div></div>
-<div class="it"><b>Đường phụ (vẽ tay) <kbd>A</kbd></b><div>Vẽ tay một nét: nét nối <b>hai điểm có sẵn</b> thành đoạn thẳng (nét đứt); nét nối <b>hai cạnh của một góc</b> thành ký hiệu góc, và thành ký hiệu <b>góc vuông</b> (ô vuông nhỏ) nếu hai cạnh vuông góc. Nét không khớp trường hợp nào thì giữ nguyên nét vẽ tay.</div></div>
+<div class="it"><b>Đường phụ (vẽ tay) <kbd>A</kbd></b><div>Vẽ tay một nét: nét nối <b>hai điểm có sẵn</b> thành đoạn thẳng (nét đứt); nét nối <b>hai cạnh của một góc</b> thành ký hiệu góc, và thành ký hiệu <b>góc vuông</b> (ô vuông nhỏ) nếu hai cạnh vuông góc. Góc có thể ở đầu mút chung của hai đoạn, ở giao điểm (chữ thập) hay chân đường vuông góc (chữ T). Ngoài ra chỉ cần vẽ nhanh một ô vuông nhỏ hoặc nét chữ L vào đúng góc nơi hai đoạn vuông góc gặp nhau là máy tự đặt ký hiệu góc vuông ở góc đó. Nét không khớp trường hợp nào thì giữ nguyên nét vẽ tay.</div></div>
 <div class="it"><b>Viết tay <kbd>W</kbd></b><div>Viết bằng chuột hoặc bút cảm ứng, nét viết được giữ nguyên như chữ viết tay, không chuyển thành chữ văn bản. Muốn chèn chữ đánh máy, dùng nút Aa Gõ / dán văn bản.</div></div>
 <div class="it"><b>Gõ / dán văn bản <kbd>T</kbd></b><div>Bấm vào vị trí cần viết để mở hộp soạn thảo, gõ hoặc dán nội dung rồi bấm “Chèn vào bảng”. Biểu thức như <b>y=2x^2</b>, <b>sqrt(x+1)</b>, <b>a/b</b>, <b>AB=5cm</b> tự thành công thức Toán; công thức LaTeX viết trong dấu $...$. Có thể dán từ Word (giữ chữ đậm nghiêng, bảng, công thức, ảnh). Bấm Ctrl+V ngay trên bảng để dán thẳng, kể cả ảnh cắt từ PDF; kéo thả tệp ảnh lên bảng cũng được. Nhấp đúp vào khung để sửa.</div></div>
 
 <h3>Dụng cụ vẽ hình</h3>
-<div class="it"><b>Thước thẳng <kbd>R</kbd></b><div>Thước dài 10 cm, vạch chia đến mm. Kéo thân thước để di chuyển, kéo nút ↻ để xoay, bấm nút ✕ để đóng. Thước tự bắt vào điểm và đoạn thẳng ở gần. Bảng trắng thì thước nằm giữa màn hình; bảng đã có nét vẽ thì thước tự đặt vào đối tượng mới vẽ gần nhất.</div></div>
+<div class="it"><b>Thước thẳng <kbd>R</kbd></b><div>Thước dài 10 cm, vạch chia đến mm. Kéo thân thước để di chuyển, kéo nút ↻ để xoay, bấm nút ✕ để đóng. Thước tự bắt vào điểm và đoạn thẳng ở gần. <b>Chọn hai điểm</b> (giữ Ctrl và bấm từng điểm) rồi bấm nút Thước thẳng, hoặc bấm vào thước đang mở: thước tự đặt đi qua hai điểm đó. Khi vẽ bằng bút chì dọc mép thước (mép trên và mép dưới), đầu nét tự bắt vào điểm hoặc giao điểm gần mép; nếu không có thì độ dài đoạn được làm tròn đến mm. Bảng trắng thì thước nằm giữa màn hình; bảng đã có nét vẽ thì thước tự đặt vào đối tượng mới vẽ gần nhất.</div></div>
 <div class="it"><b>Compa <kbd>C</kbd></b><div>Kéo đầu kim để đặt tâm (tự dính vào điểm), kéo đầu bút để đổi bán kính. Nhập số vào ô <b>Bán kính (cm)</b> để vẽ đúng số đo. Bật <b>Cố định bán kính</b> thì bán kính giữ nguyên và kéo đầu bút chỉ quay compa; tắt thì bán kính tự điều chỉnh, tự bắt điểm và làm tròn đến mm. Bật <b>Hạ bút</b> rồi kéo đầu bút để vẽ cung hoặc đường tròn. Thanh <b>Cỡ compa</b> đổi độ dài hai chân (bán kính tối đa 10 cm).</div></div>
-<div class="it"><b>Thước đo độ <kbd>G</kbd></b><div>Kéo tâm thước lại gần một điểm (đỉnh góc) thì tâm dính vào điểm đó và vạch 0° tự khớp với các tia. Đặt tâm lên một đoạn thẳng thì thước tự xoay theo đoạn ấy. Kéo thân thước để xoay quanh đỉnh, chạm vào tâm để nhả. Dòng thông báo dưới bảng cho biết số đo từng tia và góc giữa hai tia. Để vẽ góc cho trước, xoay thước tới vạch cần, chấm một điểm trên cung thước rồi nối bằng bút chì.</div></div>
-<div class="it"><b>Eke <kbd>E</kbd></b><div>Có hai loại, 45°-45° và 30°-60° (nút đổi loại hiện khi bật eke). Kéo một góc của eke lại gần điểm thì dính vào điểm, rồi xoay quanh điểm đó; các cạnh tự khớp với tia và đoạn thẳng. Bút chì vẽ thẳng được dọc cạnh eke, trên cạnh có vạch cm.</div></div>
+<div class="it"><b>Thước đo độ <kbd>G</kbd></b><div>Kéo tâm thước lại gần một điểm (đỉnh góc) thì tâm dính vào điểm đó và vạch 0° tự khớp với các tia. Cách nhanh hơn: chọn một điểm (bấm vào chấm) rồi bấm nút Thước đo độ, thước tự lấy điểm đó làm tâm. Đặt tâm lên một đoạn thẳng thì thước tự xoay theo đoạn ấy. Kéo thân thước để xoay quanh đỉnh, chạm vào tâm để nhả. Dòng thông báo dưới bảng cho biết số đo từng tia và góc giữa hai tia. Để vẽ góc cho trước, xoay thước tới vạch cần, chấm một điểm trên cung thước rồi nối bằng bút chì.</div></div>
+<div class="it"><b>Eke <kbd>E</kbd></b><div>Có hai loại, 45°-45° và 30°-60° (nút đổi loại hiện khi bật eke). Kéo một góc của eke lại gần điểm thì dính vào điểm, rồi xoay quanh điểm đó; các cạnh tự khớp với tia và đoạn thẳng. Bút chì vẽ thẳng được dọc cạnh eke, trên cạnh có vạch cm. <b>Kẻ đường vuông góc:</b> chọn một điểm và một đoạn thẳng (giữ Ctrl rồi bấm lần lượt), sau đó bấm nút Eke: một cạnh eke nằm trên đoạn thẳng, cạnh vuông góc đi qua điểm; kéo bút chì dọc cạnh này để vẽ đường vuông góc, đầu nét tự bắt vào điểm và vào chân đường vuông góc.</div></div>
 
 <h3>Đồ thị hàm số</h3>
 <div class="it"><b>Vẽ đồ thị</b><div>Gõ hàm số vào ô <b>y =</b> rồi nhấn Enter hoặc bấm “Vẽ đồ thị”, ví dụ <b>2x-1</b>, <b>2x^2</b>, <b>x^2-4x+3</b>, <b>sin(x)</b>, <b>1/x</b>, <b>sqrt(x)</b>. Có thể viết 2x, 2(x+1), (x+1)(x-1); dùng ^ cho lũy thừa; hàm sin, cos, tan, sqrt, abs, ln, log, exp; hằng số pi, e. Hệ trục tọa độ Oxy đầy đủ (mũi tên, vạch chia, số, gốc O) hiện trong một khung khoảng một phần tư màn hình, đặt giữa vùng bạn đang xem.</div></div>
@@ -367,7 +370,7 @@ body.drawer #p2 .side{display:flex}
 <div class="drow"><label>Độ rộng khung <input type="range" id="bw" min="200" max="900" value="420"></label><label><input type="checkbox" id="am" checked> Tự nhận công thức</label><span style="flex:1"></span><button class="btn" id="dDel">Xóa khung</button><button class="btn" id="dNo">Hủy</button><button class="btn on" id="dOk">Chèn vào bảng</button></div>
 <p class="hint">Gõ trực tiếp hoặc dán từ Word (Ctrl+V): chữ đậm nghiêng, bảng, chỉ số trên dưới, công thức và hình được giữ lại. Biểu thức như y=2x^2, sqrt(x+1), a/b, x_1, AB=5cm tự hiển thị thành công thức (tắt ở ô “Tự nhận công thức” nếu không muốn); cũng có thể viết LaTeX trong dấu $...$. Dán ảnh (Ctrl+V) từ Word hoặc ảnh cắt từ PDF, hoặc kéo thả tệp ảnh; độ rộng khung quyết định cỡ ảnh. Cỡ chữ lấy theo thanh “Cỡ chữ”.</p></div></div>
 <script>
-const U=40,$=id=>document.getElementById(id);
+const U=40,$=id=>document.getElementById(id),MK=e=>e.shiftKey||e.ctrlKey||e.metaKey;
 /* ---------- HÌNH PHẲNG ---------- */
 const svg=$('svg'),LY=$('L'),HB=$('HB'),wrap=$('wrap'),PI=Math.PI;
 let S={shapes:[],pts:[]},H=[],mode='pen',draw=null,drag=null,hov=null,ink=[],pend=[],sel=null,BH=600,BW=1000,SEQ=0,ZOOM=1,RD=[],panS=null,inkT=null,msg='',FS=26,bg='li';
@@ -386,7 +389,9 @@ function addPt(p){let f=S.pts.find(q=>!q.dead&&d2(q,p)<2);if(!f){f={x:p.x,y:p.y,
 function showPt(q,v){q.vis=v;if(v){q.lab=true;if(!q.name&&$('an').checked)q.name=autoName()}}
 const pn=q=>q.name?'điểm '+q.name:'một đầu mút';
 const proj=(p,A,B)=>{const dx=B.x-A.x,dy=B.y-A.y,t=Math.max(0,Math.min(1,((p.x-A.x)*dx+(p.y-A.y)*dy)/(dx*dx+dy*dy||1)));return{x:A.x+t*dx,y:A.y+t*dy}};
-const rays=v=>S.shapes.filter(s=>s.t=='l'&&!s.dead&&!s.hid&&(s.a==v||s.b==v)).map(s=>{const o=s.a==v?s.b:s.a;return Math.atan2(o.y-v.y,o.x-v.x)});
+const rays=v=>{const o=[];S.shapes.forEach(s=>{if(s.t!='l'||s.dead||s.hid)return;
+ if(s.a==v||s.b==v){const q=s.a==v?s.b:s.a;o.push(Math.atan2(q.y-v.y,q.x-v.x))}
+});return o};
 function nearSeg(p,r){let b=null;S.shapes.forEach(s=>{if(s.t!='l'||s.dead||s.hid)return;const q=proj(p,s.a,s.b),d=d2(p,q);if(d<r&&(!b||d<b.d))b={q,d,th:Math.atan2(s.b.y-s.a.y,s.b.x-s.a.x)}});return b}
 const closestAng=(cur,th)=>Math.abs(norm(cur-th))<=Math.abs(norm(cur-th-PI))?th:th+PI;
 const snapAng=(a,cs,tol=.07)=>{for(const c of cs)if(Math.abs(norm(a-c))<tol)return c;return a};
@@ -395,11 +400,24 @@ const ecor=i=>toW(E,ECL()[i]);
 const EA=()=>[[0,PI/2],[PI,Math.atan2(E.lb,-E.la)],[-PI/2,Math.atan2(-E.lb,E.la)]];
 function eset(pv,c,a){const cl=ECL()[c];E.a=a;E.x=pv.x-(cl.x*Math.cos(a)-cl.y*Math.sin(a));E.y=pv.y-(cl.x*Math.sin(a)+cl.y*Math.cos(a))}
 function edges(){const e=[];
- if(show.r)e.push([toW(R,{x:0,y:0}),toW(R,{x:R.L,y:0})]);
+ if(show.r)e.push([toW(R,{x:0,y:0}),toW(R,{x:R.L,y:0})],[toW(R,{x:0,y:46}),toW(R,{x:R.L,y:46}),9]);
  if(show.e){const c=[0,1,2].map(ecor);e.push([c[0],c[1]],[c[0],c[2]],[c[1],c[2]])}
  if(show.p)e.push([toW(P,{x:-P.R,y:0}),toW(P,{x:P.R,y:0})]);
  return e}
-function edge(p,lock){let best=null,bd=14;(lock?[lock]:edges()).forEach(e=>{const q=proj(p,e[0],e[1]),d=d2(p,q);if(lock||d<bd){bd=d;best={q,e}}});return best}
+function edge(p,lock,rr){let best=null,bd=rr||14;(lock?[lock]:edges()).forEach(e=>{const q=proj(p,e[0],e[1]),d=d2(p,q);if(lock||d<Math.min(bd,e[2]||99)){bd=d;best={q,e}}});return best}
+/* điểm bắt trên mép dụng cụ: điểm có sẵn / giao điểm gần mép; nếu không có thì (khi đã có điểm đầu) làm tròn độ dài đến mm */
+function edgeSnap(p,e,from){const L=Math.hypot(e[1].x-e[0].x,e[1].y-e[0].y)||1,ux=(e[1].x-e[0].x)/L,uy=(e[1].y-e[0].y)/L,q0=proj(p,e[0],e[1]);
+ let best=null,bd=18;const on=o=>d2(o,proj(o,e[0],e[1]))<12;
+ S.pts.forEach(o=>{if(o.dead||!on(o))return;const d=d2(o,q0);if(d<bd){bd=d;best={x:o.x,y:o.y,hit:true}}});
+ inters().forEach(o=>{if(!on(o))return;const d=d2(o,q0);if(d<bd){bd=d;best={x:o.x,y:o.y,hit:true}}});
+ const sgs=[];S.shapes.forEach(h=>{if(h.t=='l'&&!h.dead&&!h.hid)sgs.push([h.a,h.b,false])});
+ if(EREF&&show.e&&!EREF.s.dead&&EREF.key==E.x.toFixed(2)+','+E.y.toFixed(2)+','+E.a.toFixed(4))sgs.push([EREF.s.a,EREF.s.b,true]);
+ sgs.forEach(([a,b,inf])=>{const x1=e[0].x,y1=e[0].y,x2=e[1].x,y2=e[1].y,dn=(x1-x2)*(a.y-b.y)-(y1-y2)*(a.x-b.x);if(Math.abs(dn)<1e-9)return;
+  const t=((x1-a.x)*(a.y-b.y)-(y1-a.y)*(a.x-b.x))/dn,u=-((x1-x2)*(y1-a.y)-(y1-y2)*(x1-a.x))/dn;
+  if(t<-.02||t>1.02||(!inf&&(u<-.01||u>1.01)))return;const o={x:x1+t*(x2-x1),y:y1+t*(y2-y1)},d=d2(o,q0);if(d<bd){bd=d;best={x:o.x,y:o.y,hit:true}}});
+ if(best)return best;
+ if(from){const sf=(from.x-e[0].x)*ux+(from.y-e[0].y)*uy,sv=(q0.x-e[0].x)*ux+(q0.y-e[0].y)*uy,sc=Math.max(0,Math.min(L,sf+Math.round((sv-sf)/4)*4));return{x:e[0].x+ux*sc,y:e[0].y+uy*sc}}
+ return q0}
 function rim(p){if(!show.p)return null;const q=toL(P,p),r=Math.hypot(q.x,q.y);if(Math.abs(r-P.R)>10||q.y>4)return null;const t=Math.max(0,Math.min(180,Math.round(Math.atan2(-q.y,q.x)*180/PI)))*PI/180;return toW(P,{x:P.R*Math.cos(t),y:-P.R*Math.sin(t)})}
 function hit(p){
  if(show.c){const pen={x:C.x+C.r*Math.cos(C.phi),y:C.y+C.r*Math.sin(C.phi)},cg=compGeom();if(d2(p,{x:cg.K.x+cg.nx*54,y:cg.K.y+cg.ny*54})<11)return{k:'close',t:'c'};
@@ -436,15 +454,15 @@ const commit=()=>{H.push([S.shapes.length,S.pts.length]);RD.length=0};
 svg.onpointerdown=e=>{svg.setPointerCapture(e.pointerId);const p=pt(e);msg='';
  if(PLACE){try{placeFig(PLACE.fn(),p.x,p.y)}catch(err){}if(!e.shiftKey){PLACE=null;msg=''}render();return}
  if(mode!='write'&&mode!='type'&&mode!='name'&&mode!='pan'){if(lastDown&&lastDown.click&&e.timeStamp-lastDown.t<400&&d2(p,lastDown.p)<10){lastDown=null;if(dbl(p)){render();return}}else lastDown={t:e.timeStamp,p}}
- if(mode=='pen'&&e.shiftKey){startSel(p,hitShape(p),e)}
+ if(mode=='pen'&&MK(e)){startSel(p,hitShape(p),e)}
  else if(mode=='pen'&&sel&&sel.t=='html'&&!sel.dead&&d2(p,{x:sel.x+sel.w,y:sel.y+(sel.h||40)})<16){drag={k:'tres',s:sel}}
  else if((mode=='pen'||mode=='aux')&&labelAt(p)){const L=labelAt(p);drag={k:'lbl',q:L,o:{x:p.x-L.x-(L.lx!=null?L.lx:7),y:p.y-L.y-(L.ly!=null?L.ly:-7)}}}
  else if((mode=='pen'||mode=='aux')&&(drag=penHit(p))){if(drag.k=='close'){closeTool(drag.t);drag=null}else{if(drag.unl)(drag.k=='emov'?E:P).lock=null;if(drag.k=='cpen'){C.a0=C.phi;C.sw=0}}}
- else if(mode=='pen'&&startMove(p,e)){}
+ else if(mode=='pen'&&!edge(p)&&startMove(p,e)){}
  else if(mode=='pen'&&sel&&sel.t=='html'&&!sel.dead&&p.x>=sel.x&&p.x<=sel.x+sel.w&&p.y>=sel.y&&p.y<=sel.y+(sel.h||40)){drag={k:'tbox',s:sel,o:{x:p.x-sel.x,y:p.y-sel.y}}}
  else if(mode=='aux'){draw={aux:true,lock:null,s:p,cur:p,path:[p]}}
  else if(mode=='pen'&&show.q&&qStart(p)){}
- else if(mode=='pen'){let s=snapPt(p,10)||p,ed=edge(s);if(ed)s=snapPt(ed.q,8)||ed.q;else s=rim(s)||s;
+ else if(mode=='pen'){let s=snapPt(p,10)||p,ed=edge(s)||edge(p,null,20);if(ed)s=edgeSnap(s,ed.e);else s=rim(s)||s;
   draw={lock:ed?ed.e:null,s,cur:s,path:[s]}}
  else if(mode=='write'){clearTimeout(inkT);ink.push({x:[p.x],y:[p.y],t:[e.timeStamp]})}
  else if(mode=='type'){openEd(null,{x:p.x,y:grid(p.y)})}
@@ -457,8 +475,8 @@ svg.onpointerdown=e=>{svg.setPointerCapture(e.pointerId);const p=pt(e);msg='';
   if(drag&&drag.k=='cpen'){C.a0=C.phi;C.sw=0}
   if(!drag&&!startMove(p,e)){const q=snapPt(p,10),L=S.pts.find(o=>hasLab(o)&&d2(o,p)>6&&lblHit(o,p));
    if(L)drag={k:'lbl',q:L,o:{x:p.x-L.x-(L.lx!=null?L.lx:7),y:p.y-L.y-(L.ly!=null?L.ly:-7)}};
-   else if(q){if(e.shiftKey&&q.vis)selPts=selPts.includes(q)?selPts.filter(x=>x!==q):selPts.concat(q);else drag={k:'ptc',q}}
-   else{const h=hitShape(p);if(!h||e.shiftKey)startSel(p,h,e);else{setSel(h.s);if(h.s.t=='html')drag={k:'tbox',s:h.s,o:{x:p.x-h.s.x,y:p.y-h.s.y}}}}}}
+   else if(q){if(MK(e)&&q.vis)selPts=selPts.includes(q)?selPts.filter(x=>x!==q):selPts.concat(q);else drag={k:'ptc',q}}
+   else{const h=hitShape(p);if(!h||MK(e))startSel(p,h,e);else{setSel(h.s);if(h.s.t=='html')drag={k:'tbox',s:h.s,o:{x:p.x-h.s.x,y:p.y-h.s.y}}}}}}
  render()};
 svg.onpointermove=e=>{const p=pt(e);hov=p;
  if(draw||drag||(mode=='write'&&e.buttons)){if(p.y>BH-50&&BH<6000){BH=Math.ceil(p.y+300);setBoard()}const rc=wrap.getBoundingClientRect();if(e.clientY>rc.bottom-30)wrap.scrollTop+=18;else if(e.clientY<rc.top+30)wrap.scrollTop-=18}
@@ -468,22 +486,22 @@ svg.onpointermove=e=>{const p=pt(e);hov=p;
  else if(mq){mq.x1=p.x;mq.y1=p.y}
  else if(draw&&draw.par){qMove(p)}
  else if(draw){let q=p;
-  if(draw.lock){q=edge(p,draw.lock).q;const k=snapPt(q,6);if(k&&d2(k,proj(k,draw.lock[0],draw.lock[1]))<4)q=k}
+  if(draw.lock){q=edgeSnap(p,draw.lock,draw.s)}
   else draw.path.push(q);
   draw.cur=q}
  else if(drag){const k=drag.k;
-  if(k=='rmov'){R.x=p.x-drag.o.x;R.y=p.y-drag.o.y;const q=snapPt(R,12);
+  if(k=='rmov'){drag.moved=true;R.x=p.x-drag.o.x;R.y=p.y-drag.o.y;const q=snapPt(R,12);
    if(q){R.x=q.x;R.y=q.y}else{const b=nearSeg(R,8);if(b){const al=closestAng(R.a,b.th);if(Math.abs(norm(R.a-al))<.35){R.x=b.q.x;R.y=b.q.y;R.a=al}}}}
   else if(k=='rrot'){let a=Math.atan2(p.y-R.y,p.x-R.x)-HR,best=null;
    S.pts.forEach(q=>{const l=toL({x:R.x,y:R.y,a},q);if(l.x>20&&Math.abs(l.y)<8&&(!best||Math.abs(l.y)<best.y))best={y:Math.abs(l.y),q}});
    if(best)a=Math.atan2(best.q.y-R.y,best.q.x-R.x);
    else a=snapAng(a,S.shapes.filter(s=>s.t=='l').flatMap(s=>{const th=Math.atan2(s.b.y-s.a.y,s.b.x-s.a.x);return[th,th+PI]}),.05);
    R.a=a+0}
-  else if(k=='pmov'){P.x=p.x-drag.o.x;P.y=p.y-drag.o.y;const q=snapPt(P,16);
+  else if(k=='pmov'){drag.moved=true;P.x=p.x-drag.o.x;P.y=p.y-drag.o.y;const q=snapPt(P,16);
    if(q){P.x=q.x;P.y=q.y;P.lock=q}else{const b=nearSeg(P,12);if(b){P.x=b.q.x;P.y=b.q.y;P.a=closestAng(P.a,b.th)}}}
   else if(k=='prot'||k=='phan'){let a=Math.atan2(p.y-P.y,p.x-P.x)+(k=='prot'?-drag.o:PI/2);
    if(P.lock)a=snapAng(a,rays(P.lock).flatMap(t=>[t,t+PI]));P.a=a}
-  else if(k=='emov'){E.x=p.x-drag.o.x;E.y=p.y-drag.o.y;let best=null;
+  else if(k=='emov'){drag.moved=true;E.x=p.x-drag.o.x;E.y=p.y-drag.o.y;let best=null;
    for(let i=0;i<3;i++){const c=ecor(i);S.pts.forEach(q=>{const d=d2(c,q);if(d<14&&(!best||d<best.d))best={d,q,i}})}
    if(best){const c=ecor(best.i);E.x+=best.q.x-c.x;E.y+=best.q.y-c.y;E.lock=best.q;E.c=best.i}
    else{const b=nearSeg(ecor(0),10);if(b)eset(b.q,0,closestAng(E.a,b.th))}}
@@ -512,6 +530,9 @@ svg.onpointerup=svg.onpointercancel=()=>{
   else{commit();if(draw.lock){S.shapes.push({t:'l',a:addPt(a),b:addPt(b),n:++SEQ,col:PEN.col,lw:PEN.lw});if($('em').value=='on'){showPt(addPt(a),true);showPt(addPt(b),true)}}else{const ST=$('sl').checked?straightLine(draw.path):null;if(ST){S.shapes.push({t:'l',a:addPt(ST.a),b:addPt(ST.b),n:++SEQ,col:PEN.col,lw:PEN.lw});if($('em').value=='on'){showPt(addPt(ST.a),true);showPt(addPt(ST.b),true)}}else if(!$('sl').checked)S.shapes.push({t:'f',d:draw.path.slice(),col:PEN.col,lw:PEN.lw});else{const q=snapPt(a,10);if(q)showPt(q,!q.vis);else showPt(addPt(a),true)}}}
   draw=null;afterAction()}
  if(drag&&drag.k=='msel'&&(drag.tot.x||drag.tot.y)){const D=drag,tx=D.tot.x,ty=D.tot.y;H.push({u:()=>moveSet(D,-tx,-ty),r:()=>moveSet(D,tx,ty)});RD.length=0}
+ if(drag&&drag.k=='rmov'&&!drag.moved){const t=twoSelPts();if(t)rulerThrough(t[0],t[1])}
+ if(drag&&drag.k=='emov'&&!drag.moved){const t=ptSegSel();if(t)ekeThrough(t.q,t.s)}
+ if(drag&&drag.k=='pmov'&&!drag.moved){const q=onePt();if(q)protThrough(q)}
  if(drag&&drag.k=='ptc')showPt(drag.q,!drag.q.vis);
  if(drag&&drag.k=='cpen'&&C.down&&Math.abs(C.sw)>.02){commit();addPt(C);S.shapes.push({t:'a',x:C.x,y:C.y,r:C.r,a0:C.a0,sw:C.sw,n:++SEQ,col:PEN.col,lw:PEN.lw});C.sw=0}
  if(drag&&drag.k=='qmov')qAuto();
@@ -568,6 +589,9 @@ function render(){syncBoxes();[['tbR','r'],['tbC','c'],['tbG','p'],['tbE','e'],[
  const hq=hov&&mode!='write'&&mode!='type'?S.pts.find(q=>!q.vis&&!q.dead&&d2(q,hov)<10):null;if(hq)h+=`<circle cx="${hq.x}" cy="${hq.y}" r="6" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`;
  ink.concat(pend).forEach(s=>h+=`<polyline class="ink" stroke="#3b4a66" stroke-width="2.2" points="${pl(s.x.map((x,i)=>({x,y:s.y[i]})))}"/>`);
  if(draw)h+=draw.lock?`<line class="ink" style="stroke:${PEN.col};stroke-width:${PEN.lw}" x1="${draw.s.x}" y1="${draw.s.y}" x2="${draw.cur.x}" y2="${draw.cur.y}"/>`:`<polyline class="ink" style="stroke:${PEN.col};stroke-width:${PEN.lw}" points="${pl(draw.path)}"/>`;
+ {const rg=q=>`<circle cx="${q.x}" cy="${q.y}" r="8" fill="#3d5afe22" stroke="#3d5afe" stroke-width="2"/><circle cx="${q.x}" cy="${q.y}" r="2.5" fill="#3d5afe"/>`;
+  if(draw&&draw.lock){if(draw.s&&draw.s.hit)h+=rg(draw.s);if(draw.cur&&draw.cur.hit)h+=rg(draw.cur)}
+  else if(mode=='pen'&&hov&&!draw&&!drag&&!mq){const ed=edge(hov)||edge(hov,null,20);if(ed){const sn=edgeSnap(snapPt(hov,10)||hov,ed.e);if(sn.hit)h+=rg(sn)}}}
  if((mode=='point'||mode=='name')&&hov){const t=snapAny(hov);if(t)h+=`<circle cx="${t.x}" cy="${t.y}" r="8" fill="#3d5afe22" stroke="#3d5afe" stroke-width="2"/><circle cx="${t.x}" cy="${t.y}" r="2.5" fill="#3d5afe"/>`}
  if(mode=='name'){inters().forEach(i=>h+=`<circle cx="${i.x}" cy="${i.y}" r="5" fill="none" stroke="#2c5d8a" stroke-dasharray="2 2"/>`);S.pts.filter(q=>!q.vis&&!q.dead).forEach(q=>h+=`<circle cx="${q.x}" cy="${q.y}" r="5" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`)}
  if(mode=='pen'||mode=='move'){const L=selAll.filter(x=>!x.dead&&S.shapes.includes(x));L.forEach(x=>h+=selSvg(x,L.length>1));if(sel&&!L.includes(sel)&&!sel.dead&&S.shapes.includes(sel))h+=selSvg(sel);selPts.forEach(q=>{if(q.vis&&!q.dead)h+=`<circle cx="${q.x}" cy="${q.y}" r="10" fill="#3d5afe22" stroke="#3d5afe" stroke-width="1.6"/>`});h+=mqSvg()}
@@ -580,7 +604,7 @@ function setMode(m){mode=m;const main=m=='pen'||m=='move';[['mMove',main],['mPen
 $('mMove').onclick=()=>backToMain();
 $('mPen').onclick=()=>setMode(mode=='pen'?'move':'pen');
 [['point','mPoint'],['aux','mAux'],['write','mWrite'],['name','mName'],['type','mType']].forEach(([m,i])=>$(i).onclick=()=>setMode(m));
-[['sR','r'],['sC','c'],['sP','p'],['sE','e']].forEach(([id,k])=>$(id).onchange=e=>{show[k]=e.target.checked;if(k=='p'&&!show.p)P.lock=null;if(k=='e'&&!show.e)E.lock=null;if(e.target.checked){callTool(k);backToMain()}render()});
+[['sR','r'],['sC','c'],['sP','p'],['sE','e']].forEach(([id,k])=>$(id).onchange=e=>{show[k]=e.target.checked;if(k=='p'&&!show.p)P.lock=null;if(k=='e'&&!show.e)E.lock=null;if(e.target.checked){const t=k=='r'?twoSelPts():null,pe=k=='e'?ptSegSel():null,pp=k=='p'?onePt():null;if(t)rulerThrough(t[0],t[1]);else if(pe)ekeThrough(pe.q,pe.s);else if(pp)protThrough(pp);else callTool(k);backToMain()}render()});
 $('cDown').onchange=e=>{C.down=e.target.checked;C.sw=0;render()};
 $('fs').oninput=e=>{FS=+e.target.value;$('fsv').textContent=FS};
 function setBg(){bg=$('bg').value;$('bgr').setAttribute('fill',bg=='li'?'url(#li)':bg=='cm'?'url(#g)':'#fff');$('mg').style.display=bg=='li'?'':'none'}
@@ -781,20 +805,32 @@ function callTool(k){const o=latest();if(!o){centerTool(k);return}let p,th=null;
 /* --- đường phụ vẽ tay: tự nhận đoạn thẳng, ký hiệu góc, góc vuông --- */
 function addLine(a,b){const pa=addPt(a),pb=addPt(b);S.shapes.push({t:'l',a:pa,b:pb,n:++SEQ,dash:$('dash').checked,col:PEN.col,lw:PEN.lw});if($('em').value=='on'){showPt(pa,true);showPt(pb,true)}}
 function resolveEnd(p,withObj){const q=snapPt(p,14);if(q)return{p:q};let bd=14,bi=null;inters().forEach(i=>{const d=d2(i,p);if(d<bd){bd=d;bi=i}});if(bi)return{p:bi};if(withObj){const o=onObj(p,10);if(o)return{p:o}}return null}
+/* đỉnh góc có thể là đầu mút của đoạn thẳng HOẶC giao điểm (chữ T, chữ thập); tia là hướng từ đỉnh ra các đầu mút của đoạn đi qua đỉnh */
+function rayList(V){const L=[];S.shapes.forEach(h=>{if(h.t!='l'||h.dead||h.hid)return;if(d2(V,proj(V,h.a,h.b))>2.5)return;
+  [h.a,h.b].forEach(o=>{const d=d2(o,V);if(d>3)L.push({o:{x:o.x,y:o.y},th:Math.atan2(o.y-V.y,o.x-V.x),len:d})})});return L}
+function angVerts(){const o=S.pts.filter(q=>!q.dead);inters().forEach(i=>{if(!o.some(q=>d2(q,i)<3))o.push({x:i.x,y:i.y})});return o}
 function findAngle(path){const s=path[0],e=path[path.length-1];let best=null;
- S.pts.forEach(V=>{const Rs=S.shapes.filter(h=>h.t=='l'&&!h.dead&&!h.hid&&(h.a==V||h.b==V));if(Rs.length<2)return;
-  const info=Rs.map(h=>{const o=h.a==V?h.b:h.a;return{o,th:Math.atan2(o.y-V.y,o.x-V.x),ds:d2(s,proj(s,V,o)),de:d2(e,proj(e,V,o))}});
-  const rs=d2(s,V),re=d2(e,V);if(rs<10||re<10||rs>180||re>180)return;
+ angVerts().forEach(V=>{const Rs=rayList(V);if(Rs.length<2)return;
+  const info=Rs.map(r=>({o:r.o,th:r.th,ds:d2(s,proj(s,V,r.o)),de:d2(e,proj(e,V,r.o))}));
+  const rs=d2(s,V),re=d2(e,V);if(rs<5||re<5||rs>180||re>180)return;
   for(const i of info)for(const j of info){if(i===j||i.ds>12||j.de>12)continue;
    const dth=norm(j.th-i.th);if(Math.abs(dth)<.08||Math.abs(dth)>PI-.02)continue;
    const cost=i.ds+j.de+Math.abs(rs-re)*.3;if(!best||cost<best.cost)best={cost,V,i,dth,rs,re}}});
  if(!best)return null;
- return{t:'ang',v:best.V,a1:best.i.th,sw:best.dth,r:Math.max(16,Math.min(70,(best.rs+best.re)/2)),right:Math.abs(Math.abs(best.dth)*180/PI-90)<6,n:++SEQ,col:PEN.col,lw:PEN.lw}}
+ return{t:'ang',v:best.V,a1:best.i.th,sw:best.dth,r:Math.max(16,Math.min(70,(best.rs+best.re)/2)),right:Math.abs(Math.abs(best.dth)*180/PI-90)<8,n:++SEQ,col:PEN.col,lw:PEN.lw}}
+/* nét vẽ nhỏ (ô vuông, chữ L, dấu góc) đặt cạnh chỗ hai đoạn vuông góc gặp nhau: nhận là ký hiệu góc vuông ở đúng góc phần tư đó */
+function findCorner(path){let cx=0,cy=0;path.forEach(q=>{cx+=q.x;cy+=q.y});cx/=path.length;cy/=path.length;
+ let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;path.forEach(q=>{x0=Math.min(x0,q.x);x1=Math.max(x1,q.x);y0=Math.min(y0,q.y);y1=Math.max(y1,q.y)});if(Math.max(x1-x0,y1-y0)>70)return null;
+ const C={x:cx,y:cy};let best=null;
+ angVerts().forEach(V=>{const dv=d2(V,C);if(dv>45||dv<2)return;const Rs=rayList(V),phi=Math.atan2(C.y-V.y,C.x-V.x);
+  for(let i=0;i<Rs.length;i++)for(let j=0;j<Rs.length;j++){if(i==j)continue;const dth=norm(Rs[j].th-Rs[i].th),dg=Math.abs(dth)*180/PI;if(dg<76||dg>104)continue;
+   const sc=Math.abs(norm(phi-(Rs[i].th+dth/2)))+dv*.004;if(sc<.9&&(!best||sc<best.sc))best={sc,V,a1:Rs[i].th,dth}}});
+ return best?{t:'ang',v:best.V,a1:best.a1,sw:best.dth,r:20,right:true,n:++SEQ,col:PEN.col,lw:PEN.lw}:null}
 function auxDone(d){const path=d.path,s=path[0],e=path[path.length-1];let len=0;for(let i=1;i<path.length;i++)len+=d2(path[i-1],path[i]);
  if(path.length<4||len<12)return;
- const A=resolveEnd(s),B=resolveEnd(e);
- if(A&&B&&d2(A.p,B.p)>8){commit();addLine(A.p,B.p);return}
- const ang=findAngle(path);if(ang){commit();S.shapes.push(ang);return}
+ const A=resolveEnd(s),B=resolveEnd(e),ang0=findAngle(path)||(len<140?findCorner(path):null);
+ if(A&&B&&d2(A.p,B.p)>8&&!(ang0&&len<90)){commit();addLine(A.p,B.p);return}
+ if(ang0){commit();ang0.v=addPt(ang0.v);S.shapes.push(ang0);return}
  const a2=A?A.p:onObj(s,10),b2=B?B.p:onObj(e,10);
  if(a2&&b2&&d2(a2,b2)>8){commit();addLine(a2,b2);return}
  commit();S.shapes.push({t:'f',d:path.slice(),dash:$('dash').checked,col:PEN.col,lw:PEN.lw})}
@@ -844,7 +880,7 @@ function snapAny(p){const q=snapPt(p,14);if(q)return{x:q.x,y:q.y,pt:q};
  return null}
 function pointDown(p){const t=snapAny(p)||{x:p.x,y:p.y},L0=[S.shapes.length,S.pts.length],q=t.pt||addPt(t);if(S.pts.length>L0[1]){H.push(L0);RD.length=0}showPt(q,true)}
 let nmd=null,lastNm=null;
-function nameTarget(p){const q=S.pts.find(o=>hasLab(o)&&lblHit(o,p));if(q)return q;const t=snapAny(p);return t?(t.pt||addPt(t)):null}
+function nameTarget(p){const q=S.pts.find(o=>hasLab(o)&&lblHit(o,p));if(q)return q;const t=snapAny(p)||{x:p.x,y:p.y};return t.pt||addPt(t)}
 function showName(q){q.vis=true;if(!q.name)q.name=autoName();q.lab=true}
 function nameDown(p,e){const L0=[S.shapes.length,S.pts.length],q=nameTarget(p);if(S.pts.length>L0[1]){H.push(L0);RD.length=0}
  if(lastNm&&e.timeStamp-lastNm.t<400&&d2(p,lastNm.p)<10&&q){lastNm=null;nmd=null;showName(q);editName(q);return}
@@ -863,7 +899,7 @@ document.addEventListener('keydown',e=>{if($('p2').classList.contains('hide')||!
  if((e.ctrlKey||e.metaKey)&&k=='z'){e.preventDefault();$('undo').click();return}
  if((e.ctrlKey||e.metaKey)&&(k=='c'||k=='x'||k=='d')&&selList().length){e.preventDefault();if(k=='c')copySel();else if(k=='x'){if(copySel())delSel()}else if(copySel())pasteClip(24,24);return}
  if(e.ctrlKey||e.metaKey||e.altKey)return;
- const M={v:()=>setMode('move'),p:()=>setMode(mode=='pen'?'move':'pen'),o:()=>setMode('name'),n:()=>setMode('point'),a:()=>setMode('aux'),w:()=>setMode('write'),t:()=>setMode('type'),h:()=>setMode(mode=='pan'?'pen':'pan')},T={r:'sR',c:'sC',g:'sP',e:'sE',q:'sQ'};
+ const M={v:()=>setMode('move'),p:()=>setMode(mode=='pen'?'move':'pen'),o:()=>setMode('name'),n:()=>setMode('point'),a:()=>setMode('aux'),w:()=>setMode('write'),t:()=>setMode('type'),h:()=>setMode(mode=='pan'?'pen':'pan')},T={r:'tbR',c:'sC',g:'tbG',e:'tbE',q:'sQ'};
  if(M[k]){e.preventDefault();M[k]()}else if(T[k]){e.preventDefault();$(T[k]).click()}});
 /* --- chọn nhiều đối tượng bằng cách rê chuột --- */
 let mq=null,selAll=[],selPts=[];
@@ -881,9 +917,9 @@ function mqSelect(m){const r=mqRect(m),inb=q=>q.x>=r.x&&q.x<=r.x+r.w&&q.y>=r.y&&
   if(bb)return r.win?(bb.x>=r.x&&bb.y>=r.y&&bb.x+bb.w<=r.x+r.w&&bb.y+bb.h<=r.y+r.h):!(bb.x>r.x+r.w||bb.x+bb.w<r.x||bb.y>r.y+r.h||bb.y+bb.h<r.y);
   const P=shapePts(s);if(!P.length)return false;return r.win?P.every(inb):P.some(inb)})}
 function startSel(p,h,e){
- if(e.shiftKey){const q=S.pts.find(o=>o.vis&&!o.dead&&d2(o,p)<10);if(q){selPts=selPts.includes(q)?selPts.filter(x=>x!==q):selPts.concat(q);mq=null;return}}
- if(h&&e.shiftKey){selAll=selAll.includes(h.s)?selAll.filter(x=>x!==h.s):selAll.concat(h.s);sel=selAll.length==1?selAll[0]:null;mq=null;return}
- if(!h){if(!e.shiftKey)setSel(null);mq={x0:p.x,y0:p.y,x1:p.x,y1:p.y,add:e.shiftKey}}}
+ if(MK(e)){const q=S.pts.find(o=>o.vis&&!o.dead&&d2(o,p)<10);if(q){selPts=selPts.includes(q)?selPts.filter(x=>x!==q):selPts.concat(q);mq=null;return}}
+ if(h&&MK(e)){selAll=selAll.includes(h.s)?selAll.filter(x=>x!==h.s):selAll.concat(h.s);sel=selAll.length==1?selAll[0]:null;mq=null;return}
+ if(!h){if(!MK(e))setSel(null);mq={x0:p.x,y0:p.y,x1:p.x,y1:p.y,add:MK(e)}}}
 function mqPts(m){const r=mqRect(m);return S.pts.filter(q=>q.vis&&!q.dead&&q.x>=r.x&&q.x<=r.x+r.w&&q.y>=r.y&&q.y<=r.y+r.h)}
 function mqUp(){const m=mq;mq=null;if(!m)return;if(Math.abs(m.x1-m.x0)<=4&&Math.abs(m.y1-m.y0)<=4)return;
  const f=mqSelect(m),fp=mqPts(m);selAll=m.add?[...new Set(selAll.concat(f))]:f;selPts=m.add?[...new Set(selPts.concat(fp))]:fp;sel=selAll.length==1&&!selPts.length?selAll[0]:null}
@@ -1161,7 +1197,33 @@ $('tbMenu').onclick=()=>document.body.classList.toggle('drawer');$('dClose').onc
 $('tbUndo').onclick=()=>$('undo').click();$('tbRedo').onclick=redo;
 $('tbMove').onclick=()=>setMode('move');$('tbPen').onclick=()=>setMode(mode=='pen'?'move':'pen');
 $('tbName').onclick=()=>setMode('name');$('tbPoint').onclick=()=>setMode('point');$('tbAux').onclick=()=>setMode('aux');$('tbWrite').onclick=()=>setMode('write');$('tbType').onclick=()=>setMode('type');$('tbPan').onclick=()=>setMode(mode=='pan'?'pen':'pan');
-[['tbR','sR'],['tbC','sC'],['tbG','sP'],['tbE','sE']].forEach(([a,b])=>$(a).onclick=()=>$(b).click());
+$('tbC').onclick=()=>$('sC').click();
+function twoSelPts(){const L=selPtsLive().filter(q=>q.vis);return L.length==2?L:null}
+function rulerThrough(a,b){const dx=b.x-a.x,dy=b.y-a.y,dd=Math.hypot(dx,dy);if(dd<3){msg='Hai điểm trùng nhau, không đặt được thước.';render();return false}
+ let th=Math.atan2(dy,dx);if(Math.cos(th)<-1e-9)th+=PI;const ux=Math.cos(th),uy=Math.sin(th),m={x:(a.x+b.x)/2,y:(a.y+b.y)/2},sa=(a.x-m.x)*ux+(a.y-m.y)*uy,sb=(b.x-m.x)*ux+(b.y-m.y)*uy,smin=Math.min(sa,sb);
+ const o=dd<=R.L-30?-R.L/2:smin-15;R.x=m.x+ux*o;R.y=m.y+uy*o;R.a=th;show.r=true;$('sR').checked=true;
+ msg=dd>R.L?'Hai điểm cách nhau '+(dd/U).toFixed(1)+' cm, dài hơn thước 10 cm: thước đặt dọc theo đường thẳng qua hai điểm.':'Thước đã đặt đi qua '+pn(a)+' và '+pn(b)+'. Chọn Bút chì và kéo dọc mép thước để vẽ.';
+ const sc=svg.clientWidth/BW,y=m.y*sc;if(y<wrap.scrollTop||y>wrap.scrollTop+wrap.clientHeight-60)wrap.scrollTop=Math.max(0,y-wrap.clientHeight/2);
+ selPts=[];selAll=[];sel=null;render();return true}
+/* chọn 1 điểm + 1 đoạn thẳng rồi bấm eke: một cạnh nằm trên đoạn thẳng, cạnh vuông góc đi qua điểm (để kẻ đường vuông góc) */
+let EREF=null;
+function ptSegSel(){const P=selPtsLive().filter(q=>q.vis),L=selList().filter(t=>t.t=='l');return P.length==1&&L.length==1?{q:P[0],s:L[0]}:null}
+function ekeThrough(P,sg){const A=sg.a,B=sg.b;if(d2(A,B)<3)return false;let th=Math.atan2(B.y-A.y,B.x-A.x);
+ const u={x:Math.cos(th),y:Math.sin(th)},t=(P.x-A.x)*u.x+(P.y-A.y)*u.y,F={x:A.x+u.x*t,y:A.y+u.y*t},v={x:P.x-F.x,y:P.y-F.y},dist=Math.hypot(v.x,v.y);
+ if(dist>1&&(v.x*(-u.y)+v.y*u.x)<0)th+=PI;
+ eset(F,0,th);E.lock=null;show.e=true;$('sE').checked=true;EREF={s:sg,key:E.x.toFixed(2)+','+E.y.toFixed(2)+','+E.a.toFixed(4)};
+ msg=dist<1?'Eke đã đặt tại '+pn(P)+': một cạnh nằm trên đoạn thẳng, cạnh kia vuông góc với đoạn.':'Eke đã đặt: một cạnh nằm trên đoạn thẳng, cạnh vuông góc đi qua '+pn(P)+(dist>E.lb-6?' (điểm hơi xa, cạnh eke chưa tới điểm).':'. Chọn Bút chì và kéo dọc cạnh vuông góc để kẻ đường vuông góc.');
+ const sc=svg.clientWidth/BW,y=F.y*sc;if(y<wrap.scrollTop||y>wrap.scrollTop+wrap.clientHeight-60)wrap.scrollTop=Math.max(0,y-wrap.clientHeight/2);
+ selPts=[];selAll=[];sel=null;render();return true}
+/* chọn 1 điểm rồi bấm thước đo độ: điểm đó là tâm thước, vạch 0° khớp với tia đầu tiên (nếu có) */
+function onePt(){const P=selPtsLive().filter(q=>q.vis);return P.length==1?P[0]:null}
+function protThrough(q){P.x=q.x;P.y=q.y;P.lock=q;const rs=rays(q);if(rs.length)P.a=rs[0];show.p=true;$('sP').checked=true;
+ msg=rs.length?'Thước đo độ đã nhận '+pn(q)+' làm tâm, vạch 0° khớp với tia đầu tiên. Xoay thước để đo các góc khác.':'Thước đo độ đã nhận '+pn(q)+' làm tâm. Xoay thước tới vạch cần rồi chấm điểm trên cung.';
+ const sc=svg.clientWidth/BW,y=q.y*sc;if(y<wrap.scrollTop||y>wrap.scrollTop+wrap.clientHeight-60)wrap.scrollTop=Math.max(0,y-wrap.clientHeight/2);
+ selPts=[];selAll=[];sel=null;render();return true}
+$('tbG').onclick=()=>{const q=onePt();if(q&&show.p)protThrough(q);else $('sP').click()};
+$('tbE').onclick=()=>{const t=ptSegSel();if(t&&show.e)ekeThrough(t.q,t.s);else $('sE').click()};
+$('tbR').onclick=()=>{const t=twoSelPts();if(t&&show.r)rulerThrough(t[0],t[1]);else $('sR').click()};
 $('tbGraph').onclick=()=>{document.body.classList.add('drawer');setTimeout(()=>$('fx').focus(),50)};
 $('tbHelp').onclick=()=>$('gBtn2').click();
 $('tbFull').onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen()};
@@ -1193,6 +1255,7 @@ function updCtx(){const main=mode=='pen'||mode=='move',L=main?selList():[],SP=ma
  {const n=S.shapes.filter(s=>s.hid&&!s.dead).length,u=$('unh');if(u){u.style.display=n?'':'none';u.textContent='Hiện '+n+' đối tượng ẩn'}}
  if((!L.length&&!SP.length)||!$('dlg').classList.contains('hide')){bar.classList.add('hide');['popPS','popLS'].forEach(i=>$(i).classList.add('hide'));return}
  bar.classList.remove('hide');const P0=allSelPts(L);
+ {const two=SP.filter(q=>q.vis);$('cgTwo').classList.toggle('hide',two.length!=2);if(two.length==2){const a=two[0].name||'',b=two[1].name||'';$('cbSegT').textContent=a&&b?'Đoạn '+a+b:'Đoạn thẳng';$('cbRayT').textContent=a&&b?'Tia '+a+b:'Tia';$('cbLnT').textContent=a&&b?'Đường thẳng '+a+b:'Đường thẳng'}}
  $('cgPts').classList.toggle('hide',!P0.length);$('cgLine').classList.toggle('hide',!L.some(s=>['l','a','f','ang'].includes(s.t)));
  ['cbHide','cbCopy','cbDup','cbCut'].forEach(i=>$(i).classList.toggle('hide',!L.length));
  $('cbDotT').textContent=P0.some(q=>q.vis)?'Ẩn chấm tròn':'Hiện chấm tròn'}
@@ -1232,6 +1295,19 @@ $('cbCopy').onclick=()=>{if(copySel()&&navigator.clipboard&&navigator.clipboard.
 $('cbDup').onclick=()=>{if(copySel())pasteClip(24,24)};
 $('cbCut').onclick=()=>{if(copySel())delSel()};
 $('cbDel').onclick=()=>delSel();
+/* vẽ nhanh đoạn thẳng / tia / đường thẳng qua hai điểm đang chọn (tia: gốc là điểm chọn trước) */
+function extT(P,d,x0,x1,y0,y1){let t=1e9;if(d.x>1e-9)t=Math.min(t,(x1-P.x)/d.x);else if(d.x<-1e-9)t=Math.min(t,(x0-P.x)/d.x);if(d.y>1e-9)t=Math.min(t,(y1-P.y)/d.y);else if(d.y<-1e-9)t=Math.min(t,(y0-P.y)/d.y);return t}
+/* đoạn thẳng / tia / đường thẳng qua hai điểm: chỉ là nét thẳng thường, không mũi tên.
+   Tia: từ điểm chọn trước, vượt điểm chọn sau 2 cm. Đường thẳng: vượt mỗi điểm 1,5 cm. */
+function drawThrough(kind){const P2=selPtsLive().filter(q=>q.vis);if(P2.length!=2)return;const A=P2[0],B=P2[1],D=d2(A,B);if(D<3)return;
+ const d={x:(B.x-A.x)/D,y:(B.y-A.y)/D},pc={col:PEN.col,lw:PEN.lw};
+ commit();
+ let a=A,b=B;
+ if(kind=='ray')b=addPt({x:B.x+d.x*2*U,y:B.y+d.y*2*U});
+ else if(kind=='line'){a=addPt({x:A.x-d.x*1.5*U,y:A.y-d.y*1.5*U});b=addPt({x:B.x+d.x*1.5*U,y:B.y+d.y*1.5*U})}
+ S.shapes.push({t:'l',a,b,n:++SEQ,...pc});
+ render()}
+$('cbSeg').onclick=()=>drawThrough('seg');$('cbRay').onclick=()=>drawThrough('ray');$('cbLn').onclick=()=>drawThrough('line');
 document.addEventListener('copy',()=>{CLIPFRESH=false});addEventListener('blur',()=>{CLIPFRESH=false});
 /* ---------- THƯ VIỆN HÌNH SGK (Toán 6-9, Kết nối tri thức với cuộc sống) ---------- */
 const Mm=(x,y)=>[x,-y],mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2],lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t],add=(a,v)=>[a[0]+v[0],a[1]+v[1]],dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),
@@ -1395,7 +1471,7 @@ function placeFig(sp,ox,oy){const pr=figPrims(sp,ox,oy,FIGSZ());commit();const M
  pr.angs.forEach(a=>push({t:'ang',v:M[a.v],a1:a.a1,sw:a.sw,r:a.r,right:a.right,n:++SEQ,...pc}));
  pr.txts.forEach(t=>push({t:'tx',x:t.x,y:t.y,s:t.s,str:t.str,col:PEN.col}));
  selAll=ns;selPts=np;sel=null;render()}
-function startMove(p,e){if(e.shiftKey||(!selAll.length&&!selPts.length))return false;
+function startMove(p,e){if(MK(e)||(!selAll.length&&!selPts.length))return false;
  const q=S.pts.find(o=>selPts.includes(o)&&!o.dead&&o.vis&&d2(o,p)<10),h=hitShape(p);if(!q&&!(h&&selAll.includes(h.s)))return false;
  const ps=new Set(selPts.filter(o=>!o.dead)),sh=selAll.filter(live);
  sh.forEach(s=>{if(s.t=='l'){ps.add(s.a);ps.add(s.b)}else if(s.t=='ang')ps.add(s.v);else if(s.t=='a'){const c=S.pts.find(o=>!o.dead&&Math.hypot(o.x-s.x,o.y-s.y)<2);if(c)ps.add(c)}});
