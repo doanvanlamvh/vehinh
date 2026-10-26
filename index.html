@@ -166,6 +166,8 @@ body.drawer #p2 .side{display:flex}
 .pop button:hover{border-color:var(--acc);background:#eef1ff}
 .unh{margin-left:auto;border:none;background:#fff4d6;color:#8a5a00;font:600 12.5px 'Be Vietnam Pro',sans-serif;padding:5px 12px;border-radius:10px 10px 0 0;cursor:pointer}
 .cb.hide{display:none}
+.csep.hide{display:none}
+.cgc{gap:14px;align-items:center;padding:0 6px;flex-wrap:wrap}.cgc .cgl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.cgc .fld{gap:6px;font-size:13px}.cgc .fld input[type=number]{width:64px;padding:4px 6px}.cgc .fld input[type=range]{width:96px}.cgc .sw{gap:7px;font-size:13px}
 .gtabs{display:flex;gap:4px}.gtb{flex:1;border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 0;font:600 12.5px 'Be Vietnam Pro',sans-serif;cursor:pointer;color:#42506f}
 .gtb.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .fnote{font-size:11.5px;line-height:1.45;color:#5a6a8c}
@@ -194,11 +196,13 @@ body.drawer #p2 .side{display:flex}
 </div>
 <div class="p2b">
 <div class="ctxbar hide" id="ctxbar">
-<div class="cg" id="cgPts"><button class="cb" id="cbName"><svg class="ic" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span>Đặt tên điểm</span></button><button class="cb" id="cbHName"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M20 12l-3.5 3.5M9 3H3v8l9 9"/></svg><span>Ẩn tên điểm</span></button><button class="cb" id="cbDot"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8"/></svg><span id="cbDotT">Ẩn chấm tròn</span></button>
+<div class="cg" id="cgSel"><div class="cg" id="cgPts"><button class="cb" id="cbName"><svg class="ic" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span>Đặt tên điểm</span></button><button class="cb" id="cbHName"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M20 12l-3.5 3.5M9 3H3v8l9 9"/></svg><span>Ẩn tên điểm</span></button><button class="cb" id="cbDot"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8"/></svg><span id="cbDotT">Ẩn chấm tròn</span></button>
 <div class="dd"><button class="cb" id="cbPS"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg><span>Kiểu điểm</span><i class=chev></i></button><div class="pop hide" id="popPS"><div class="row"><button data-ps="dot">● Chấm</button><button data-ps="ring">○ Vòng</button><button data-ps="cross">✕ Chéo</button></div><div class="row"><button data-pr="2.4">Nhỏ</button><button data-pr="3.6">Vừa</button><button data-pr="5.4">Lớn</button></div></div></div></div>
 <div class="cg" id="cgLine"><div class="dd"><button class="cb" id="cbLS"><svg class="ic" viewBox="0 0 24 24"><path d="M4 18L20 6"/><path d="M4 8h5M15 8h5" stroke-dasharray="1 3"/></svg><span>Kiểu đường</span><i class=chev></i></button><div class="pop hide" id="popLS"><div class="row"><button data-ls="solid">Nét liền</button><button data-ls="dash">Nét đứt</button><button data-ls="dot">Nét chấm</button></div><div class="row"><button data-lw="1.7">Mảnh</button><button data-lw="3.2">Vừa</button><button data-lw="5.5">Dày</button></div></div></div></div>
+<div class="cg hide" id="cgPoly"><button class="cb" id="cbTri" title="Nối ba điểm đang chọn thành tam giác"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4L21 19H3Z"/><circle cx="12" cy="4" r="1.7" fill="currentColor"/><circle cx="21" cy="19" r="1.7" fill="currentColor"/><circle cx="3" cy="19" r="1.7" fill="currentColor"/></svg><span id="cbTriT">Tam giác</span></button><button class="cb" id="cbQuad" title="Nối bốn điểm đang chọn thành tứ giác"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5L20 7L18 19L3 15Z"/><circle cx="5" cy="5" r="1.7" fill="currentColor"/><circle cx="20" cy="7" r="1.7" fill="currentColor"/><circle cx="18" cy="19" r="1.7" fill="currentColor"/><circle cx="3" cy="15" r="1.7" fill="currentColor"/></svg><span id="cbQuadT">Tứ giác</span></button></div>
 <div class="cg hide" id="cgTwo"><button class="cb" id="cbSeg" title="Vẽ đoạn thẳng nối hai điểm đang chọn"><svg class="ic" viewBox="0 0 24 24"><path d="M5 17L19 7"/><circle cx="5" cy="17" r="1.8" fill="currentColor"/><circle cx="19" cy="7" r="1.8" fill="currentColor"/></svg><span id="cbSegT">Đoạn thẳng</span></button><button class="cb" id="cbRay" title="Vẽ tia gốc là điểm chọn trước, vượt qua điểm chọn sau khoảng 2 cm"><svg class="ic" viewBox="0 0 24 24"><path d="M5 17L21 5M16.6 4.6L21 5l-1.3 4.3"/><circle cx="5" cy="17" r="1.8" fill="currentColor"/></svg><span id="cbRayT">Tia</span></button><button class="cb" id="cbLn" title="Vẽ đường thẳng qua hai điểm, vượt mỗi điểm khoảng 1,5 cm"><svg class="ic" viewBox="0 0 24 24"><path d="M3 20L21 4M3 20l.6-4.4M3 20l4.4-.6M21 4l-.6 4.4M21 4l-4.4.6"/><circle cx="9.5" cy="14.4" r="1.7" fill="currentColor"/><circle cx="15" cy="9.5" r="1.7" fill="currentColor"/></svg><span id="cbLnT">Đường thẳng</span></button></div>
-<span class="csep"></span><button class="cb" id="cbHide"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A9.8 9.8 0 0 1 12 5c5 0 8.5 4.2 9.5 7-.4 1.1-1.1 2.3-2.2 3.4M6.5 6.7C4.5 8 3.2 10.1 2.5 12c1 2.8 4.5 7 9.5 7 1.5 0 2.8-.4 4-.9"/></svg><span>Ẩn</span></button><button class="cb" id="cbCopy"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Sao chép</span></button><button class="cb" id="cbDup"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M14 11.5v5M11.5 14h5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Nhân bản</span></button><button class="cb" id="cbCut"><svg class="ic" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 4L8 15.5M20 20L8 8.5"/></svg><span>Cắt</span></button><button class="cb" id="cbDel"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><span>Xóa</span></button>
+<span class="csep"></span><button class="cb" id="cbHide"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A9.8 9.8 0 0 1 12 5c5 0 8.5 4.2 9.5 7-.4 1.1-1.1 2.3-2.2 3.4M6.5 6.7C4.5 8 3.2 10.1 2.5 12c1 2.8 4.5 7 9.5 7 1.5 0 2.8-.4 4-.9"/></svg><span>Ẩn</span></button><button class="cb" id="cbCopy"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Sao chép</span></button><button class="cb" id="cbDup"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M14 11.5v5M11.5 14h5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Nhân bản</span></button><button class="cb" id="cbCut"><svg class="ic" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 4L8 15.5M20 20L8 8.5"/></svg><span>Cắt</span></button><button class="cb" id="cbDel"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><span>Xóa</span></button></div>
+<span class="csep hide" id="csepC"></span><div class="cg cgc hide" id="gC"><b class="cgl">Compa</b><label class="fld"><span>Bán kính (cm)</span><input type="number" id="cr" min="0.3" max="10" step="0.1" value="3"></label><label class="fld"><span>Cỡ compa</span><input type="range" id="cl" min="140" max="320" value="210"></label><label class="sw"><span>Cố định bán kính</span><input type="checkbox" id="cfix"><i></i></label><label class="sw"><span>Hạ bút (vẽ cung)</span><input type="checkbox" id="cDown"><i></i></label></div>
 </div>
 <aside class="side">
 <div class="dhead"><b>Tùy chọn</b><button class="btn" id="dClose" title="Đóng">✕</button></div>
@@ -221,10 +225,7 @@ body.drawer #p2 .side{display:flex}
 <label class="tool r" title="Thước thẳng 10 cm (R)"><input type="checkbox" id="sR"><span><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1.5"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg>Thước thẳng<kbd>R</kbd></span></label><label class="tool c" title="Compa (C)"><input type="checkbox" id="sC"><span><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="3.5" r="1.3"/><path d="M12 5v3M12 8L7 21M12 8l5 13M9.4 15.5h5.2"/></svg>Compa<kbd>C</kbd></span></label><label class="tool p" title="Thước đo độ (G)"><input type="checkbox" id="sP"><span><svg class="ic" viewBox="0 0 24 24"><path d="M3 19a9 9 0 0 1 18 0z"/><path d="M12 19v-3M6.2 14.5l1.6 1.4M17.8 14.5l-1.6 1.4"/></svg>Thước đo độ<kbd>G</kbd></span></label><label class="tool e" title="Eke (E)"><input type="checkbox" id="sE"><span><svg class="ic" viewBox="0 0 24 24"><path d="M4 20V4l16 16z"/><path d="M8 20v-4h-4M8 16"/></svg>Eke<kbd>E</kbd></span></label><label class="tool q" title="Thước parabol (Q)"><input type="checkbox" id="sQ"><span><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M8 4q4 18 8 0"/></svg>Thước parabol<kbd>Q</kbd></span></label>
 </div>
 <div class="ctx hide" id="gE"><div class="sub">Eke</div><button class="btn wide" id="eType" style="justify-content:center">Eke 30°–60°</button></div>
-<div class="ctx hide" id="gC"><div class="sub">Compa</div>
-<label class="fld"><span>Bán kính (cm)</span><input type="number" id="cr" min="0.3" max="10" step="0.1" value="3"></label>
-<label class="fld"><span>Cỡ compa</span><input type="range" id="cl" min="140" max="320" value="210"></label>
-<label class="sw"><span>Cố định bán kính</span><input type="checkbox" id="cfix"><i></i></label><label class="sw"><span>Hạ bút (vẽ cung)</span><input type="checkbox" id="cDown"><i></i></label></div>
+
 </div></details>
 <details class="grp" open><summary>Đồ thị hàm số</summary><div class="in">
 <label class="fld" style="gap:8px"><span style="font-weight:600">y =</span><input type="text" id="fx" placeholder="2x-1 hoặc 2x^2" autocomplete="off" spellcheck="false"></label>
@@ -298,14 +299,16 @@ body.drawer #p2 .side{display:flex}
 <div class="it"><b>Thu phóng, bàn tay, toàn màn hình</b><div>Dấu + và − (hoặc Ctrl + cuộn chuột) phóng to, thu nhỏ bảng; bấm số % để về 100%. Bàn tay (H) kéo bảng đi các hướng. Nút ngoài cùng bên phải bật chế độ toàn màn hình.</div></div>
 <div class="it"><b>Trang (Sheet)</b><div>Các tab ở dưới bảng là các trang giấy riêng. Bấm ＋ để thêm trang, nhấp đúp vào tên để đổi tên, bấm × để xóa trang.</div></div>
 <h3>Thư viện hình SGK (lớp 6, 7, 8, 9)</h3>
+<p class="fnote">Lớp 8 đã có 40 hình, chia theo Tập 1 (Tứ giác, Định lí Thalès) và Tập 2 (hàm số bậc nhất và đồ thị, tam giác đồng dạng, định lí Pythagore, hình chóp đều). Các hình được dựng theo nội dung từng bài, chưa đối chiếu từng số Ví dụ, Bài tập trong sách; hãy kiểm tra lại số liệu khi dùng.</p>
 <p>Bấm nút <b>Hình SGK</b> trên thanh công cụ (hình tam giác và đường tròn) để mở thư viện hình trong bảng tùy chọn. Hình được dựng theo chương trình Toán 6 đến 9, sách Kết nối tri thức với cuộc sống, chia theo lớp và theo chương: hình phẳng trong thực tiễn, đối xứng, các hình cơ bản, góc và đường thẳng song song, tam giác bằng nhau, các đường đồng quy trong tam giác, hình khối, Pythagore, tứ giác, định lí Thalès, hình đồng dạng, hệ thức lượng, đường tròn, hình trụ, hình nón, hình cầu.</p>
 <div class="it"><b>Đặt hình lên bảng</b><div>Chọn lớp, bấm vào một hình, rồi bấm vào chỗ cần đặt trên bảng (hình mờ đi theo con trỏ). Giữ Shift để đặt liên tiếp, Esc để hủy. Thanh trượt “Cỡ hình” đổi kích thước. Hình đặt xong gồm các điểm có tên (A, B, C…), đoạn thẳng, cung, ký hiệu góc, dấu bằng nhau, nét đứt… đều là các đối tượng riêng: chọn, đổi màu, đổi kiểu đường, xóa, sửa tên điểm đều được.</div></div>
 <div class="it"><b>Di chuyển nhóm đối tượng</b><div>Sau khi đặt, cả hình đang được chọn: nhấn giữ vào một nét của hình rồi kéo để dời cả hình. Rê chuột chọn nhiều đối tượng rồi kéo cũng dời được cả nhóm. Hoàn tác được.</div></div>
 <h3>Thanh bổ trợ khi chọn đối tượng</h3>
-<p>Chọn một hoặc nhiều đối tượng (bấm vào nét, hoặc giữ chuột rê vùng) thì một thanh bổ trợ hiện ở đầu bảng. Rê chuột cũng chọn được các <b>điểm</b> (chấm) nằm trong vùng; giữ Shift và bấm vào chấm để thêm hoặc bớt. Nhấn Delete: điểm tự do bị xóa hẳn, còn điểm là đầu mút của một đoạn thì chỉ bị ẩn chấm và tên (đoạn thẳng vẫn còn). Hoàn tác được.</p>
+<p>Chọn một hoặc nhiều đối tượng (bấm vào nét, hoặc giữ chuột rê vùng) thì một thanh bổ trợ hiện ở đầu bảng. Rê chuột cũng chọn được các <b>điểm</b> (chấm) nằm trong vùng. Bấm một lần vào chấm là <b>chọn điểm đó</b> (không còn làm mất điểm); bấm đúp vào chấm để <b>đặt tên</b> cho điểm; giữ Ctrl (hoặc Shift) và bấm vào chấm để thêm hoặc bớt. Muốn ẩn điểm thì chọn điểm rồi dùng nút trên thanh bổ trợ hoặc nhấn Delete. Nhấn Delete: điểm tự do bị xóa hẳn, còn điểm là đầu mút của một đoạn thì chỉ bị ẩn chấm và tên (đoạn thẳng vẫn còn). Hoàn tác được.</p>
 <div class="it"><b>Đặt tên điểm, Ẩn tên điểm, Ẩn chấm tròn</b><div>Áp dụng cho các đầu mút (đoạn thẳng), đỉnh (ký hiệu góc) hoặc tâm (cung) của đối tượng đang chọn: hiện tên tự động, ẩn tên nhưng giữ chấm, hoặc ẩn cả chấm (nút đổi thành “Hiện chấm tròn” khi chấm đang ẩn).</div></div>
 <div class="it"><b>Kiểu điểm</b><div>Chọn chấm đặc, vòng tròn hoặc dấu chéo, kích thước nhỏ, vừa hoặc lớn.</div></div>
 <div class="it"><b>Kiểu đường</b><div>Nét liền, nét đứt hoặc nét chấm; độ dày mảnh, vừa hoặc dày.</div></div>
+<div class="it"><b>Vẽ nhanh tam giác, tứ giác</b><div>Chọn đúng ba điểm (giữ Ctrl rồi bấm từng chấm) thì thanh bổ trợ ngang hiện nút <b>Tam giác</b>: nối ba điểm thành tam giác. Chọn đúng bốn điểm thì hiện nút <b>Tứ giác</b>: nối bốn điểm thành tứ giác, máy tự xếp thứ tự để các cạnh không cắt nhau. Cạnh vẽ ra là các đoạn thẳng thường, đã có sẵn đoạn nào thì không vẽ lại.</div></div>
 <div class="it"><b>Vẽ nhanh qua hai điểm</b><div>Chọn đúng hai điểm (giữ Ctrl rồi bấm từng chấm) thì thanh bổ trợ hiện thêm ba nút: <b>Đoạn thẳng</b> nối hai điểm, <b>Tia</b> có gốc là điểm chọn trước và đi qua điểm chọn sau, <b>Đường thẳng</b> đi qua hai điểm. Tia vượt qua điểm thứ hai khoảng 2 cm, đường thẳng vượt qua mỗi điểm khoảng 1,5 cm; đều chỉ là nét thẳng thường, không có mũi tên. Nét vẽ ra là đối tượng thường: chọn, đổi màu, đổi kiểu đường, xóa được; hoàn tác được.</div></div>
 <div class="it"><b>Ẩn</b><div>Ẩn đối tượng khỏi bảng (không còn bị bắt điểm). Nút “Hiện … đối tượng ẩn” ở góc dưới bên phải bảng đưa chúng trở lại.</div></div>
 <div class="it"><b>Sao chép, Nhân bản, Cắt, Xóa</b><div>Sao chép (Ctrl+C) rồi dán bằng Ctrl+V, mỗi lần dán lệch một chút; Nhân bản (Ctrl+D) tạo ngay một bản lệch chỗ; Cắt (Ctrl+X); Xóa (Delete). Hoàn tác được tất cả.</div></div>
@@ -320,7 +323,7 @@ body.drawer #p2 .side{display:flex}
 
 <h3>Dụng cụ vẽ hình</h3>
 <div class="it"><b>Thước thẳng <kbd>R</kbd></b><div>Thước dài 10 cm, vạch chia đến mm. Kéo thân thước để di chuyển, kéo nút ↻ để xoay, bấm nút ✕ để đóng. Thước tự bắt vào điểm và đoạn thẳng ở gần. <b>Chọn hai điểm</b> (giữ Ctrl và bấm từng điểm) rồi bấm nút Thước thẳng, hoặc bấm vào thước đang mở: thước tự đặt đi qua hai điểm đó. Khi vẽ bằng bút chì dọc mép thước (mép trên và mép dưới), đầu nét tự bắt vào điểm hoặc giao điểm gần mép; nếu không có thì độ dài đoạn được làm tròn đến mm. Bảng trắng thì thước nằm giữa màn hình; bảng đã có nét vẽ thì thước tự đặt vào đối tượng mới vẽ gần nhất.</div></div>
-<div class="it"><b>Compa <kbd>C</kbd></b><div>Kéo đầu kim để đặt tâm (tự dính vào điểm), kéo đầu bút để đổi bán kính. Nhập số vào ô <b>Bán kính (cm)</b> để vẽ đúng số đo. Bật <b>Cố định bán kính</b> thì bán kính giữ nguyên và kéo đầu bút chỉ quay compa; tắt thì bán kính tự điều chỉnh, tự bắt điểm và làm tròn đến mm. Bật <b>Hạ bút</b> rồi kéo đầu bút để vẽ cung hoặc đường tròn. Thanh <b>Cỡ compa</b> đổi độ dài hai chân (bán kính tối đa 10 cm).</div></div>
+<div class="it"><b>Compa <kbd>C</kbd></b><div>Khi bật compa, các ô Bán kính, Cỡ compa, Cố định bán kính, Hạ bút nằm trên thanh công cụ ngang phía trên bảng. Muốn lấy một điểm làm tâm: bấm chọn điểm đó rồi bấm nút Compa. Kéo đầu kim để đặt tâm (tự dính vào điểm), kéo đầu bút để đổi bán kính. Nhập số vào ô <b>Bán kính (cm)</b> để vẽ đúng số đo. Bật <b>Cố định bán kính</b> thì bán kính giữ nguyên và kéo đầu bút chỉ quay compa; tắt thì bán kính tự điều chỉnh, tự bắt điểm và làm tròn đến mm. Bật <b>Hạ bút</b> rồi kéo đầu bút để vẽ cung hoặc đường tròn. Thanh <b>Cỡ compa</b> đổi độ dài hai chân (bán kính tối đa 10 cm).</div></div>
 <div class="it"><b>Thước đo độ <kbd>G</kbd></b><div>Kéo tâm thước lại gần một điểm (đỉnh góc) thì tâm dính vào điểm đó và vạch 0° tự khớp với các tia. Cách nhanh hơn: chọn một điểm (bấm vào chấm) rồi bấm nút Thước đo độ, thước tự lấy điểm đó làm tâm. Đặt tâm lên một đoạn thẳng thì thước tự xoay theo đoạn ấy. Kéo thân thước để xoay quanh đỉnh, chạm vào tâm để nhả. Dòng thông báo dưới bảng cho biết số đo từng tia và góc giữa hai tia. Để vẽ góc cho trước, xoay thước tới vạch cần, chấm một điểm trên cung thước rồi nối bằng bút chì.</div></div>
 <div class="it"><b>Eke <kbd>E</kbd></b><div>Có hai loại, 45°-45° và 30°-60° (nút đổi loại hiện khi bật eke). Kéo một góc của eke lại gần điểm thì dính vào điểm, rồi xoay quanh điểm đó; các cạnh tự khớp với tia và đoạn thẳng. Bút chì vẽ thẳng được dọc cạnh eke, trên cạnh có vạch cm. <b>Kẻ đường vuông góc:</b> chọn một điểm và một đoạn thẳng (giữ Ctrl rồi bấm lần lượt), sau đó bấm nút Eke: một cạnh eke nằm trên đoạn thẳng, cạnh vuông góc đi qua điểm; kéo bút chì dọc cạnh này để vẽ đường vuông góc, đầu nét tự bắt vào điểm và vào chân đường vuông góc.</div></div>
 
@@ -533,7 +536,10 @@ svg.onpointerup=svg.onpointercancel=()=>{
  if(drag&&drag.k=='rmov'&&!drag.moved){const t=twoSelPts();if(t)rulerThrough(t[0],t[1])}
  if(drag&&drag.k=='emov'&&!drag.moved){const t=ptSegSel();if(t)ekeThrough(t.q,t.s)}
  if(drag&&drag.k=='pmov'&&!drag.moved){const q=onePt();if(q)protThrough(q)}
- if(drag&&drag.k=='ptc')showPt(drag.q,!drag.q.vis);
+ if(drag&&drag.k=='ptc'){const q=drag.q,now=performance.now();
+  if(!q.vis)showPt(q,true);
+  if(lastPc&&lastPc.q===q&&now-lastPc.t<400){lastPc=null;showName(q);selPts=[q];selAll=[];sel=null;editName(q)}
+  else{lastPc={q,t:now};selPts=[q];selAll=[];sel=null}}
  if(drag&&drag.k=='cpen'&&C.down&&Math.abs(C.sw)>.02){commit();addPt(C);S.shapes.push({t:'a',x:C.x,y:C.y,r:C.r,a0:C.a0,sw:C.sw,n:++SEQ,col:PEN.col,lw:PEN.lw});C.sw=0}
  if(drag&&drag.k=='qmov')qAuto();
  drag=null;render()};
@@ -575,7 +581,7 @@ function readout(){let t='';
   if(rs.length>1){let df=Math.abs(deg(rs[0]-rs[1]));if(df>180)df=360-df;t+=`Góc giữa hai tia: ${df.toFixed(1)}°. `}
   if(!rs.length)t+=`Tâm thước đã dính vào ${pn(P.lock)}. Xoay thước rồi chấm điểm trên cung. `}
  return t+msg}
-function render(){syncBoxes();[['tbR','r'],['tbC','c'],['tbG','p'],['tbE','e'],['tbQ','q']].forEach(([i,k])=>$(i).classList.toggle('on',show[k]));$('gTools').style.display=(show.c||show.e)?'':'none';$('gC').classList.toggle('hide',!show.c);$('gE').classList.toggle('hide',!show.e);let h='';
+function render(){syncBoxes();[['tbR','r'],['tbC','c'],['tbG','p'],['tbE','e'],['tbQ','q']].forEach(([i,k])=>$(i).classList.toggle('on',show[k]));$('gTools').style.display=show.e?'':'none';$('gC').classList.toggle('hide',!show.c);$('gE').classList.toggle('hide',!show.e);let h='';
  S.shapes.forEach((s,i)=>{if(s.dead||s.hid)return;
   if(s.t=='l')h+=`<line class="ink"${st(s)} x1="${s.a.x}" y1="${s.a.y}" x2="${s.b.x}" y2="${s.b.y}"${s.dash?' stroke-dasharray="7 5"':''}/>`;
   else if(s.t=='a')h+=`<path class="ink"${st(s)} d="${arcD(s.x,s.y,s.r,s.a0,s.sw)}"/>`;
@@ -604,7 +610,7 @@ function setMode(m){mode=m;const main=m=='pen'||m=='move';[['mMove',main],['mPen
 $('mMove').onclick=()=>backToMain();
 $('mPen').onclick=()=>setMode(mode=='pen'?'move':'pen');
 [['point','mPoint'],['aux','mAux'],['write','mWrite'],['name','mName'],['type','mType']].forEach(([m,i])=>$(i).onclick=()=>setMode(m));
-[['sR','r'],['sC','c'],['sP','p'],['sE','e']].forEach(([id,k])=>$(id).onchange=e=>{show[k]=e.target.checked;if(k=='p'&&!show.p)P.lock=null;if(k=='e'&&!show.e)E.lock=null;if(e.target.checked){const t=k=='r'?twoSelPts():null,pe=k=='e'?ptSegSel():null,pp=k=='p'?onePt():null;if(t)rulerThrough(t[0],t[1]);else if(pe)ekeThrough(pe.q,pe.s);else if(pp)protThrough(pp);else callTool(k);backToMain()}render()});
+[['sR','r'],['sC','c'],['sP','p'],['sE','e']].forEach(([id,k])=>$(id).onchange=e=>{show[k]=e.target.checked;if(k=='p'&&!show.p)P.lock=null;if(k=='e'&&!show.e)E.lock=null;if(e.target.checked){const t=k=='r'?twoSelPts():null,pe=k=='e'?ptSegSel():null,pp=k=='p'?onePt():null,pcm=k=='c'?onePt():null;if(t)rulerThrough(t[0],t[1]);else if(pe)ekeThrough(pe.q,pe.s);else if(pp)protThrough(pp);else if(pcm)compaThrough(pcm);else callTool(k);backToMain()}render()});
 $('cDown').onchange=e=>{C.down=e.target.checked;C.sw=0;render()};
 $('fs').oninput=e=>{FS=+e.target.value;$('fsv').textContent=FS};
 function setBg(){bg=$('bg').value;$('bgr').setAttribute('fill',bg=='li'?'url(#li)':bg=='cm'?'url(#g)':'#fff');$('mg').style.display=bg=='li'?'':'none'}
@@ -879,7 +885,7 @@ function snapAny(p){const q=snapPt(p,14);if(q)return{x:q.x,y:q.y,pt:q};
  let be=null,bde=10;edges().forEach(e=>{const r=proj(p,e[0],e[1]),d=d2(p,r);if(d<bde){bde=d;be=r}});if(be)return{x:be.x,y:be.y};
  return null}
 function pointDown(p){const t=snapAny(p)||{x:p.x,y:p.y},L0=[S.shapes.length,S.pts.length],q=t.pt||addPt(t);if(S.pts.length>L0[1]){H.push(L0);RD.length=0}showPt(q,true)}
-let nmd=null,lastNm=null;
+let nmd=null,lastNm=null,lastPc=null;
 function nameTarget(p){const q=S.pts.find(o=>hasLab(o)&&lblHit(o,p));if(q)return q;const t=snapAny(p)||{x:p.x,y:p.y};return t.pt||addPt(t)}
 function showName(q){q.vis=true;if(!q.name)q.name=autoName();q.lab=true}
 function nameDown(p,e){const L0=[S.shapes.length,S.pts.length],q=nameTarget(p);if(S.pts.length>L0[1]){H.push(L0);RD.length=0}
@@ -899,7 +905,7 @@ document.addEventListener('keydown',e=>{if($('p2').classList.contains('hide')||!
  if((e.ctrlKey||e.metaKey)&&k=='z'){e.preventDefault();$('undo').click();return}
  if((e.ctrlKey||e.metaKey)&&(k=='c'||k=='x'||k=='d')&&selList().length){e.preventDefault();if(k=='c')copySel();else if(k=='x'){if(copySel())delSel()}else if(copySel())pasteClip(24,24);return}
  if(e.ctrlKey||e.metaKey||e.altKey)return;
- const M={v:()=>setMode('move'),p:()=>setMode(mode=='pen'?'move':'pen'),o:()=>setMode('name'),n:()=>setMode('point'),a:()=>setMode('aux'),w:()=>setMode('write'),t:()=>setMode('type'),h:()=>setMode(mode=='pan'?'pen':'pan')},T={r:'tbR',c:'sC',g:'tbG',e:'tbE',q:'sQ'};
+ const M={v:()=>setMode('move'),p:()=>setMode(mode=='pen'?'move':'pen'),o:()=>setMode('name'),n:()=>setMode('point'),a:()=>setMode('aux'),w:()=>setMode('write'),t:()=>setMode('type'),h:()=>setMode(mode=='pan'?'pen':'pan')},T={r:'tbR',c:'tbC',g:'tbG',e:'tbE',q:'sQ'};
  if(M[k]){e.preventDefault();M[k]()}else if(T[k]){e.preventDefault();$(T[k]).click()}});
 /* --- chọn nhiều đối tượng bằng cách rê chuột --- */
 let mq=null,selAll=[],selPts=[];
@@ -1197,7 +1203,11 @@ $('tbMenu').onclick=()=>document.body.classList.toggle('drawer');$('dClose').onc
 $('tbUndo').onclick=()=>$('undo').click();$('tbRedo').onclick=redo;
 $('tbMove').onclick=()=>setMode('move');$('tbPen').onclick=()=>setMode(mode=='pen'?'move':'pen');
 $('tbName').onclick=()=>setMode('name');$('tbPoint').onclick=()=>setMode('point');$('tbAux').onclick=()=>setMode('aux');$('tbWrite').onclick=()=>setMode('write');$('tbType').onclick=()=>setMode('type');$('tbPan').onclick=()=>setMode(mode=='pan'?'pen':'pan');
-$('tbC').onclick=()=>$('sC').click();
+function compaThrough(q){C.x=q.x;C.y=q.y;show.c=true;$('sC').checked=true;
+ msg='Compa đã đặt tâm tại '+pn(q)+'. Kéo đầu bút hoặc nhập bán kính trên thanh phía trên; bật Hạ bút rồi kéo đầu bút để vẽ cung.';
+ const sc=svg.clientWidth/BW,y=q.y*sc;if(y<wrap.scrollTop||y>wrap.scrollTop+wrap.clientHeight-60)wrap.scrollTop=Math.max(0,y-wrap.clientHeight/2);
+ render();return true}
+$('tbC').onclick=()=>{const q=onePt();if(q&&show.c)compaThrough(q);else $('sC').click()};
 function twoSelPts(){const L=selPtsLive().filter(q=>q.vis);return L.length==2?L:null}
 function rulerThrough(a,b){const dx=b.x-a.x,dy=b.y-a.y,dd=Math.hypot(dx,dy);if(dd<3){msg='Hai điểm trùng nhau, không đặt được thước.';render();return false}
  let th=Math.atan2(dy,dx);if(Math.cos(th)<-1e-9)th+=PI;const ux=Math.cos(th),uy=Math.sin(th),m={x:(a.x+b.x)/2,y:(a.y+b.y)/2},sa=(a.x-m.x)*ux+(a.y-m.y)*uy,sb=(b.x-m.x)*ux+(b.y-m.y)*uy,smin=Math.min(sa,sb);
@@ -1253,8 +1263,10 @@ function selPtsLive(){return selPts.filter(q=>!q.dead)}
 function allSelPts(L){const o=ptsOfShapes(L);selPtsLive().forEach(q=>{if(!o.includes(q))o.push(q)});return o}
 function updCtx(){const main=mode=='pen'||mode=='move',L=main?selList():[],SP=main?selPtsLive():[],bar=$('ctxbar');
  {const n=S.shapes.filter(s=>s.hid&&!s.dead).length,u=$('unh');if(u){u.style.display=n?'':'none';u.textContent='Hiện '+n+' đối tượng ẩn'}}
- if((!L.length&&!SP.length)||!$('dlg').classList.contains('hide')){bar.classList.add('hide');['popPS','popLS'].forEach(i=>$(i).classList.add('hide'));return}
- bar.classList.remove('hide');const P0=allSelPts(L);
+ const hasSel=L.length||SP.length;if((!hasSel&&!show.c)||!$('dlg').classList.contains('hide')){bar.classList.add('hide');['popPS','popLS'].forEach(i=>$(i).classList.add('hide'));return}
+ bar.classList.remove('hide');$('cgSel').classList.toggle('hide',!hasSel);$('csepC').classList.toggle('hide',!(hasSel&&show.c));if(!hasSel){['popPS','popLS'].forEach(i=>$(i).classList.add('hide'));return}
+ const P0=allSelPts(L);
+ {const vp=SP.filter(q=>q.vis),nm=vp.length>=3&&vp.every(q=>q.name)?vp.map(q=>q.name).join(''):'';$('cgPoly').classList.toggle('hide',vp.length!=3&&vp.length!=4);$('cbTri').classList.toggle('hide',vp.length!=3);$('cbQuad').classList.toggle('hide',vp.length!=4);if(vp.length==3)$('cbTriT').textContent=nm?'Tam giác '+polyOrder(vp).map(q=>q.name).join(''):'Tam giác';if(vp.length==4)$('cbQuadT').textContent=nm?'Tứ giác '+polyOrder(vp).map(q=>q.name).join(''):'Tứ giác'}
  {const two=SP.filter(q=>q.vis);$('cgTwo').classList.toggle('hide',two.length!=2);if(two.length==2){const a=two[0].name||'',b=two[1].name||'';$('cbSegT').textContent=a&&b?'Đoạn '+a+b:'Đoạn thẳng';$('cbRayT').textContent=a&&b?'Tia '+a+b:'Tia';$('cbLnT').textContent=a&&b?'Đường thẳng '+a+b:'Đường thẳng'}}
  $('cgPts').classList.toggle('hide',!P0.length);$('cgLine').classList.toggle('hide',!L.some(s=>['l','a','f','ang'].includes(s.t)));
  ['cbHide','cbCopy','cbDup','cbCut'].forEach(i=>$(i).classList.toggle('hide',!L.length));
@@ -1297,6 +1309,14 @@ $('cbCut').onclick=()=>{if(copySel())delSel()};
 $('cbDel').onclick=()=>delSel();
 /* vẽ nhanh đoạn thẳng / tia / đường thẳng qua hai điểm đang chọn (tia: gốc là điểm chọn trước) */
 function extT(P,d,x0,x1,y0,y1){let t=1e9;if(d.x>1e-9)t=Math.min(t,(x1-P.x)/d.x);else if(d.x<-1e-9)t=Math.min(t,(x0-P.x)/d.x);if(d.y>1e-9)t=Math.min(t,(y1-P.y)/d.y);else if(d.y<-1e-9)t=Math.min(t,(y0-P.y)/d.y);return t}
+/* nối 3 hoặc 4 điểm đang chọn thành tam giác / tứ giác: các điểm được xếp theo góc quanh trọng tâm nên cạnh không bao giờ cắt nhau */
+function polyOrder(P){if(P.length<4)return P.slice();const cx=P.reduce((a,q)=>a+q.x,0)/P.length,cy=P.reduce((a,q)=>a+q.y,0)/P.length;return P.slice().sort((a,b)=>Math.atan2(a.y-cy,a.x-cx)-Math.atan2(b.y-cy,b.x-cx))}
+function drawPoly(n){const P=selPtsLive().filter(q=>q.vis);if(P.length!=n)return;const O=polyOrder(P);
+ if(n==3){const cr=(O[1].x-O[0].x)*(O[2].y-O[0].y)-(O[1].y-O[0].y)*(O[2].x-O[0].x);if(Math.abs(cr)<20){msg='Ba điểm gần thẳng hàng, không tạo được tam giác.';render();return}}
+ commit();const pc={col:PEN.col,lw:PEN.lw};let add=0;
+ for(let i=0;i<n;i++){const a=O[i],b=O[(i+1)%n];if(S.shapes.some(h=>h.t=='l'&&!h.dead&&((h.a==a&&h.b==b)||(h.a==b&&h.b==a))))continue;S.shapes.push({t:'l',a,b,n:++SEQ,...pc});add++}
+ msg=(n==3?'Đã vẽ tam giác ':'Đã vẽ tứ giác ')+O.map(pn).join('')+'.';render()}
+$('cbTri').onclick=()=>drawPoly(3);$('cbQuad').onclick=()=>drawPoly(4);
 /* đoạn thẳng / tia / đường thẳng qua hai điểm: chỉ là nét thẳng thường, không mũi tên.
    Tia: từ điểm chọn trước, vượt điểm chọn sau 2 cm. Đường thẳng: vượt mỗi điểm 1,5 cm. */
 function drawThrough(kind){const P2=selPtsLive().filter(q=>q.vis);if(P2.length!=2)return;const A=P2[0],B=P2[1],D=d2(A,B);if(D<3)return;
@@ -1385,24 +1405,51 @@ const LIB={
 ['Hình lập phương',()=>cub(5,5,5,[2.6,2])],
 ['Hình lăng trụ đứng tam giác',()=>{const p={A:Mm(0,0),B:Mm(7,0),C:Mm(5,2.6)};p["A'"]=Mm(0,4.5);p["B'"]=Mm(7,4.5);p["C'"]=Mm(5,7.1);return{p,s:"AB AA' BB' A'B' B'C' C'A'",d:"AC BC CC'"}}]]}],
 8:[
-{g:'Chương II–IV. Định lí Pythagore, Tứ giác',it:[
-['Định lí Pythagore',()=>{const p={A:Mm(0,0),B:Mm(0,3),C:Mm(4,0),p:Mm(-3,3),q:Mm(-3,0),r:Mm(4,-4),s:Mm(0,-4),u:Mm(7,4),v:Mm(3,7)};return{p,s:'AB BC CA Bp pq qA Cr rs sA Cu uv vB',g:[['A','B','C','r']],t:[[3.3,-3.7,'a²'],[2,2.2,'b²'],[-1.8,-1.4,'c²']]}}],
-['Tứ giác ABCD',()=>({p:{A:Mm(1,7),B:Mm(0,0),C:Mm(9,1),D:Mm(10,6)},s:'AB BC CD DA',d:'AC BD',g:[['A','B','D',1],['B','C','A',2],['C','D','B',3],['D','A','C',4]]})],
+{g:'Tập 1 · Tứ giác',it:[
+['Tứ giác lồi ABCD',()=>({p:{A:Mm(1,7),B:Mm(0,0),C:Mm(9,1),D:Mm(10,6)},s:'AB BC CD DA',d:'AC BD',g:[['A','B','D',1],['B','C','A',2],['C','D','B',3],['D','A','C',4]]})],
+['Tứ giác không lồi',()=>({p:{A:Mm(0,0),B:Mm(5,8),C:Mm(10,0),D:Mm(5,3)},s:'AB BC CD DA'})],
+['Tổng các góc của tứ giác',()=>({p:{A:Mm(1,7),B:Mm(0,0),C:Mm(9,1),D:Mm(10,6)},s:'AB BC CD DA AC',g:[['A','B','C',1],['A','C','D',2],['C','B','A',1],['C','A','D',2]]})],
+['Hình thang ABCD (AB // CD)',()=>{const p={A:Mm(2,5),B:Mm(8,5),C:Mm(11,0),D:Mm(0,0)};p.H=Mm(2,0);return{p,s:'AB BC CD DA',d:'AH',g:[['H','A','D','r']],t:[[4.4,-5.6,'AB // CD']]}}],
+['Hình thang cân',()=>({p:{A:Mm(2,5),B:Mm(8,5),C:Mm(10,0),D:Mm(0,0)},s:'AB BC CD DA',k:[['A','D',1],['B','C',1]],g:[['D','A','C',1],['C','B','D',1]]})],
+['Hình thang cân: hai đường chéo',()=>{const p={A:Mm(2,5),B:Mm(8,5),C:Mm(10,0),D:Mm(0,0)};p.O=Mm(5,2.5);return{p,s:'AB BC CD DA AC BD',k:[['A','C',2],['B','D',2],['A','D',1],['B','C',1]]}}],
 ['Hình thang vuông',()=>({p:{A:Mm(0,5),B:Mm(6,5),C:Mm(10,0),D:Mm(0,0)},s:'AB BC CD DA',g:[['A','B','D','r'],['D','A','C','r']]})],
+['Hình bình hành: cạnh và góc đối',()=>({p:{A:Mm(2,6),B:Mm(0,0),C:Mm(8,0),D:Mm(10,6)},s:'AB BC CD DA',k:[['A','B',1],['C','D',1],['B','C',2],['A','D',2]],g:[['A','B','D',1],['C','B','D',1],['B','A','C',2],['D','C','A',2]]})],
 ['Hình bình hành: hai đường chéo',()=>({p:hbh(),s:'AB BC CD DA AC BD',k:[['A','O',1],['O','C',1],['B','O',2],['O','D',2]]})],
+['Hình chữ nhật ABCD',()=>{const r=recT();r.g=[['A','D','B','r'],['B','A','C','r'],['C','B','D','r'],['D','C','A','r']];return r}],
 ['Hình chữ nhật: hai đường chéo',()=>{const r=recT();r.p.O=mid(r.p.A,r.p.C);r.s+=' AC BD';r.k=[['A','O',1],['O','C',1],['B','O',1],['O','D',1]];return r}],
+['Tam giác vuông: trung tuyến ứng với cạnh huyền',()=>{const p={A:Mm(0,0),B:Mm(0,6),C:Mm(8,0)};p.M=mid(p.B,p.C);return{p,s:'AB BC CA AM',k:[['B','M',1],['M','C',1],['A','M',2]],g:[['A','B','C','r']]}}],
 ['Hình thoi: hai đường chéo',()=>({p:hoi(),s:'AB BC CD DA AC BD',k:tk('AB BC CD DA'),g:[['O','A','B','r'],['A','B','O',1],['A','D','O',1]]})],
 ['Hình vuông: hai đường chéo',()=>{const p={A:Mm(0,10),B:Mm(0,0),C:Mm(10,0),D:Mm(10,10),O:Mm(5,5)};return{p,s:'AB BC CD DA AC BD',k:tk('AB BC CD DA'),g:[['O','A','B','r']]}}]]},
-{g:'Chương VII–VIII. Định lí Thalès, Hình đồng dạng',it:[
+{g:'Tập 1 · Định lí Thalès',it:[
 ['Định lí Thalès (DE // BC)',()=>{const p={A:Mm(5,9),B:Mm(0,0),C:Mm(10,0)};p.D=lerp(p.A,p.B,.45);p.E=lerp(p.A,p.C,.45);return{p,s:'AB BC CA DE',t:[[5.4,-0.8,'DE // BC']]}}],
+['Thalès: ba đường thẳng song song',()=>({p:{A:Mm(1,6),B:Mm(2.5,3),C:Mm(4,0),D:Mm(6,6),E:Mm(8,3),F:Mm(10,0),p:Mm(0,6),q:Mm(11,6),r:Mm(0,3),s:Mm(11,3),u:Mm(0,0),v:Mm(11,0)},s:'AC DF pq rs uv',t:[[11.4,-6.2,'a'],[11.4,-3.2,'b'],[11.4,-0.2,'c']]})],
 ['Hệ quả của định lí Thalès',()=>{const p={A:Mm(5,6),B:Mm(0,0),C:Mm(10,0)};p.D=lerp(p.A,p.B,-.45);p.E=lerp(p.A,p.C,-.45);return{p,s:'DB EC BC DE'}}],
 ['Đường trung bình của tam giác',()=>{const p=TRI();p.D=mid(p.A,p.B);p.E=mid(p.A,p.C);return{p,s:'AB BC CA DE',k:[['A','D',1],['D','B',1],['A','E',2],['E','C',2]]}}],
-['Đường phân giác trong tam giác',()=>{const p={A:Mm(3,8),B:Mm(0,0),C:Mm(10,0)};const c=dist(p.A,p.B),b=dist(p.A,p.C);p.D=lerp(p.B,p.C,c/(c+b));return{p,s:'AB BC CA AD',g:[['A','B','D',1],['A','D','C',1]]}}],
+['Đường phân giác trong tam giác',()=>{const p={A:Mm(3,8),B:Mm(0,0),C:Mm(10,0)};const c=dist(p.A,p.B),b=dist(p.A,p.C);p.D=lerp(p.B,p.C,c/(c+b));return{p,s:'AB BC CA AD',g:[['A','B','D',1],['A','D','C',1]]}}]]},
+{g:'Tập 2 · Hàm số bậc nhất và đồ thị',it:[
+['Mặt phẳng tọa độ Oxy',()=>({p:{O:[0,0],p:Mm(-4,0),q:Mm(7,0),r:Mm(0,-3),s:Mm(0,6),M:Mm(3,2),H:Mm(3,0),K:Mm(0,2)},s:'pq rs',d:'MH MK',t:[[7.3,-0.4,'x'],[0.3,-6.3,'y']]})],
+['Đồ thị hàm số y = ax (a > 0)',()=>({p:{O:[0,0],p:Mm(-4,0),q:Mm(7,0),r:Mm(0,-5),s:Mm(0,7),u:Mm(-3,-4.5),v:Mm(4.6,6.9),A:Mm(2,3),H:Mm(2,0),K:Mm(0,3)},s:'pq rs uv',d:'AH AK',t:[[7.3,-0.4,'x'],[0.3,-7.3,'y'],[4.9,-6.9,'y = ax']]})],
+['Đồ thị hàm số y = ax (a < 0)',()=>({p:{O:[0,0],p:Mm(-5,0),q:Mm(5,0),r:Mm(0,-5),s:Mm(0,5),u:Mm(-4,4),v:Mm(4,-4),A:Mm(-2,2),H:Mm(-2,0),K:Mm(0,2)},s:'pq rs uv',d:'AH AK',t:[[5.3,-0.4,'x'],[0.3,-5.3,'y'],[4.2,4.1,'y = ax']]})],
+['Đồ thị hàm số y = ax + b',()=>({p:{O:[0,0],p:Mm(-4,0),q:Mm(5,0),r:Mm(0,-3),s:Mm(0,6),u:Mm(-3,-1),v:Mm(3.5,5.5),A:Mm(-2,0),B:Mm(0,2)},s:'pq rs uv',t:[[5.3,-0.4,'x'],[0.3,-6.3,'y'],[3.8,-5.6,'y = ax + b']]})],
+['Hai đường thẳng song song',()=>({p:{O:[0,0],p:Mm(-4,0),q:Mm(6,0),r:Mm(0,-3),s:Mm(0,6),u:Mm(-3,-1),v:Mm(3.5,5.5),w:Mm(-1.5,-2.5),z:Mm(5.5,4.5)},s:'pq rs uv wz',t:[[6.3,-0.4,'x'],[0.3,-6.3,'y'],[3.8,-5.6,'d'],[5.8,-4.6,"d'"],[-3.6,-5,'a = a′, b ≠ b′']]})],
+['Hai đường thẳng cắt nhau',()=>({p:{O:[0,0],p:Mm(-4,0),q:Mm(6,0),r:Mm(0,-3),s:Mm(0,6),u:Mm(-3,-1),v:Mm(3.5,5.5),w:Mm(-3,3.5),z:Mm(5,-1),M:Mm(1,3)},s:'pq rs uv wz',t:[[6.3,-0.4,'x'],[0.3,-6.3,'y'],[3.8,-5.6,'d'],[5.2,1.2,"d'"],[-3.6,-5,'a ≠ a′']]})],
+['Hệ số góc của đường thẳng',()=>({p:{O:[0,0],p:Mm(-4,0),q:Mm(6,0),r:Mm(0,-3),s:Mm(0,6),u:Mm(-3,-1),v:Mm(3.5,5.5),A:Mm(-2,0),B:Mm(0,2),w:Mm(2.2,0)},s:'pq rs uv',g:[['A','w','v',1]],t:[[6.3,-0.4,'x'],[0.3,-6.3,'y'],[-0.8,0.5,'α']]})]]},
+{g:'Tập 2 · Tam giác đồng dạng, định lí Pythagore',it:[
 ['Hai tam giác đồng dạng',()=>{const t={A:Mm(3,8),B:Mm(0,0),C:Mm(10,1)},c=cen3(t.A,t.B,t.C),p={...t};for(const k in t)p[{A:'D',B:'E',C:'F'}[k]]=add(lerp(c,t[k],.6),[13,0]);return{p,s:'AB BC CA DE EF FD',g:[['A','B','C',1],['D','E','F',1],['B','C','A',2],['E','F','D',2],['C','A','B',3],['F','D','E',3]]}}],
-['Tam giác vuông và đường cao (đồng dạng)',()=>{const p={A:Mm(0,0),B:Mm(0,6),C:Mm(8,0)};p.H=foot(p.A,p.B,p.C);return{p,s:'AB BC CA AH',g:[['A','B','C','r'],['H','A','C','r'],['B','A','H',1],['C','A','H',2]]}}]]},
-{g:'Chương X. Một số hình khối trong thực tiễn',it:[
+['Đồng dạng (c.c.c)',()=>{const B=Mm(0,0),C=Mm(5,0),A=Mm(.5,3.97),E=Mm(8,0),F=Mm(15.5,0),D=Mm(8.75,5.96);return{p:{A,B,C,D,E,F},s:'AB BC CA DE EF FD',L:[['A','B','4',1],['B','C','5',1],['C','A','6',1],['D','E','6',1],['E','F','7,5',1],['F','D','9',1]]}}],
+['Đồng dạng (c.g.c)',()=>{const A=Mm(0,0),B=Mm(4,0),C=pol(A,50,6),D=Mm(9,0),E=add(D,[6,0]),F=pol(D,50,9);return{p:{A,B,C,D,E,F},s:'AB AC BC DE DF EF',g:[['A','B','C',1],['D','E','F',1]],L:[['A','B','4',1],['A','C','6',1],['D','E','6',1],['D','F','9',1]]}}],
+['Đồng dạng (g.g)',()=>{const B=Mm(0,0),C=Mm(6,0),A=Mm(1.5,4),E=Mm(9,0),F=Mm(18,0),D=Mm(11.25,6);return{p:{A,B,C,D,E,F},s:'AB BC CA DE EF FD',g:[['B','C','A',1],['E','F','D',1],['C','A','B',2],['F','D','E',2]]}}],
+['Hai tam giác vuông đồng dạng',()=>{const A=Mm(0,0),B=Mm(0,4),C=Mm(6,0),D=Mm(9,0),E=Mm(9,6),F=Mm(18,0);return{p:{A,B,C,D,E,F},s:'AB BC CA DE EF FD',g:[['A','B','C','r'],['D','E','F','r'],['B','A','C',1],['E','D','F',1]]}}],
+['Tam giác vuông và đường cao (đồng dạng)',()=>{const p={A:Mm(0,0),B:Mm(0,6),C:Mm(8,0)};p.H=foot(p.A,p.B,p.C);return{p,s:'AB BC CA AH',g:[['A','B','C','r'],['H','A','C','r'],['B','A','H',1],['C','A','H',2]]}}],
+['Đo gián tiếp chiều cao (bóng cây)',()=>{const B=Mm(0,0),A=Mm(0,6),C=Mm(9,0),D=lerp(A,C,.5),E=[D[0],0];return{p:{A,B,C,D,E},s:'AB BC CA DE',g:[['B','A','C','r'],['E','D','C','r']],L:[['A','B','h',1],['D','E','1,5 m',1]]}}],
+['Hai hình đồng dạng phối cảnh (tâm O)',()=>{const O=[0,0],A=Mm(8,1),B=Mm(6,7),C=Mm(12,4);const f=q=>lerp(O,q,.5);return{p:{O,A,B,C,D:f(A),E:f(B),F:f(C)},s:'AB BC CA DE EF FD',d:'OA OB OC'}}],
+['Định lí Pythagore',()=>{const p={A:Mm(0,0),B:Mm(0,3),C:Mm(4,0),p:Mm(-3,3),q:Mm(-3,0),r:Mm(4,-4),s:Mm(0,-4),u:Mm(7,4),v:Mm(3,7)};return{p,s:'AB BC CA Bp pq qA Cr rs sA Cu uv vB',g:[['A','B','C','r']],t:[[3.3,-3.7,'a²'],[2,2.2,'b²'],[-1.8,-1.4,'c²']]}}],
+['Pythagore: đường chéo hình chữ nhật',()=>({p:{A:Mm(0,6),B:Mm(0,0),C:Mm(8,0),D:Mm(8,6)},s:'AB BC CD DA AC',g:[['B','A','C','r']],L:[['A','B','6',1],['B','C','8',1],['A','C','10',1]]})]]},
+{g:'Tập 2 · Hình chóp tam giác đều, hình chóp tứ giác đều',it:[
 ['Hình chóp tam giác đều S.ABC',()=>{const p={A:Mm(0,0),B:Mm(7,0),C:Mm(4.8,2.3)};p.O=cen3(p.A,p.B,p.C);p.S=add(p.O,[0,-6.5]);return{p,s:'AB BC SA SB SC',d:'AC SO'}}],
-['Hình chóp tứ giác đều S.ABCD',()=>{const p={A:Mm(0,0),B:Mm(7,0),C:Mm(10,2.5),D:Mm(3,2.5)};p.O=mid(p.A,p.C);p.S=add(p.O,[0,-6.5]);return{p,s:'AB BC SA SB SC',d:'AD DC SD AC BD SO'}}]]}],
+['Hình chóp tam giác đều: trung đoạn SM',()=>{const p={A:Mm(0,0),B:Mm(7,0),C:Mm(4.8,2.3)};p.O=cen3(p.A,p.B,p.C);p.S=add(p.O,[0,-6.5]);p.M=mid(p.B,p.C);return{p,s:'AB BC SA SB SC SM',d:'AC SO OM'}}],
+['Hình chóp tứ giác đều S.ABCD',()=>{const p={A:Mm(0,0),B:Mm(7,0),C:Mm(10,2.5),D:Mm(3,2.5)};p.O=mid(p.A,p.C);p.S=add(p.O,[0,-6.5]);return{p,s:'AB BC SA SB SC',d:'AD DC SD AC BD SO'}}],
+['Hình chóp tứ giác đều: trung đoạn SM',()=>{const p={A:Mm(0,0),B:Mm(7,0),C:Mm(10,2.5),D:Mm(3,2.5)};p.O=mid(p.A,p.C);p.S=add(p.O,[0,-6.5]);p.M=mid(p.A,p.B);return{p,s:'AB BC SA SB SC SM',d:'AD DC SD AC BD SO OM'}}]]}],
 9:[
 {g:'Chương IV. Hệ thức lượng trong tam giác vuông',it:[
 ['Hệ thức về cạnh và đường cao',()=>{const p={A:Mm(0,0),B:Mm(0,6),C:Mm(8,0)};p.H=foot(p.A,p.B,p.C);return{p,s:'AB BC CA AH',g:[['A','B','C','r'],['H','A','C','r']],L:[['B','C','a',1],['C','A','b',1],['A','B','c',1],['A','H','h',.8],['B','H',"c'",.8],['H','C',"b'",.8]]}}],
