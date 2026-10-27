@@ -152,6 +152,8 @@ body.drawer #p2 .side{display:flex}
 .sh .x{opacity:.5;font-weight:400;padding:0 2px}.sh .x:hover{opacity:1;color:#c92a2a}
 .shadd{flex:none;border:none;background:transparent;font-size:18px;cursor:pointer;color:#42506f;border-radius:8px;width:30px;height:28px}
 .shadd:hover{background:#e3e8f4}
+.gmode{display:flex;gap:4px;margin:2px 0 4px}.gmode button{flex:1;border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 6px;font:inherit;font-size:12px;cursor:pointer;color:#1d2f6b}.gmode button.on{background:#3d5afe;color:#fff;border-color:#3d5afe}.gmnote{font-size:11px;color:var(--muted);margin:0 0 5px}
+.gdbar{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:40;width:min(680px,94vw);background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 34px #1b244038;padding:10px 14px;display:flex;flex-direction:column;gap:7px}.gdbar.hide{display:none}.gdh{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13.5px;color:#1d2f6b}.gdp{font-size:12px;color:var(--muted);white-space:nowrap}.gdm{font-size:14px;line-height:1.45;color:#1b2a4a;min-height:2.9em}.gdb{display:flex;gap:6px;flex-wrap:wrap}.gdb .btn{padding:6px 11px;font-size:13px;width:auto}.gdb .btn:disabled{opacity:.45;cursor:default}
 .ctxbar{position:absolute;top:10px;left:0;right:0;margin:0 auto;width:fit-content;z-index:15;display:flex;gap:2px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:min(96%,1180px);background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px #1b24402e;padding:5px 6px}
 .ctxbar.hide{display:none}
 .cg{display:flex;gap:2px;align-items:center}.cg.hide{display:none}
@@ -195,6 +197,7 @@ body.drawer #p2 .side{display:flex}
 <button class="tbb" id="tbZo" title="Thu nhỏ"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M21 21l-5-5M8 11h6"/></svg></button><button class="tbz" id="tbZv" title="Về 100%">100%</button><button class="tbb" id="tbZi" title="Phóng to (Ctrl + cuộn chuột)"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M21 21l-5-5M8 11h6M11 8v6"/></svg></button><button class="tbb" id="tbPan" title="Bàn tay kéo bảng (H)"><svg class="ic" viewBox="0 0 24 24"><path d="M8 12V6a1.5 1.5 0 0 1 3 0v5M11 10V4.5a1.5 1.5 0 0 1 3 0V10M14 10V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.8-2.4L3.5 14a1.6 1.6 0 0 1 2.6-1.8L8 14"/></svg></button><button class="tbb" id="tbFull" title="Toàn màn hình"><svg class="ic" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button class="tbb" id="tbHelp" title="Hướng dẫn sử dụng"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg></button>
 </div>
 <div class="p2b">
+<div class="gdbar hide" id="gdBar"><div class="gdh"><b id="gdT"></b><span id="gdP" class="gdp"></span></div><div id="gdM" class="gdm"></div><div class="gdb"><button id="gdPrev" class="btn">◀ Bước trước</button><button id="gdNext" class="btn on">Bước tiếp ▶</button><button id="gdAuto" class="btn">▶▶ Tự chạy</button><button id="gdEnd" class="btn">Kết thúc</button></div></div>
 <div class="ctxbar hide" id="ctxbar">
 <div class="cg" id="cgSel"><div class="cg" id="cgPts"><button class="cb" id="cbName"><svg class="ic" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.4"/></svg><span>Đặt tên điểm</span></button><button class="cb" id="cbHName"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18M20 12l-3.5 3.5M9 3H3v8l9 9"/></svg><span>Ẩn tên điểm</span></button><button class="cb" id="cbDot"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8"/></svg><span id="cbDotT">Ẩn chấm tròn</span></button>
 <div class="dd"><button class="cb" id="cbPS"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5" fill="currentColor"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg><span>Kiểu điểm</span><i class=chev></i></button><div class="pop hide" id="popPS"><div class="row"><button data-ps="dot">● Chấm</button><button data-ps="ring">○ Vòng</button><button data-ps="cross">✕ Chéo</button></div><div class="row"><button data-pr="2.4">Nhỏ</button><button data-pr="3.6">Vừa</button><button data-pr="5.4">Lớn</button></div></div></div></div>
@@ -300,6 +303,7 @@ body.drawer #p2 .side{display:flex}
 <div class="it"><b>Trang (Sheet)</b><div>Các tab ở dưới bảng là các trang giấy riêng. Bấm ＋ để thêm trang, nhấp đúp vào tên để đổi tên, bấm × để xóa trang.</div></div>
 <h3>Thư viện hình SGK (lớp 6, 7, 8, 9)</h3>
 <p class="fnote">Thư viện có 164 hình: lớp 6 (48 hình), lớp 7 (36 hình), lớp 8 (40 hình, chia theo Tập 1 và Tập 2) và lớp 9 (40 hình). Các hình được dựng theo nội dung từng bài, chưa đối chiếu từng số Ví dụ, Bài tập trong sách; hãy kiểm tra lại số liệu khi dùng.</p>
+<p class="fnote"><b>Hướng dẫn vẽ từng bước (lớp 8):</b> ở tab Lớp 8 của thư viện, mục đầu tiên là các hình tứ giác (14 hình, xem bên dưới). Mục gồm đủ 14 hình của nhóm Tứ giác (tứ giác lồi, tứ giác không lồi, tổng các góc, hình thang, hình thang cân, hình thang vuông, hình bình hành, hình chữ nhật, hình thoi, hình vuông và các hình có hai đường chéo), hình nào cũng có hướng dẫn vẽ. Ở đầu mục có hai chế độ: <b>Vẽ từng bước</b> và <b>Hình có sẵn</b> (bấm vào hình là hình hoàn chỉnh được đặt ngay vào bảng). Ở chế độ Vẽ từng bước, bấm vào một hình thì thanh hướng dẫn hiện ra phía dưới bảng. Bấm <b>Bước tiếp</b> để xem từng bước (thước, eke, compa, thước đo độ tự xuất hiện và vẽ), <b>Bước trước</b> để lùi lại, <b>Tự chạy</b> để xem liên tục, <b>Vẽ lại</b> khi xong để xem lại từ đầu, <b>Kết thúc</b> để đóng thanh hướng dẫn. Nét vẽ ra là đối tượng thường, có thể hoàn tác (Ctrl+Z) cả hình.</p>
 <p>Bấm nút <b>Hình SGK</b> trên thanh công cụ (hình tam giác và đường tròn) để mở thư viện hình trong bảng tùy chọn. Hình được dựng theo chương trình Toán 6 đến 9, sách Kết nối tri thức với cuộc sống, chia theo lớp và theo chương: hình phẳng trong thực tiễn, đối xứng, các hình cơ bản, góc và đường thẳng song song, tam giác bằng nhau, các đường đồng quy trong tam giác, hình khối, Pythagore, tứ giác, định lí Thalès, hình đồng dạng, hệ thức lượng, đường tròn, hình trụ, hình nón, hình cầu.</p>
 <div class="it"><b>Đặt hình lên bảng</b><div>Chọn lớp, bấm vào một hình, rồi bấm vào chỗ cần đặt trên bảng (hình mờ đi theo con trỏ). Giữ Shift để đặt liên tiếp, Esc để hủy. Thanh trượt “Cỡ hình” đổi kích thước. Hình đặt xong gồm các điểm có tên (A, B, C…), đoạn thẳng, cung, ký hiệu góc, dấu bằng nhau, nét đứt… đều là các đối tượng riêng: chọn, đổi màu, đổi kiểu đường, xóa, sửa tên điểm đều được.</div></div>
 <div class="it"><b>Di chuyển nhóm đối tượng</b><div>Sau khi đặt, cả hình đang được chọn: nhấn giữ vào một nét của hình rồi kéo để dời cả hình. Rê chuột chọn nhiều đối tượng rồi kéo cũng dời được cả nhóm. Hoàn tác được.</div></div>
@@ -322,7 +326,7 @@ body.drawer #p2 .side{display:flex}
 <div class="it"><b>Gõ / dán văn bản <kbd>T</kbd></b><div>Bấm vào vị trí cần viết để mở hộp soạn thảo, gõ hoặc dán nội dung rồi bấm “Chèn vào bảng”. Biểu thức như <b>y=2x^2</b>, <b>sqrt(x+1)</b>, <b>a/b</b>, <b>AB=5cm</b> tự thành công thức Toán; công thức LaTeX viết trong dấu $...$. Có thể dán từ Word (giữ chữ đậm nghiêng, bảng, công thức, ảnh). Bấm Ctrl+V ngay trên bảng để dán thẳng, kể cả ảnh cắt từ PDF; kéo thả tệp ảnh lên bảng cũng được. Nhấp đúp vào khung để sửa.</div></div>
 
 <h3>Dụng cụ vẽ hình</h3>
-<div class="it"><b>Thước thẳng <kbd>R</kbd></b><div>Thước dài 10 cm, vạch chia đến mm. Kéo thân thước để di chuyển, kéo nút ↻ để xoay, bấm nút ✕ để đóng. Thước tự bắt vào điểm và đoạn thẳng ở gần. <b>Chọn hai điểm</b> (giữ Ctrl và bấm từng điểm) rồi bấm nút Thước thẳng, hoặc bấm vào thước đang mở: thước tự đặt đi qua hai điểm đó. Khi vẽ bằng bút chì dọc mép thước (mép trên và mép dưới), đầu nét tự bắt vào điểm hoặc giao điểm gần mép; nếu không có thì độ dài đoạn được làm tròn đến mm. Bảng trắng thì thước nằm giữa màn hình; bảng đã có nét vẽ thì thước tự đặt vào đối tượng mới vẽ gần nhất.</div></div>
+<div class="it"><b>Thước thẳng <kbd>R</kbd></b><div>Thước vạch chia đến mm, chiều dài tự điều chỉnh theo đoạn cần vẽ (mặc định 10 cm); khi đặt qua hai điểm, vạch 0 nằm tại điểm đầu. Kéo thân thước để di chuyển, kéo nút ↻ để xoay, bấm nút ✕ để đóng. Thước tự bắt vào điểm và đoạn thẳng ở gần. <b>Chọn hai điểm</b> (giữ Ctrl và bấm từng điểm) rồi bấm nút Thước thẳng, hoặc bấm vào thước đang mở: thước tự đặt đi qua hai điểm đó. Khi vẽ bằng bút chì dọc mép thước (mép trên và mép dưới), đầu nét tự bắt vào điểm hoặc giao điểm gần mép; nếu không có thì độ dài đoạn được làm tròn đến mm. Bảng trắng thì thước nằm giữa màn hình; bảng đã có nét vẽ thì thước tự đặt vào đối tượng mới vẽ gần nhất.</div></div>
 <div class="it"><b>Compa <kbd>C</kbd></b><div>Khi bật compa, các ô Bán kính, Cỡ compa, Cố định bán kính, Hạ bút nằm trên thanh công cụ ngang phía trên bảng. Muốn lấy một điểm làm tâm: bấm chọn điểm đó rồi bấm nút Compa. Kéo đầu kim để đặt tâm (tự dính vào điểm), kéo đầu bút để đổi bán kính. Nhập số vào ô <b>Bán kính (cm)</b> để vẽ đúng số đo. Bật <b>Cố định bán kính</b> thì bán kính giữ nguyên và kéo đầu bút chỉ quay compa; tắt thì bán kính tự điều chỉnh, tự bắt điểm và làm tròn đến mm. Bật <b>Hạ bút</b> rồi kéo đầu bút để vẽ cung hoặc đường tròn. Thanh <b>Cỡ compa</b> đổi độ dài hai chân (bán kính tối đa 10 cm).</div></div>
 <div class="it"><b>Thước đo độ <kbd>G</kbd></b><div>Kéo tâm thước lại gần một điểm (đỉnh góc) thì tâm dính vào điểm đó và vạch 0° tự khớp với các tia. Cách nhanh hơn: chọn một điểm (bấm vào chấm) rồi bấm nút Thước đo độ, thước tự lấy điểm đó làm tâm. Đặt tâm lên một đoạn thẳng thì thước tự xoay theo đoạn ấy. Kéo thân thước để xoay quanh đỉnh, chạm vào tâm để nhả. Dòng thông báo dưới bảng cho biết số đo từng tia và góc giữa hai tia. Để vẽ góc cho trước, xoay thước tới vạch cần, chấm một điểm trên cung thước rồi nối bằng bút chì.</div></div>
 <div class="it"><b>Eke <kbd>E</kbd></b><div>Có hai loại, 45°-45° và 30°-60° (nút đổi loại hiện khi bật eke). Kéo một góc của eke lại gần điểm thì dính vào điểm, rồi xoay quanh điểm đó; các cạnh tự khớp với tia và đoạn thẳng. Bút chì vẽ thẳng được dọc cạnh eke, trên cạnh có vạch cm. <b>Kẻ đường vuông góc:</b> chọn một điểm và một đoạn thẳng (giữ Ctrl rồi bấm lần lượt), sau đó bấm nút Eke: một cạnh eke nằm trên đoạn thẳng, cạnh vuông góc đi qua điểm; kéo bút chì dọc cạnh này để vẽ đường vuông góc, đầu nét tự bắt vào điểm và vào chân đường vuông góc.</div></div>
@@ -380,7 +384,8 @@ let S={shapes:[],pts:[]},H=[],mode='pen',draw=null,drag=null,hov=null,ink=[],pen
 const show={r:false,c:false,p:false,e:false,q:false};
 const Q={x:300,y:300,hx:80,hy:-80,lock:null};
 const R={x:300,y:260,a:0,L:400},P={x:560,y:340,a:0,R:170,lock:null},C={x:300,y:250,r:120,phi:-0.4,down:false,sw:0,a0:0,L:210},E={x:260,y:130,a:0,la:260,lb:260,lock:null,c:0};
-const HR=Math.atan2(23,R.L-16);
+const HRf=()=>Math.atan2(23,R.L-16);
+function rulerFit(d){R.L=Math.max(200,Math.min(1000,(Math.ceil(d/U-1e-6)+1)*U))}
 const pt=e=>{const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());return{x:q.x,y:q.y}};
 const d2=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const toL=(T,p)=>{const c=Math.cos(T.a),s=Math.sin(T.a),dx=p.x-T.x,dy=p.y-T.y;return{x:dx*c+dy*s,y:-dx*s+dy*c}};
@@ -495,7 +500,7 @@ svg.onpointermove=e=>{const p=pt(e);hov=p;
  else if(drag){const k=drag.k;
   if(k=='rmov'){drag.moved=true;R.x=p.x-drag.o.x;R.y=p.y-drag.o.y;const q=snapPt(R,12);
    if(q){R.x=q.x;R.y=q.y}else{const b=nearSeg(R,8);if(b){const al=closestAng(R.a,b.th);if(Math.abs(norm(R.a-al))<.35){R.x=b.q.x;R.y=b.q.y;R.a=al}}}}
-  else if(k=='rrot'){let a=Math.atan2(p.y-R.y,p.x-R.x)-HR,best=null;
+  else if(k=='rrot'){let a=Math.atan2(p.y-R.y,p.x-R.x)-HRf(),best=null;
    S.pts.forEach(q=>{const l=toL({x:R.x,y:R.y,a},q);if(l.x>20&&Math.abs(l.y)<8&&(!best||Math.abs(l.y)<best.y))best={y:Math.abs(l.y),q}});
    if(best)a=Math.atan2(best.q.y-R.y,best.q.x-R.x);
    else a=snapAng(a,S.shapes.filter(s=>s.t=='l').flatMap(s=>{const th=Math.atan2(s.b.y-s.a.y,s.b.x-s.a.x);return[th,th+PI]}),.05);
@@ -602,6 +607,7 @@ function render(){syncBoxes();[['tbR','r'],['tbC','c'],['tbG','p'],['tbE','e'],[
  if(mode=='name'){inters().forEach(i=>h+=`<circle cx="${i.x}" cy="${i.y}" r="5" fill="none" stroke="#2c5d8a" stroke-dasharray="2 2"/>`);S.pts.filter(q=>!q.vis&&!q.dead).forEach(q=>h+=`<circle cx="${q.x}" cy="${q.y}" r="5" fill="none" stroke="#c2255c" stroke-dasharray="2 2"/>`)}
  if(mode=='pen'||mode=='move'){const L=selAll.filter(x=>!x.dead&&S.shapes.includes(x));L.forEach(x=>h+=selSvg(x,L.length>1));if(sel&&!L.includes(sel)&&!sel.dead&&S.shapes.includes(sel))h+=selSvg(sel);selPts.forEach(q=>{if(q.vis&&!q.dead)h+=`<circle cx="${q.x}" cy="${q.y}" r="10" fill="#3d5afe22" stroke="#3d5afe" stroke-width="1.6"/>`});h+=mqSvg()}
  if(PLACE&&hov){let sp=null;try{sp=PLACE.fn()}catch(err){}if(sp)h+=`<g opacity=".5" pointer-events="none">${primsSvg(figPrims(sp,hov.x,hov.y,FIGSZ()))}</g>`}
+ if(GOV)h+=GOV;
  if(TG.anim){const A=TG.anim;h+=`<polyline class="ink" style="stroke:${A.col};stroke-width:${A.lw}${A.dash?';stroke-dasharray:7 5':''}" points="${pl(A.path)}"/>`;const e=A.path[A.path.length-1];h+=`<circle cx="${e.x}" cy="${e.y}" r="4" fill="${A.col}"/>`}
  if(show.q)h+=parabSvg();if(show.p)h+=protSvg();if(show.e)h+=ekeSvg();if(show.r)h+=rulerSvg();if(show.c)h+=compSvg();
  if(mode=='pen'||mode=='aux'){const p=draw?draw.cur:hov;if(p)h+=handSvg(p)}
@@ -1117,8 +1123,8 @@ async function tgPlot(){
    S.pts.push({x:x0,y:y0,vis:true,lab:true,name:nm,n:++SEQ,gx:id});render();await sleep(450)}
   /* BƯỚC 2: thước xuất hiện */
   const pp=rows.map(r=>({x:X(r.x),y:Y(r.y)}));
-  if(Lh.ty=='lin'&&pp.length>1){msg='Bước 2: đặt thước thẳng đi qua các điểm vừa xác định.';
-   const A=pp[0],B=pp[pp.length-1],th=Math.atan2(B.y-A.y,B.x-A.x),mx=(A.x+B.x)/2,my0=(A.y+B.y)/2,tx=mx-Math.cos(th)*R.L/2,ty=my0-Math.sin(th)*R.L/2,sy=ty+170,sa=th+.7;
+  if(Lh.ty=='lin'&&pp.length>1){msg='Bước 2: đặt thước thẳng (đủ dài để phủ cả đoạn đồ thị sẽ vẽ), vạch 0 tại đầu đường thẳng, mép thước đi qua các điểm vừa xác định.';
+   const rn=tgRuns(Lh)[0],A=rn&&rn.length>1?rn[0]:pp[0],B=rn&&rn.length>1?rn[rn.length-1]:pp[pp.length-1],th=Math.atan2(B.y-A.y,B.x-A.x),tx=A.x,ty=A.y,sy=ty+170,sa=th+.7;rulerFit(Math.hypot(B.x-A.x,B.y-A.y));
    R.x=tx;R.y=sy;R.a=sa;show.r=true;$('sR').checked=true;opened.push('r');render();await sleep(300);
    if(!await tween(e=>{R.y=sy+(ty-sy)*e;R.a=sa+(th-sa)*e}))return}
   else if(Lh.ty=='quad'){msg='Bước 2: đặt thước parabol (thước cong) sao cho đỉnh và cạnh cong đi qua các điểm.';
@@ -1211,9 +1217,8 @@ function compaThrough(q){C.x=q.x;C.y=q.y;show.c=true;$('sC').checked=true;
 $('tbC').onclick=()=>{const q=onePt();if(q&&show.c)compaThrough(q);else $('sC').click()};
 function twoSelPts(){const L=selPtsLive().filter(q=>q.vis);return L.length==2?L:null}
 function rulerThrough(a,b){const dx=b.x-a.x,dy=b.y-a.y,dd=Math.hypot(dx,dy);if(dd<3){msg='Hai điểm trùng nhau, không đặt được thước.';render();return false}
- let th=Math.atan2(dy,dx);if(Math.cos(th)<-1e-9)th+=PI;const ux=Math.cos(th),uy=Math.sin(th),m={x:(a.x+b.x)/2,y:(a.y+b.y)/2},sa=(a.x-m.x)*ux+(a.y-m.y)*uy,sb=(b.x-m.x)*ux+(b.y-m.y)*uy,smin=Math.min(sa,sb);
- const o=dd<=R.L-30?-R.L/2:smin-15;R.x=m.x+ux*o;R.y=m.y+uy*o;R.a=th;show.r=true;$('sR').checked=true;
- msg=dd>R.L?'Hai điểm cách nhau '+(dd/U).toFixed(1)+' cm, dài hơn thước 10 cm: thước đặt dọc theo đường thẳng qua hai điểm.':'Thước đã đặt đi qua '+pn(a)+' và '+pn(b)+'. Chọn Bút chì và kéo dọc mép thước để vẽ.';
+ const th=Math.atan2(dy,dx),m={x:(a.x+b.x)/2,y:(a.y+b.y)/2};rulerFit(dd);R.x=a.x;R.y=a.y;R.a=th;show.r=true;$('sR').checked=true;
+ msg='Thước dài '+(R.L/U)+' cm đã đặt: vạch 0 tại '+pn(a)+', đọc được '+pn(b)+' = '+(dd/U).toFixed(1)+' cm. Chọn Bút chì và kéo dọc mép thước để vẽ.';
  const sc=svg.clientWidth/BW,y=m.y*sc;if(y<wrap.scrollTop||y>wrap.scrollTop+wrap.clientHeight-60)wrap.scrollTop=Math.max(0,y-wrap.clientHeight/2);
  selPts=[];selAll=[];sel=null;render();return true}
 /* chọn 1 điểm + 1 đoạn thẳng rồi bấm eke: một cạnh nằm trên đoạn thẳng, cạnh vuông góc đi qua điểm (để kẻ đường vuông góc) */
@@ -1547,6 +1552,399 @@ LIB[9][1].it.push(
 ['Hình chữ nhật nội tiếp đường tròn',()=>({p:{O:[0,0],A:Mm(-4,3),B:Mm(-4,-3),C:Mm(4,-3),D:Mm(4,3)},c:[['O',5]],s:'AB BC CD DA AC BD',g:[['A','D','B','r']]})],
 ['Ngũ giác đều nội tiếp đường tròn',()=>({p:ngon(5,5,90),c:[['O',5]],s:'AB BC CD DE EA',k:tk('AB BC CD DE EA')})]);
 
+/* ---------- HƯỚNG DẪN VẼ TỪNG BƯỚC: các tứ giác đặc biệt (lớp 8) ---------- */
+let GOV='',GD=null,GDN=0;
+const GUIDES=(()=>{
+const T=(ox,oy)=>0;
+/* các bước dùng chung cho nhóm hình thang cân / hình thang */
+const baseCD=(L)=>({m:'Bước 1: Dùng thước thẳng vẽ đáy lớn DC = '+L+' cm.',o:[['pt','D'],['pt','C'],['seg','D','C','ruler']]});
+const stepHK=(a,b)=>({m:'Bước 2: Dùng thước đo trên DC, lấy hai điểm H, K sao cho DH = '+a+' cm và DK = '+b+' cm.',o:[['tool','D','C'],['pt','H'],['pt','K']]});
+const stepHA=h=>({m:'Bước 3: Đặt eke có một cạnh góc vuông trùng DC, cạnh kia đi qua H, kẻ đường vuông góc với DC tại H. Dùng thước lấy A trên đường đó sao cho HA = '+h+' cm.',o:[['ray','H','A','eke','C'],['mark','A','H',1],['right','H','A','C']]});
+const stepKB=h=>({m:'Bước 4: Tương tự, kẻ đường vuông góc với DC tại K (cùng phía với A), lấy B trên đó sao cho KB = '+h+' cm.',o:[['ray','K','B','eke','C'],['mark','B','K',1],['right','K','B','C']]});
+const stepAB=h=>({m:'Bước 5: Dùng thước nối A với B. AH và BK cùng vuông góc với DC và AH = BK = '+h+' cm nên AB // DC.',o:[['seg','A','B','ruler']]});
+const htcPts={D:[0,0],C:[8,0],A:[1.3946,2.9908],B:[6.6054,2.9908]};
+const htcSteps=()=>[
+ {m:'Bước 1: Dùng thước vẽ đáy lớn DC = 8 cm.',o:[['pt','D'],['pt','C'],['seg','D','C','ruler']]},
+ {m:'Bước 2: Đặt thước đo độ có tâm tại D, vạch 0° trùng DC, đánh dấu điểm ứng với 65°. Kẻ tia gốc D đi qua điểm đó rồi lấy A trên tia sao cho DA = 3,3 cm.',o:[['prot','D','C',65,'A'],['ray','D','A','ruler'],['mark','A','D']]},
+ {m:'Bước 3: Đặt thước đo độ có tâm tại C, vạch 0° trùng CD, đánh dấu điểm ứng với 65° (cùng phía với A). Kẻ tia gốc C đi qua điểm đó rồi lấy B trên tia sao cho CB = DA = 3,3 cm.',o:[['prot','C','D',65,'B'],['ray','C','B','ruler'],['mark','B','C']]},
+ {m:'Bước 4: Nối A với B. Vì A, B cùng cách DC một khoảng như nhau nên AB // DC, ABCD là hình thang có hai góc ở đáy D = C = 65°.',o:[['seg','A','B','ruler'],['ang','D','C','A',1],['ang','C','B','D',1]]}];
+const bhPts={A:[0,0],B:[6,0],D:[2,3.4641],C:[8,3.4641]};
+const bhSteps=()=>[
+ {m:'Bước 1: Dùng thước vẽ cạnh AB = 6 cm.',o:[['pt','A'],['pt','B'],['seg','A','B','ruler']]},
+ {m:'Bước 2: Đặt thước đo độ có tâm tại A, vạch 0° trùng AB, đánh dấu điểm ứng với 60°.',o:[['prot','A','B',60]]},
+ {m:'Bước 3: Dùng thước kẻ tia gốc A đi qua điểm đánh dấu, rồi lấy D trên tia sao cho AD = 4 cm.',o:[['ray','A','D','ruler'],['mark','D','A']]},
+ {m:'Bước 4: Compa tâm D, bán kính DC = AB = 6 cm, vẽ một cung tròn.',o:[['arc','D',6,-28,28]]},
+ {m:'Bước 5: Compa tâm B, bán kính BC = AD = 4 cm, vẽ cung cắt cung trước tại C.',o:[['arc','B',4,32,88],['pt','C']]},
+ {m:'Bước 6: Nối DC và BC. Tứ giác ABCD có các cạnh đối bằng nhau (AB = CD, AD = BC) nên là hình bình hành.',o:[['seg','D','C','ruler'],['seg','B','C','ruler'],['tick','A','B',1],['tick','D','C',1],['tick','A','D',2],['tick','B','C',2]]}];
+const hcnPts={A:[0,0],B:[6,0],C:[6,4],D:[0,4]};
+const hcnSteps=()=>[
+ {m:'Bước 1: Dùng thước vẽ cạnh AB = 6 cm.',o:[['pt','A'],['pt','B'],['seg','A','B','ruler']]},
+ {m:'Bước 2: Dùng eke kẻ đường vuông góc với AB tại A, rồi dùng thước lấy D trên đó sao cho AD = 4 cm (góc A = 90°).',o:[['ray','A','D','eke','B'],['mark','D','A'],['right','A','D','B']]},
+ {m:'Bước 3: Dùng eke kẻ đường vuông góc với AB tại B (cùng phía với D), lấy C trên đó sao cho BC = 4 cm (góc B = 90°).',o:[['ray','B','C','eke','A'],['mark','C','B'],['right','B','C','A']]},
+ {m:'Bước 4: Dùng eke đặt tại D, một cạnh trùng DA, kẻ DC vuông góc với DA (góc D = 90°). Đường này đi qua C.',o:[['seg','D','C','eke','A'],['right','D','C','A']]},
+ {m:'Bước 5: Tứ giác ABCD có ba góc vuông (A, B, D) nên là hình chữ nhật; góc C cũng bằng 90°, AB = CD, AD = BC.',o:[['right','C','D','B'],['tick','A','B',1],['tick','D','C',1],['tick','A','D',2],['tick','B','C',2]]}];
+const quadP={A:[1,5],B:[0,0],C:[7,1],D:[8,4.5]};
+const quad12=[
+ {m:'Bước 1: Lấy bốn điểm A, B, C, D sao cho không có ba điểm nào thẳng hàng.',o:[['pt','A'],['pt','B'],['pt','C'],['pt','D']]},
+ {m:'Bước 2: Dùng thước lần lượt nối AB, BC, CD, DA (các đoạn thẳng này không cắt nhau ngoài các mút).',o:[['seg','A','B','ruler'],['seg','B','C','ruler'],['seg','C','D','ruler'],['seg','D','A','ruler']]}];
+const OUT=[
+{title:'Tứ giác lồi ABCD',fig:'Tứ giác lồi ABCD',pts:quadP,steps:[...quad12,
+ {m:'Bước 3: Mỗi đường thẳng chứa một cạnh đều không cắt cạnh nào khác, tứ giác nằm về một phía của nó, nên ABCD là tứ giác lồi. Vẽ hai đường chéo AC, BD bằng nét đứt.',o:[['seg','A','C','ruler',0,1],['seg','B','D','ruler',0,1]]},
+ {m:'Bước 4: Đánh dấu bốn góc A, B, C, D của tứ giác (tổng bốn góc bằng 360°).',o:[['ang','A','B','D',1],['ang','B','C','A',2],['ang','C','D','B',3],['ang','D','A','C',4]]}]},
+{title:'Tứ giác không lồi',fig:'Tứ giác không lồi',pts:{A:[0,0],B:[5,5],C:[10,0],D:[5,2],p:[0,4],q:[12,-0.8]},steps:[
+ {m:'Bước 1: Lấy bốn điểm A, B, C, D sao cho D nằm trong tam giác ABC.',o:[['pt','A'],['pt','B'],['pt','C'],['pt','D']]},
+ {m:'Bước 2: Dùng thước lần lượt nối AB, BC, CD, DA.',o:[['seg','A','B','ruler'],['seg','B','C','ruler'],['seg','C','D','ruler'],['seg','D','A','ruler']]},
+ {m:'Bước 3: Kéo dài cạnh CD thành đường thẳng (nét đứt). Hai điểm A và B nằm về hai phía khác nhau của đường thẳng CD.',o:[['seg','p','q','ruler',0,1]]},
+ {m:'Bước 4: Một cạnh mà tứ giác không nằm về một phía của đường thẳng chứa nó, nên ABCD là tứ giác không lồi (góc D lớn hơn 180°).',o:[]}]},
+{title:'Tổng các góc của tứ giác',fig:'Tổng các góc của tứ giác',pts:quadP,steps:[...quad12,
+ {m:'Bước 3: Kẻ đường chéo AC. Đường chéo này chia tứ giác ABCD thành hai tam giác ABC và ACD.',o:[['seg','A','C','ruler']]},
+ {m:'Bước 4: Đánh dấu các góc của hai tam giác. Tổng ba góc của mỗi tam giác bằng 180°.',o:[['ang','A','B','C',1],['ang','A','C','D',2],['ang','C','B','A',1],['ang','C','A','D',2]]},
+ {m:'Bước 5: Vậy tổng bốn góc của tứ giác ABCD bằng 180° + 180° = 360°.',o:[]}]},
+{title:'Hình thang ABCD (AB // CD)',fig:'Hình thang ABCD (AB // CD)',pts:{D:[0,0],C:[9,0],H:[2,0],K:[6,0],A:[2,4],B:[6,4]},steps:[
+ baseCD(9),stepHK(2,6),stepHA(4),stepKB(4),stepAB(4),
+ {m:'Bước 6: Nối AD và BC. Tứ giác ABCD có hai cạnh đối AB, CD song song nên là hình thang.',o:[['seg','D','A','ruler'],['seg','C','B','ruler']]}]},
+{title:'Hình thang cân',fig:'Hình thang cân',pts:htcPts,steps:[...htcSteps(),
+ {m:'Bước 5: Hình thang ABCD có hai góc kề đáy DC bằng nhau (góc D = góc C = 65°) nên là hình thang cân: AD = BC.',o:[['tick','A','D',1],['tick','B','C',1]]}]},
+{title:'Hình thang cân: hai đường chéo',fig:'Hình thang cân: hai đường chéo',pts:{...htcPts,O:[4,1.8111]},steps:[...htcSteps(),
+ {m:'Bước 5: Hình thang ABCD có hai góc kề đáy DC bằng nhau nên là hình thang cân (AD = BC).',o:[['tick','A','D',1],['tick','B','C',1]]},
+ {m:'Bước 6: Nối hai đường chéo AC và BD cắt nhau tại O. Trong hình thang cân, hai đường chéo bằng nhau: AC = BD.',o:[['seg','A','C','ruler'],['seg','B','D','ruler'],['pt','O'],['tick','A','C',2],['tick','B','D',2]]}]},
+{title:'Hình thang vuông ABCD (AB // CD, góc A = góc D = 90°)',fig:'Hình thang vuông',pts:{D:[0,0],C:[7,0],A:[0,4],B:[3,4]},steps:[
+ {m:'Bước 1: Dùng thước vẽ đáy lớn DC = 7 cm.',o:[['pt','D'],['pt','C'],['seg','D','C','ruler']]},
+ {m:'Bước 2: Dùng eke kẻ đường vuông góc với DC tại D, rồi dùng thước lấy A trên đó sao cho DA = 4 cm.',o:[['ray','D','A','eke','C'],['mark','A','D'],['right','D','A','C']]},
+ {m:'Bước 3: Dùng eke kẻ tại A đường thẳng vuông góc với DA (đường này song song với DC), lấy B trên đó sao cho AB = 3 cm.',o:[['ray','A','B','eke','D'],['mark','B','A'],['right','A','B','D']]},
+ {m:'Bước 4: Nối B với C. ABCD là hình thang vuông (AB // CD, góc A = góc D = 90°).',o:[['seg','B','C','ruler']]}]},
+{title:'Hình bình hành: cạnh và góc đối',fig:'Hình bình hành: cạnh và góc đối',pts:bhPts,steps:[...bhSteps().slice(0,5),
+ {m:'Bước 6: Nối DC và BC. Tứ giác ABCD có các cạnh đối bằng nhau (AB = CD, AD = BC) nên là hình bình hành; các góc đối bằng nhau.',o:[['seg','D','C','ruler'],['seg','B','C','ruler'],['tick','A','B',1],['tick','D','C',1],['tick','A','D',2],['tick','B','C',2],['ang','A','B','D',1],['ang','C','B','D',1],['ang','B','A','C',2],['ang','D','C','A',2]]}]},
+{title:'Hình bình hành: hai đường chéo',fig:'Hình bình hành: hai đường chéo',pts:{A:[0,0],B:[2.2,2],C:[7,0],D:[4.8,-2],O:[3.5,0]},steps:[
+ {m:'Bước 1: Dùng thước vẽ đoạn thẳng AC = 7 cm.',o:[['pt','A'],['pt','C'],['seg','A','C','ruler']]},
+ {m:'Bước 2: Dùng thước đo, lấy O là trung điểm của AC (OA = OC = 3,5 cm).',o:[['tool','A','C'],['pt','O'],['tick','A','O',1],['tick','O','C',1]]},
+ {m:'Bước 3: Qua O vẽ một đoạn thẳng BD khác AC sao cho O là trung điểm của BD (OB = OD = 2,8 cm).',o:[['pt','B'],['pt','D'],['tool','B','D'],['seg','B','D','ruler'],['tick','B','O',2],['tick','O','D',2]]},
+ {m:'Bước 4: Nối AB, BC, CD, DA. Tứ giác ABCD có hai đường chéo AC, BD cắt nhau tại trung điểm của mỗi đường nên là hình bình hành.',o:[['seg','A','B','ruler'],['seg','B','C','ruler'],['seg','C','D','ruler'],['seg','D','A','ruler']]}]},
+{title:'Hình chữ nhật ABCD',fig:'Hình chữ nhật ABCD',pts:hcnPts,steps:hcnSteps()},
+{title:'Hình chữ nhật: hai đường chéo',fig:'Hình chữ nhật: hai đường chéo',pts:{...hcnPts,O:[3,2]},steps:[...hcnSteps(),
+ {m:'Bước 6: Nối hai đường chéo AC và BD cắt nhau tại O. Dùng thước đo: AC = BD = 7,2 cm. Hình bình hành có hai đường chéo bằng nhau là hình chữ nhật; hai đường chéo bằng nhau và cắt nhau tại trung điểm của mỗi đường: OA = OB = OC = OD.',o:[['seg','A','C','ruler'],['seg','B','D','ruler'],['pt','O'],['tick','A','O',1],['tick','O','C',1],['tick','B','O',1],['tick','O','D',1]]}]},
+{title:'Tam giác vuông: trung tuyến ứng với cạnh huyền',fig:'Tam giác vuông: trung tuyến ứng với cạnh huyền',pts:{A:[0,0],C:[8,0],B:[0,6],M:[4,3]},steps:[
+ {m:'Bước 1: Dùng thước vẽ cạnh góc vuông AC = 8 cm.',o:[['pt','A'],['pt','C'],['seg','A','C','ruler']]},
+ {m:'Bước 2: Dùng eke kẻ đường vuông góc với AC tại A, rồi dùng thước lấy B trên đó sao cho AB = 6 cm.',o:[['ray','A','B','eke','C'],['mark','B','A'],['right','A','B','C']]},
+ {m:'Bước 3: Dùng thước nối B với C (cạnh huyền BC = 10 cm).',o:[['seg','B','C','ruler']]},
+ {m:'Bước 4: Dùng thước đo, lấy M là trung điểm của BC (BM = MC = 5 cm).',o:[['tool','B','C'],['pt','M'],['tick','B','M',1],['tick','M','C',1]]},
+ {m:'Bước 5: Nối A với M. Đường trung tuyến AM ứng với cạnh huyền có AM = BC : 2, nên AM = BM = MC.',o:[['seg','A','M','ruler'],['tick','A','M',1]]}]},
+{title:'Hình thoi ABCD',fig:'Hình thoi: hai đường chéo',pts:{A:[0,2],C:[6,2],P:[3,4.6458],Q:[3,-0.6458],O:[3,2],D:[3,4],B:[3,0]},steps:[
+ {m:'Bước 1: Dùng thước vẽ đường chéo AC = 6 cm.',o:[['pt','A'],['pt','C'],['seg','A','C','ruler']]},
+ {m:'Bước 2: Compa tâm A, bán kính 4 cm (lớn hơn một nửa AC), vẽ cung tròn ở cả hai phía của AC.',o:[['arc','A',4,-50,50]]},
+ {m:'Bước 3: Compa tâm C, cùng bán kính 4 cm, vẽ cung cắt cung trước tại P và Q.',o:[['arc','C',4,130,230],['pt','P'],['pt','Q']]},
+ {m:'Bước 4: Nối P với Q (đường trung trực của AC) cắt AC tại O. O là trung điểm của AC và PQ ⟂ AC.',o:[['seg','P','Q','ruler',0,1],['pt','O'],['right','O','P','C'],['tick','A','O',1],['tick','O','C',1]]},
+ {m:'Bước 5: Compa tâm O, bán kính 2 cm, vẽ cung cắt PQ tại B và D (OB = OD = 2 cm).',o:[['arc','O',2,60,120],['arc','O',2,240,300],['pt','D'],['pt','B']]},
+ {m:'Bước 6: Nối AB, BC, CD, DA. Tứ giác ABCD có hai đường chéo cắt nhau tại trung điểm mỗi đường và vuông góc với nhau nên là hình thoi.',o:[['seg','A','B','ruler'],['seg','B','C','ruler'],['seg','C','D','ruler'],['seg','D','A','ruler'],['tick','A','B',1],['tick','B','C',1],['tick','C','D',1],['tick','D','A',1]]}]},
+{title:'Hình vuông ABCD',fig:'Hình vuông: hai đường chéo',pts:{A:[0,0],B:[4,0],C:[4,4],D:[0,4],O:[2,2]},steps:[
+ {m:'Bước 1: Dùng thước vẽ cạnh AB = 4 cm.',o:[['pt','A'],['pt','B'],['seg','A','B','ruler']]},
+ {m:'Bước 2: Dùng eke kẻ đường vuông góc với AB tại A, rồi dùng thước lấy D trên đó sao cho AD = 4 cm.',o:[['ray','A','D','eke','B'],['mark','D','A'],['right','A','D','B']]},
+ {m:'Bước 3: Compa tâm D, bán kính 4 cm, vẽ một cung tròn.',o:[['arc','D',4,-28,28]]},
+ {m:'Bước 4: Compa tâm B, bán kính 4 cm, vẽ cung cắt cung trước tại C (BC = DC = 4 cm).',o:[['arc','B',4,62,118],['pt','C']]},
+ {m:'Bước 5: Nối DC và BC.',o:[['seg','D','C','ruler'],['seg','B','C','ruler']]},
+ {m:'Bước 6: Tứ giác ABCD có bốn cạnh bằng nhau nên là hình thoi, lại có một góc vuông nên là hình vuông.',o:[['tick','A','B',1],['tick','B','C',1],['tick','C','D',1],['tick','D','A',1],['right','B','A','C'],['right','C','B','D'],['right','D','C','A']]},
+ {m:'Bước 7: Nối hai đường chéo AC và BD cắt nhau tại O. Trong hình vuông, hai đường chéo bằng nhau, vuông góc với nhau và cắt nhau tại trung điểm của mỗi đường.',o:[['seg','A','C','ruler'],['seg','B','D','ruler'],['pt','O'],['right','O','A','B']]}]}
+];OUT.H={bhSteps,bhPts,htcSteps,htcPts,hcnSteps,hcnPts};OUT.forEach(g=>g.gr=8);return OUT})();
+/* ===== Hướng dẫn dựng hình các lớp 6, 7, 8, 9 (bám dấu hiệu nhận biết trong SGK) ===== */
+(()=>{const D=Math.PI/180,r4=v=>Math.round(v*1e4)/1e4,V=(x,y)=>[r4(x),r4(y)],pl=(c,r,d)=>V(c[0]+r*Math.cos(d*D),c[1]+r*Math.sin(d*D)),
+ ds=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]),md=(a,b)=>V((a[0]+b[0])/2,(a[1]+b[1])/2),
+ ft=(p,a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],t=((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy);return V(a[0]+dx*t,a[1]+dy*t)},
+ cc=(a,b,c)=>{const d=2*(a[0]*(b[1]-c[1])+b[0]*(c[1]-a[1])+c[0]*(a[1]-b[1])),ux=((a[0]**2+a[1]**2)*(b[1]-c[1])+(b[0]**2+b[1]**2)*(c[1]-a[1])+(c[0]**2+c[1]**2)*(a[1]-b[1]))/d,uy=((a[0]**2+a[1]**2)*(c[0]-b[0])+(b[0]**2+b[1]**2)*(a[0]-c[0])+(c[0]**2+c[1]**2)*(b[0]-a[0]))/d;return V(ux,uy)};
+const G=[],pt=(...n)=>n.map(x=>['pt',x]),ln=(a,b,d)=>d?['seg',a,b,'ruler',0,1]:['seg',a,b,'ruler'],rh=(v,a,b)=>['right',v,a,b],tk=(a,b,n)=>['tick',a,b,n||1],an=(v,a,b,n)=>['ang',v,a,b,n||1],cir=(c,r)=>['arc',c,r,0,360];
+const mk=(gr,title,fig,Q,f)=>{const sa=(c,r,t,h)=>{if(Math.abs(ds(Q[c],Q[t])-r)>.02)console.error('guide radius',title,c,t,ds(Q[c],Q[t]),r);const a=Math.atan2(Q[t][1]-Q[c][1],Q[t][0]-Q[c][0])/D;return['arc',c,r,r4(a-(h||26)),r4(a+(h||26))]};
+ G.push({gr,title,fig,pts:Q,steps:f(sa)})};
+const num=(s,t)=>'Bước '+s+': '+t;
+/* ---------- LỚP 6 ---------- */
+mk(6,'Tam giác đều','Tam giác đều',{A:[0,0],B:[5,0],C:V(2.5,5*Math.sqrt(3)/2)},sa=>[
+ {m:num(1,'Dùng thước vẽ cạnh AB = 5 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Compa tâm A, bán kính 5 cm, vẽ một cung tròn.'),o:[sa('A',5,'C')]},
+ {m:num(3,'Compa tâm B, bán kính 5 cm, vẽ cung cắt cung trước tại C (CA = CB = 5 cm).'),o:[sa('B',5,'C'),...pt('C')]},
+ {m:num(4,'Nối CA và CB. Tam giác ABC có ba cạnh bằng nhau (AB = BC = CA = 5 cm) nên là tam giác đều.'),o:[ln('A','C'),ln('B','C'),tk('A','B'),tk('B','C'),tk('C','A')]}]);
+const sqSteps=(a,n1,n2)=>[
+ {m:num(1,'Dùng thước vẽ cạnh AB = '+a+' cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Dùng eke kẻ đường vuông góc với AB tại A, rồi dùng thước lấy D trên đó sao cho AD = '+a+' cm.'),o:[['ray','A','D','eke','B'],['mark','D','A'],rh('A','D','B')]},
+ {m:num(3,'Compa tâm D, bán kính '+a+' cm, vẽ một cung tròn.'),o:[['arc','D',a,-28,28]]},
+ {m:num(4,'Compa tâm B, bán kính '+a+' cm, vẽ cung cắt cung trước tại C (CD = CB = '+a+' cm).'),o:[['arc','B',a,62,118],...pt('C')]},
+ {m:num(5,'Nối DC và BC. Hình có bốn cạnh bằng nhau và có một góc vuông là hình vuông.'),o:[ln('D','C'),ln('B','C'),tk('A','B'),tk('B','C'),tk('C','D'),tk('D','A'),rh('B','A','C'),rh('C','B','D'),rh('D','C','A')]}];
+mk(6,'Hình vuông','Hình vuông',{A:[0,0],B:[4,0],C:[4,4],D:[0,4]},()=>sqSteps(4));
+mk(6,'Hình chữ nhật','Hình chữ nhật',{A:[0,0],B:[6,0],C:[6,4],D:[0,4]},()=>GUIDES.H.hcnSteps());
+mk(6,'Hình thoi','Hình thoi',{A:[0,0],B:[4,0],D:pl([0,0],4,60),C:V(4+2,4*Math.sin(60*D))},sa=>[
+ {m:num(1,'Dùng thước vẽ cạnh AB = 4 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Đặt thước đo độ có tâm tại A, vạch 0° trùng AB, đánh dấu 60°. Kẻ tia gốc A qua điểm đó và lấy D sao cho AD = 4 cm.'),o:[['prot','A','B',60,'D'],['ray','A','D','ruler'],['mark','D','A']]},
+ {m:num(3,'Compa tâm D, bán kính 4 cm, vẽ một cung tròn.'),o:[sa('D',4,'C')]},
+ {m:num(4,'Compa tâm B, bán kính 4 cm, vẽ cung cắt cung trước tại C (CD = CB = 4 cm).'),o:[sa('B',4,'C'),...pt('C')]},
+ {m:num(5,'Nối DC và BC. Tứ giác ABCD có bốn cạnh bằng nhau (AB = BC = CD = DA = 4 cm) nên là hình thoi.'),o:[ln('D','C'),ln('B','C'),tk('A','B'),tk('B','C'),tk('C','D'),tk('D','A')]}]);
+mk(6,'Hình bình hành','Hình bình hành',GUIDES.H.bhPts,()=>GUIDES.H.bhSteps());
+mk(6,'Hình thang cân','Hình thang cân',GUIDES.H.htcPts,()=>[...GUIDES.H.htcSteps(),{m:num(5,'Hình thang ABCD có hai góc kề đáy DC bằng nhau (góc D = góc C = 65°) nên là hình thang cân: AD = BC.'),o:[tk('A','D'),tk('B','C')]}]);
+{const O=[0,0],Q={O,A:pl(O,3,0),B:pl(O,3,60),C:pl(O,3,120),D:pl(O,3,180),E:pl(O,3,240),F:pl(O,3,300)};
+ const hexF=(gr,title,fig)=>mk(gr,title,fig,Q,sa=>[
+ {m:num(1,'Vẽ đường tròn tâm O, bán kính 3 cm bằng compa; lấy một điểm A trên đường tròn.'),o:[...pt('O'),cir('O',3),...pt('A')]},
+ {m:num(2,'Giữ nguyên độ mở compa 3 cm (bằng bán kính), đặt tâm tại A vẽ cung cắt đường tròn tại B và F.'),o:[sa('A',3,'B',18),sa('A',3,'F',18),...pt('B','F')]},
+ {m:num(3,'Lần lượt đặt tâm tại B và F, cùng độ mở 3 cm, vẽ cung cắt đường tròn tại C và E.'),o:[sa('B',3,'C',18),sa('F',3,'E',18),...pt('C','E')]},
+ {m:num(4,'Đặt tâm tại C, vẽ cung cắt đường tròn tại D (cũng chính là điểm vẽ được từ E).'),o:[sa('C',3,'D',18),...pt('D')]},
+ {m:num(5,'Nối các điểm A, B, C, D, E, F. Sáu cạnh đều bằng bán kính 3 cm nên ABCDEF là lục giác đều.'),o:[ln('A','B'),ln('B','C'),ln('C','D'),ln('D','E'),ln('E','F'),ln('F','A'),tk('A','B'),tk('B','C'),tk('C','D'),tk('D','E'),tk('E','F'),tk('F','A')]}]);
+ hexF(6,'Lục giác đều','Lục giác đều');hexF(9,'Lục giác đều nội tiếp đường tròn','Lục giác đều nội tiếp đường tròn')}
+mk(6,'Đoạn thẳng AB','Đoạn thẳng AB',{A:[0,0],B:[6,0]},()=>[
+ {m:num(1,'Chấm hai điểm A, B.'),o:pt('A','B')},
+ {m:num(2,'Đặt thước thẳng sao cho vạch 0 trùng điểm A, mép thước đi qua B. Kẻ nét bút dọc mép thước từ A đến B; AB = 6 cm.'),o:[ln('A','B')]}]);
+mk(6,'Trung điểm M của đoạn thẳng AB','Trung điểm M của đoạn thẳng AB',{A:[0,0],B:[6,0],M:[3,0]},()=>[
+ {m:num(1,'Dùng thước vẽ đoạn thẳng AB = 6 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Đặt thước, vạch 0 tại A; đánh dấu điểm M ở vạch 3 cm (AM = AB : 2).'),o:[['tool','A','B'],...pt('M')]},
+ {m:num(3,'Điểm M nằm giữa A, B và AM = MB = 3 cm nên M là trung điểm của đoạn thẳng AB.'),o:[tk('A','M'),tk('M','B')]}]);
+const angG=(fig,deg)=>{const O=[0,0],L=4.5,Q={O,x:[5,0],y:pl(O,L,deg)};
+ mk(6,fig,fig,Q,()=>[
+ {m:num(1,'Dùng thước vẽ tia Ox.'),o:[...pt('O','x'),ln('O','x')]},
+ {m:num(2,'Đặt thước đo độ có tâm tại O, vạch 0° trùng tia Ox, đánh dấu điểm ứng với '+deg+'°.'),o:[['prot','O','x',deg,'y']]},
+ {m:num(3,'Kẻ tia Oy qua điểm đánh dấu. Góc xOy có số đo '+deg+'°, '+(deg<90?'nhỏ hơn 90° nên là góc nhọn.':deg>90?'lớn hơn 90° và nhỏ hơn 180° nên là góc tù.':'bằng 90° nên là góc vuông.')),o:[['ray','O','y','ruler'],['mark','y','O'],an('O','x','y',1)]}])};
+angG('Góc xOy',50);angG('Góc nhọn',40);angG('Góc tù',130);
+mk(6,'Góc vuông','Góc vuông',{O:[0,0],x:[5,0],y:[0,4]},()=>[
+ {m:num(1,'Dùng thước vẽ tia Ox.'),o:[...pt('O','x'),ln('O','x')]},
+ {m:num(2,'Đặt eke có một cạnh góc vuông trùng Ox, đỉnh góc vuông tại O; kẻ theo cạnh kia được tia Oy.'),o:[['ray','O','y','eke','x'],['mark','y','O']]},
+ {m:num(3,'Góc xOy do eke vẽ có số đo 90° nên là góc vuông (kí hiệu bằng ô vuông nhỏ).'),o:[rh('O','y','x')]}]);
+mk(6,'Hai đường thẳng vuông góc','Hai đường thẳng vuông góc',{A:[0,0],B:[6,0],M:[2.5,0],N:[2.5,3.5]},()=>[
+ {m:num(1,'Dùng thước vẽ đường thẳng a đi qua A, B; lấy điểm M trên a.'),o:[...pt('A','B'),ln('A','B'),...pt('M')]},
+ {m:num(2,'Đặt eke có một cạnh góc vuông trùng a, cạnh kia đi qua M; kẻ đường thẳng b theo cạnh đó.'),o:[['ray','M','N','eke','B'],['mark','N','M']]},
+ {m:num(3,'Hai đường thẳng a và b cắt nhau tạo thành góc vuông nên a ⟂ b.'),o:[rh('M','N','B')]}]);
+mk(6,'Đường tròn (O; R)','Đường tròn (O; R)',{O:[0,0],A:[3,0]},()=>[
+ {m:num(1,'Chấm điểm O làm tâm. Mở compa có bán kính R = 3 cm (đặt đầu kim tại vạch 0 của thước, đầu bút tại vạch 3).'),o:pt('O')},
+ {m:num(2,'Đặt đầu kim compa tại O, quay compa một vòng để được đường tròn (O; 3 cm).'),o:[cir('O',3)]},
+ {m:num(3,'Mọi điểm trên đường tròn đều cách O một khoảng bằng R. Lấy A trên đường tròn và nối OA = R = 3 cm.'),o:[...pt('A'),ln('O','A')]}]);
+mk(6,'Đường kính của đường tròn','Đường kính của đường tròn',{O:[0,0],A:[3,0],B:[-3,0]},()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm.'),o:[...pt('O'),cir('O',3)]},
+ {m:num(2,'Lấy A trên đường tròn. Dùng thước kẻ đường thẳng AO cắt đường tròn tại B.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(3,'Dây AB đi qua tâm O nên AB là đường kính: AB = 2R = 6 cm.'),o:[tk('O','A'),tk('O','B')]}]);
+/* ---------- LỚP 7 ---------- */
+{const O=[0,0],Q={O,x:[5,0],y:pl(O,5,70),M:[3,0],N:pl(O,3,70),I:V(0,0)};const d=(4.9149+Math.sqrt(4.9149**2-4*2.75))/2;Q.I=pl(O,d,35);
+ mk(7,'Tia phân giác của một góc','Tia phân giác của một góc',Q,sa=>[
+ {m:num(1,'Dùng thước vẽ tia Ox; dùng thước đo độ vẽ tia Oy sao cho góc xOy = 70°.'),o:[...pt('O','x'),ln('O','x'),['prot','O','x',70,'y'],['ray','O','y','ruler'],['mark','y','O']]},
+ {m:num(2,'Compa tâm O, bán kính 3 cm, vẽ cung cắt Ox tại M và Oy tại N (OM = ON).'),o:[['arc','O',3,-6,76],...pt('M','N')]},
+ {m:num(3,'Compa tâm M rồi tâm N, cùng bán kính 2,5 cm, vẽ hai cung cắt nhau tại I.'),o:[sa('M',2.5,'I'),sa('N',2.5,'I'),...pt('I')]},
+ {m:num(4,'Kẻ tia OI. Hai tam giác OMI và ONI bằng nhau (c.c.c) nên góc xOI = góc IOy = 35°: OI là tia phân giác của góc xOy.'),o:[ln('O','I'),an('O','x','I',1),an('O','I','y',1)]}])}
+mk(7,'Đường trung trực của đoạn thẳng','Đường trung trực của đoạn thẳng',{A:[0,0],B:[6,0],P:[3,Math.sqrt(16-9)],Q:[3,-Math.sqrt(16-9)],O:[3,0]},sa=>[
+ {m:num(1,'Dùng thước vẽ đoạn thẳng AB = 6 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Compa tâm A, bán kính 4 cm (lớn hơn nửa AB), vẽ cung tròn ở hai phía của AB.'),o:[['arc','A',4,-52,52]]},
+ {m:num(3,'Compa tâm B, cùng bán kính 4 cm, vẽ cung cắt cung trước tại P và Q.'),o:[['arc','B',4,128,232],...pt('P','Q')]},
+ {m:num(4,'Nối P với Q cắt AB tại O. P, Q cùng cách đều A và B nên PQ là đường trung trực của AB: PQ ⟂ AB và OA = OB.'),o:[ln('P','Q'),...pt('O'),rh('O','P','B'),tk('A','O'),tk('O','B')]}]);
+mk(7,'Tam giác cân','Tam giác cân',{B:[0,0],C:[6,0],A:[3,4]},sa=>[
+ {m:num(1,'Dùng thước vẽ cạnh đáy BC = 6 cm.'),o:[...pt('B','C'),ln('B','C')]},
+ {m:num(2,'Compa tâm B, bán kính 5 cm, vẽ một cung tròn.'),o:[sa('B',5,'A')]},
+ {m:num(3,'Compa tâm C, cùng bán kính 5 cm, vẽ cung cắt cung trước tại A (AB = AC = 5 cm).'),o:[sa('C',5,'A'),...pt('A')]},
+ {m:num(4,'Nối AB và AC. Tam giác ABC có hai cạnh bằng nhau (AB = AC) nên là tam giác cân tại A; hai góc ở đáy B và C bằng nhau.'),o:[ln('A','B'),ln('A','C'),tk('A','B'),tk('A','C'),an('B','C','A',1),an('C','A','B',1)]}]);
+mk(7,'Tam giác đều (ba góc 60°)','Tam giác đều (ba góc 60°)',{B:[0,0],C:[5,0],A:pl([0,0],5,60)},()=>[
+ {m:num(1,'Dùng thước vẽ cạnh BC = 5 cm.'),o:[...pt('B','C'),ln('B','C')]},
+ {m:num(2,'Đặt thước đo độ có tâm tại B, vạch 0° trùng BC, đánh dấu 60°. Kẻ tia gốc B qua điểm đó và lấy A sao cho BA = 5 cm.'),o:[['prot','B','C',60,'A'],['ray','B','A','ruler'],['mark','A','B']]},
+ {m:num(3,'Đặt thước đo độ có tâm tại C, vạch 0° trùng CB, đánh dấu 60° (cùng phía với A). Nối C với A.'),o:[['prot','C','B',60,'A'],ln('C','A')]},
+ {m:num(4,'Tam giác ABC có ba góc bằng nhau (góc A = góc B = góc C = 60°) nên là tam giác đều.'),o:[an('B','C','A',1),an('C','A','B',1),an('A','B','C',1),tk('A','B'),tk('B','C'),tk('C','A')]}]);
+mk(7,'Tam giác vuông cân','Tam giác vuông cân',{A:[0,0],B:[4,0],C:[0,4]},()=>[
+ {m:num(1,'Dùng thước vẽ cạnh góc vuông AB = 4 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Dùng eke kẻ đường vuông góc với AB tại A, lấy C trên đó sao cho AC = AB = 4 cm.'),o:[['ray','A','C','eke','B'],['mark','C','A'],rh('A','C','B')]},
+ {m:num(3,'Nối B với C. Tam giác ABC có một góc vuông và hai cạnh góc vuông bằng nhau nên là tam giác vuông cân tại A (hai góc nhọn bằng 45°).'),o:[ln('B','C'),tk('A','B'),tk('A','C'),an('B','C','A',1),an('C','A','B',1)]}]);
+{const tr=(L,a,b)=>{const x=(L*L+a*a-b*b)/(2*L);return V(x,Math.sqrt(a*a-x*x))};
+ const A=tr(6,4,5),sh=(p,o)=>V(p[0]+o,p[1]);
+ mk(7,'Hai tam giác bằng nhau (c.c.c)','Hai tam giác bằng nhau (c.c.c)',{B:[0,0],C:[6,0],A,E:[8,0],F:[14,0],D:sh(A,8)},sa=>[
+ {m:num(1,'Tam giác ABC: dùng thước vẽ BC = 6 cm.'),o:[...pt('B','C'),ln('B','C')]},
+ {m:num(2,'Compa tâm B bán kính 4 cm và compa tâm C bán kính 5 cm, vẽ hai cung cắt nhau tại A.'),o:[sa('B',4,'A'),sa('C',5,'A'),...pt('A')]},
+ {m:num(3,'Nối AB và AC.'),o:[ln('A','B'),ln('A','C')]},
+ {m:num(4,'Tam giác DEF: vẽ EF = 6 cm.'),o:[...pt('E','F'),ln('E','F')]},
+ {m:num(5,'Compa tâm E bán kính 4 cm và compa tâm F bán kính 5 cm, vẽ hai cung cắt nhau tại D, rồi nối DE, DF.'),o:[sa('E',4,'D'),sa('F',5,'D'),...pt('D'),ln('D','E'),ln('D','F')]},
+ {m:num(6,'Hai tam giác ABC và DEF có AB = DE, BC = EF, CA = FD (ba cạnh tương ứng bằng nhau) nên △ABC = △DEF (c.c.c).'),o:[tk('A','B',1),tk('D','E',1),tk('B','C',2),tk('E','F',2),tk('A','C',3),tk('D','F',3)]}])}
+{const C1=pl([0,0],4,50),sh=(p,o)=>V(p[0]+o,p[1]);
+ mk(7,'Hai tam giác bằng nhau (c.g.c)','Hai tam giác bằng nhau (c.g.c)',{A:[0,0],B:[5,0],C:C1,D:[8,0],E:[13,0],F:sh(C1,8)},()=>[
+ {m:num(1,'Tam giác ABC: vẽ AB = 5 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Dùng thước đo độ vẽ góc BAC = 50°, lấy C trên tia sao cho AC = 4 cm.'),o:[['prot','A','B',50,'C'],['ray','A','C','ruler'],['mark','C','A']]},
+ {m:num(3,'Nối BC.'),o:[ln('B','C')]},
+ {m:num(4,'Tam giác DEF: vẽ DE = 5 cm.'),o:[...pt('D','E'),ln('D','E')]},
+ {m:num(5,'Vẽ góc EDF = 50°, lấy F trên tia sao cho DF = 4 cm, rồi nối EF.'),o:[['prot','D','E',50,'F'],['ray','D','F','ruler'],['mark','F','D'],ln('E','F')]},
+ {m:num(6,'Hai tam giác có AB = DE, góc A = góc D (= 50°), AC = DF nên △ABC = △DEF (c.g.c).'),o:[tk('A','B',1),tk('D','E',1),tk('A','C',2),tk('D','F',2),an('A','B','C',1),an('D','E','F',1)]}])}
+{const gcg=(gr,title,fig,L1,L2,aB,aC,last)=>{const aA=180-aB-aC,s=Math.sin,ab=k=>k*s(aC*D)/s(aA*D),off=L1+2.5,
+  A=pl([0,0],ab(L1),aB),Dp=pl([off,0],ab(L2),aB),Q={B:[0,0],C:[L1,0],A,E:[off,0],F:[off+L2,0],D:Dp};
+  mk(gr,title,fig,Q,()=>[
+ {m:num(1,'Tam giác ABC: dùng thước vẽ BC = '+L1+' cm.'),o:[...pt('B','C'),ln('B','C')]},
+ {m:num(2,'Dùng thước đo độ vẽ góc B = '+aB+'°: đặt tâm tại B, vạch 0° trùng BC, kẻ tia Bx qua điểm ứng với '+aB+'°.'),o:[['prot','B','C',aB,'A'],['ray','B','A','ruler'],['mark','A','B']]},
+ {m:num(3,'Tương tự vẽ góc C = '+aC+'° (cùng phía với A); tia này cắt Bx tại A. Kẻ CA.'),o:[['prot','C','B',aC,'A'],ln('C','A')]},
+ {m:num(4,'Tam giác DEF: vẽ EF = '+L2+' cm.'),o:[...pt('E','F'),ln('E','F')]},
+ {m:num(5,'Vẽ góc E = '+aB+'°, góc F = '+aC+'°; hai tia cắt nhau tại D.'),o:[['prot','E','F',aB,'D'],['ray','E','D','ruler'],['mark','D','E'],['prot','F','E',aC,'D'],ln('F','D')]},
+ {m:num(6,last),o:[an('B','C','A',1),an('E','F','D',1),an('C','A','B',2),an('F','D','E',2)]}])};
+ gcg(7,'Hai tam giác bằng nhau (g.c.g)','Hai tam giác bằng nhau (g.c.g)',5,5,60,50,'Hai tam giác có góc B = góc E, BC = EF, góc C = góc F nên △ABC = △DEF (g.c.g).');
+ gcg(8,'Hai tam giác đồng dạng (g.g)','Đồng dạng (g.g)',6,3,50,60,'Hai tam giác có góc B = góc E (= 50°) và góc C = góc F (= 60°) nên △ABC ∽ △DEF (g.g), tỉ số đồng dạng 2 : 1.')}
+const triQ={A:[1.5,4.2],B:[0,0],C:[6,0]};
+const tri3=()=>({m:num(1,'Dùng thước vẽ tam giác ABC (nối AB, BC, CA).'),o:[...pt('A','B','C'),ln('A','B'),ln('B','C'),ln('C','A')]});
+mk(7,'Tổng ba góc của tam giác','Tổng ba góc của tam giác',triQ,()=>[tri3(),
+ {m:num(2,'Đánh dấu ba góc A, B, C của tam giác.'),o:[an('A','B','C',1),an('B','C','A',2),an('C','A','B',3)]},
+ {m:num(3,'Dùng thước đo độ đo ba góc rồi cộng lại: góc A + góc B + góc C = 180°.'),o:[]}]);
+{const Q={...triQ,D:ft(triQ.A,triQ.B,triQ.C),E:ft(triQ.B,triQ.A,triQ.C),F:ft(triQ.C,triQ.A,triQ.B)},o=cc(Q.A,Q.B,Q.C);Q.H=V(Q.A[0]+Q.B[0]+Q.C[0]-2*o[0],Q.A[1]+Q.B[1]+Q.C[1]-2*o[1]);
+ mk(7,'Ba đường cao của tam giác','Ba đường cao của tam giác',Q,()=>[tri3(),
+ {m:num(2,'Đường cao AD: dùng eke có một cạnh góc vuông trùng BC, cạnh kia đi qua A; kẻ AD ⟂ BC (D thuộc BC).'),o:[['ray','A','D','eke','C'],['mark','D','A'],rh('D','A','C')]},
+ {m:num(3,'Tương tự kẻ đường cao BE vuông góc với AC (E thuộc AC).'),o:[['ray','B','E','eke','C'],['mark','E','B'],rh('E','B','C')]},
+ {m:num(4,'Tương tự kẻ đường cao CF vuông góc với AB (F thuộc AB).'),o:[['ray','C','F','eke','B'],['mark','F','C'],rh('F','C','B')]},
+ {m:num(5,'Ba đường cao AD, BE, CF cùng đi qua một điểm H (trực tâm của tam giác).'),o:pt('H')}])}
+{const Q={...triQ,M:md(triQ.B,triQ.C),N:md(triQ.A,triQ.C),P:md(triQ.A,triQ.B)};Q.G=V((Q.A[0]+Q.B[0]+Q.C[0])/3,(Q.A[1]+Q.B[1]+Q.C[1])/3);
+ mk(7,'Ba đường trung tuyến của tam giác','Ba đường trung tuyến của tam giác',Q,()=>[tri3(),
+ {m:num(2,'Dùng thước đo, lấy M, N, P là trung điểm của BC, CA, AB (vạch 0 đặt tại một đầu mút, đánh dấu điểm giữa).'),o:[['tool','B','C'],...pt('M'),['tool','C','A'],...pt('N'),['tool','A','B'],...pt('P')]},
+ {m:num(3,'Dùng thước nối mỗi đỉnh với trung điểm cạnh đối diện: AM, BN, CP (các đường trung tuyến).'),o:[ln('A','M'),ln('B','N'),ln('C','P')]},
+ {m:num(4,'Ba đường trung tuyến cùng đi qua một điểm G (trọng tâm của tam giác).'),o:pt('G')}])}
+{const A=[1,4],B=[0,0],C=[6,0],O=cc(A,B,C),Q={A,B,C,O};
+ const sides=[['B','C','M','P','Q'],['C','A','N','R','S'],['A','B','K','T','U']],info={};
+ sides.forEach(([x,y,m,p1,p2])=>{const X=Q[x],Y=Q[y],M=md(X,Y),l=ds(X,Y),nx=-(Y[1]-X[1])/l,ny=(Y[0]-X[0])/l,h0=ds(O,M)+.9,r=Math.ceil(Math.sqrt(h0*h0+l*l/4)*10)/10,h=Math.sqrt(r*r-l*l/4);
+  Q[m]=M;Q[p1]=V(M[0]+nx*h,M[1]+ny*h);Q[p2]=V(M[0]-nx*h,M[1]-ny*h);info[x+y]={x,y,m,p1,p2,r}});
+ const arcs=(c,t1,t2,m)=>{const a=n=>Math.atan2(Q[n][1]-Q[c][1],Q[n][0]-Q[c][0])/D,mid=a(m),sp=Math.abs(Math.atan2(Math.sin((a(t1)-mid)*D),Math.cos((a(t1)-mid)*D))/D)+8;return['arc',c,0,r4(mid-sp),r4(mid+sp)]};
+ const bis=(k,third)=>{const f=info[k],r=f.r,a1=arcs(f.x,f.p1,f.p2,f.m),a2=arcs(f.y,f.p1,f.p2,f.m);a1[2]=r;a2[2]=r;
+  return[{m:'Compa tâm '+f.x+' và tâm '+f.y+', cùng bán kính '+r+' cm (lớn hơn nửa '+f.x+f.y+'), vẽ hai cung cắt nhau tại '+f.p1+' và '+f.p2+'.',o:[a1,a2,...pt(f.p1,f.p2)]},
+   {m:'Nối '+f.p1+' với '+f.p2+' bằng thước, cắt '+f.x+f.y+' tại '+f.m+'. Vì '+f.p1+', '+f.p2+' cùng cách đều '+f.x+' và '+f.y+' nên '+f.p1+f.p2+' là đường trung trực của '+f.x+f.y+' ('+f.m+f.x+' = '+f.m+f.y+', '+f.p1+f.p2+' ⟂ '+f.x+f.y+').',o:[ln(f.p1,f.p2),...pt(f.m),rh(f.m,f.p1,f.y),tk(f.x,f.m),tk(f.m,f.y)]}]};
+ const st=(n,a)=>a.map((x,i)=>({m:'Bước '+(n+i)+': '+x.m,o:x.o}));
+ mk(7,'Ba đường trung trực của tam giác','Ba đường trung trực của tam giác',Q,()=>[tri3(),
+ ...st(2,bis('BC')),...st(4,bis('CA')),...st(6,bis('AB')),
+ {m:num(8,'Ba đường trung trực cùng đi qua một điểm O, và O cách đều ba đỉnh: OA = OB = OC.'),o:pt('O')}]);
+ mk(9,'Đường tròn ngoại tiếp tam giác','Đường tròn ngoại tiếp tam giác',Q,()=>[tri3(),
+ ...st(2,bis('BC')),...st(4,bis('CA')),
+ {m:num(6,'Hai đường trung trực cắt nhau tại O. O cách đều ba đỉnh: OA = OB = OC = R = '+r4(ds(O,A))+' cm.'),o:[...pt('O'),ln('O','A',1),ln('O','B',1),ln('O','C',1)]},
+ {m:num(7,'Compa tâm O, bán kính R = OA, vẽ đường tròn đi qua A, B, C. Đó là đường tròn ngoại tiếp tam giác ABC (tâm là giao của các đường trung trực).'),o:[cir('O',r4(ds(O,A)))]}])}
+mk(7,'Từ vuông góc đến song song','Từ vuông góc đến song song',{A:[0,0],B:[7,0],M:[2,0],N:[5,0],E:[2,3],F:[5,3]},()=>[
+ {m:num(1,'Dùng thước vẽ đường thẳng c đi qua A, B; lấy hai điểm M, N trên c (vạch 2 cm và 5 cm).'),o:[...pt('A','B'),ln('A','B'),['tool','A','B'],...pt('M','N')]},
+ {m:num(2,'Dùng eke kẻ đường thẳng a đi qua M và vuông góc với c.'),o:[['ray','M','E','eke','B'],['mark','E','M'],rh('M','E','B')]},
+ {m:num(3,'Dùng eke kẻ đường thẳng b đi qua N và vuông góc với c.'),o:[['ray','N','F','eke','B'],['mark','F','N'],rh('N','F','B')]},
+ {m:num(4,'Hai đường thẳng a và b cùng vuông góc với c nên a // b.'),o:[]}]);
+/* ---------- LỚP 8 (bổ sung) ---------- */
+{const Q={...triQ,M:md(triQ.A,triQ.B),N:md(triQ.A,triQ.C)};
+ mk(8,'Đường trung bình của tam giác','Đường trung bình của tam giác',Q,()=>[tri3(),
+ {m:num(2,'Dùng thước đo, lấy M, N là trung điểm của AB và AC (vạch 0 đặt tại A).'),o:[['tool','A','B'],...pt('M'),['tool','A','C'],...pt('N'),tk('A','M'),tk('M','B'),tk('A','N',2),tk('N','C',2)]},
+ {m:num(3,'Nối M với N. MN nối trung điểm hai cạnh nên là đường trung bình của tam giác ABC: MN // BC và MN = BC : 2.'),o:[ln('M','N')]}]);}
+{const Q={...triQ},k=.6;Q.D=V(Q.A[0]+(Q.B[0]-Q.A[0])*k,Q.A[1]+(Q.B[1]-Q.A[1])*k);Q.E=V(Q.A[0]+(Q.C[0]-Q.A[0])*k,Q.A[1]+(Q.C[1]-Q.A[1])*k);
+ mk(8,'Định lí Thalès (DE // BC)','Định lí Thalès (DE // BC)',Q,()=>[tri3(),
+ {m:num(2,'Dùng thước lấy D trên AB sao cho AD = 0,6 AB (vạch 0 tại A).'),o:[['tool','A','B'],...pt('D')]},
+ {m:num(3,'Dùng thước lấy E trên AC sao cho AE = 0,6 AC. Khi đó AD/AB = AE/AC.'),o:[['tool','A','C'],...pt('E')]},
+ {m:num(4,'Nối D với E. Theo định lí Thalès đảo, vì AD/AB = AE/AC nên DE // BC.'),o:[ln('D','E')]}]);}
+mk(8,'Định lí Pythagore','Định lí Pythagore',{A:[0,0],B:[4,0],C:[0,3]},()=>[
+ {m:num(1,'Dùng thước vẽ cạnh góc vuông AB = 4 cm.'),o:[...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Dùng eke kẻ đường vuông góc với AB tại A, lấy C sao cho AC = 3 cm (tam giác ABC vuông tại A).'),o:[['ray','A','C','eke','B'],['mark','C','A'],rh('A','C','B')]},
+ {m:num(3,'Nối B với C rồi dùng thước đo cạnh huyền: BC = 5 cm.'),o:[ln('B','C'),['tool','B','C']]},
+ {m:num(4,'Kiểm tra: AB² + AC² = 4² + 3² = 25 = 5² = BC². Tam giác vuông có BC² = AB² + AC² (định lí Pythagore).'),o:[]}]);
+/* ---------- LỚP 9 ---------- */
+{const O=[0,0],R=3,sqQ={O,A:pl(O,R,0),C:pl(O,R,180),B:pl(O,R,90),D:pl(O,R,270)};
+ mk(9,'Hình vuông nội tiếp đường tròn','Hình vuông nội tiếp đường tròn',sqQ,()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm; kẻ đường kính AC bằng thước.'),o:[...pt('O'),cir('O',3),...pt('A','C'),ln('A','C')]},
+ {m:num(2,'Dùng eke kẻ đường kính BD vuông góc với AC tại O (B, D thuộc đường tròn).'),o:[...pt('B','D'),['seg','B','D','eke','A'],rh('O','B','A')]},
+ {m:num(3,'Nối AB, BC, CD, DA.'),o:[ln('A','B'),ln('B','C'),ln('C','D'),ln('D','A')]},
+ {m:num(4,'Tứ giác ABCD có hai đường chéo AC, BD bằng nhau (cùng là đường kính), vuông góc và cắt nhau tại trung điểm O nên là hình vuông nội tiếp (O).'),o:[tk('O','A'),tk('O','B'),tk('O','C'),tk('O','D')]}]);}
+{const O=[0,0],Q={O,A:pl(O,3,90),M:pl(O,3,30),N:pl(O,3,150),B:pl(O,3,210),C:pl(O,3,330)};
+ mk(9,'Tam giác đều nội tiếp đường tròn','Tam giác đều nội tiếp đường tròn',Q,sa=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm; lấy A trên đường tròn.'),o:[...pt('O'),cir('O',3),...pt('A')]},
+ {m:num(2,'Giữ độ mở compa 3 cm, tâm A, vẽ cung cắt đường tròn tại M và N.'),o:[sa('A',3,'M',18),sa('A',3,'N',18),...pt('M','N')]},
+ {m:num(3,'Tâm M vẽ cung cắt đường tròn tại C; tâm N vẽ cung cắt đường tròn tại B.'),o:[sa('M',3,'C',18),sa('N',3,'B',18),...pt('B','C')]},
+ {m:num(4,'Nối AB, BC, CA. Ba điểm A, B, C chia đường tròn thành ba cung bằng nhau (mỗi cung 120°) nên ABC là tam giác đều nội tiếp (O).'),o:[ln('A','B'),ln('B','C'),ln('C','A'),tk('A','B'),tk('B','C'),tk('C','A')]}]);}
+{const O=[0,0],Q={O,A:pl(O,3,90),B:pl(O,3,162),C:pl(O,3,234),D:pl(O,3,306),E:pl(O,3,18)},nx=[['A','B'],['B','C'],['C','D'],['D','E']];
+ mk(9,'Ngũ giác đều nội tiếp đường tròn','Ngũ giác đều nội tiếp đường tròn',Q,()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm; lấy A trên đường tròn và nối OA.'),o:[...pt('O'),cir('O',3),...pt('A'),ln('O','A')]},
+ ...nx.map(([p,q],i)=>({m:num(i+2,'Dùng thước đo độ có tâm O, vạch 0° trùng '+(i?'O'+p:'OA')+', đánh dấu 72° (360° : 5); kẻ tia O'+q+' cắt đường tròn tại '+q+'.'),o:[['prot','O',p,72,q],['ray','O',q,'ruler'],['mark',q,'O']]})),
+ {m:num(6,'Nối AB, BC, CD, DE, EA. Năm điểm chia đường tròn thành năm cung bằng nhau (72°) nên ABCDE là ngũ giác đều nội tiếp (O).'),o:[ln('A','B'),ln('B','C'),ln('C','D'),ln('D','E'),ln('E','A'),tk('A','B'),tk('B','C'),tk('C','D'),tk('D','E'),tk('E','A')]}]);}
+{const O=[0,0],Q={O,A:pl(O,3,30),C:pl(O,3,210),B:pl(O,3,130),D:pl(O,3,310)};
+ mk(9,'Hình chữ nhật nội tiếp đường tròn','Hình chữ nhật nội tiếp đường tròn',Q,()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm.'),o:[...pt('O'),cir('O',3)]},
+ {m:num(2,'Kẻ đường kính AC bằng thước (đi qua O).'),o:[...pt('A','C'),ln('A','C')]},
+ {m:num(3,'Kẻ thêm đường kính BD bất kì khác AC (đi qua O).'),o:[...pt('B','D'),ln('B','D')]},
+ {m:num(4,'Nối AB, BC, CD, DA.'),o:[ln('A','B'),ln('B','C'),ln('C','D'),ln('D','A')]},
+ {m:num(5,'Tứ giác ABCD có hai đường chéo AC, BD bằng nhau (cùng là đường kính) và cắt nhau tại trung điểm O nên là hình chữ nhật nội tiếp (O).'),o:[tk('O','A'),tk('O','C'),tk('O','B',2),tk('O','D',2)]}]);}
+{const O=[0,0],Q={O,A:[-3,0],B:[3,0],C:pl(O,3,65)};
+ mk(9,'Góc nội tiếp chắn nửa đường tròn','Góc nội tiếp chắn nửa đường tròn',Q,()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm; kẻ đường kính AB.'),o:[...pt('O'),cir('O',3),...pt('A','B'),ln('A','B')]},
+ {m:num(2,'Lấy điểm C bất kì trên đường tròn (khác A, B); nối CA và CB.'),o:[...pt('C'),ln('C','A'),ln('C','B')]},
+ {m:num(3,'Góc ACB là góc nội tiếp chắn nửa đường tròn đường kính AB. Dùng eke kiểm tra: góc ACB = 90°.'),o:[rh('C','A','B')]}]);}
+{const O=[0,0],A=pl(O,3,50),Q={O,A,T:pl(A,2.5,140),U:pl(A,2.5,-40)};
+ mk(9,'Đường thẳng tiếp xúc đường tròn','Đường thẳng tiếp xúc đường tròn',Q,()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm; lấy A trên đường tròn và nối OA.'),o:[...pt('O'),cir('O',3),...pt('A'),ln('O','A')]},
+ {m:num(2,'Dùng eke có một cạnh góc vuông trùng OA, đỉnh góc vuông tại A; kẻ đường thẳng d qua A vuông góc với OA.'),o:[['ray','A','T','eke','O'],['mark','T','A'],...pt('U'),ln('A','U'),rh('A','T','O')]},
+ {m:num(3,'Đường thẳng d đi qua điểm A của đường tròn và vuông góc với bán kính OA tại A nên d là tiếp tuyến của (O) tại A.'),o:[]}]);}
+{const O=[0,0],Q={O,A:pl(O,3,0),B:pl(O,3,100)};
+ mk(9,'Góc ở tâm','Góc ở tâm',Q,()=>[
+ {m:num(1,'Dùng compa vẽ đường tròn tâm O, bán kính 3 cm; lấy A trên đường tròn, nối OA.'),o:[...pt('O'),cir('O',3),...pt('A'),ln('O','A')]},
+ {m:num(2,'Dùng thước đo độ có tâm O, vạch 0° trùng OA, đánh dấu 100°; kẻ tia OB cắt đường tròn tại B.'),o:[['prot','O','A',100,'B'],['ray','O','B','ruler'],['mark','B','O']]},
+ {m:num(3,'Góc AOB có đỉnh là tâm đường tròn nên là góc ở tâm; số đo cung nhỏ AB bằng số đo góc ở tâm: 100°.'),o:[an('O','A','B',1)]}]);}
+{const O=[0,0],Q={O,A:pl(O,3,0),B:pl(O,3,60)};
+ mk(9,'Hình quạt tròn OAB','Hình quạt tròn OAB',Q,()=>[
+ {m:num(1,'Chấm tâm O, vẽ bán kính OA = 3 cm bằng thước.'),o:[...pt('O','A'),ln('O','A')]},
+ {m:num(2,'Dùng thước đo độ đánh dấu 60° tại O và kẻ bán kính OB = 3 cm.'),o:[['prot','O','A',60,'B'],['ray','O','B','ruler'],['mark','B','O']]},
+ {m:num(3,'Compa tâm O, bán kính 3 cm, vẽ cung nhỏ AB.'),o:[['arc','O',3,0,60]]},
+ {m:num(4,'Phần hình tròn giới hạn bởi hai bán kính OA, OB và cung AB là hình quạt tròn (n = 60°).'),o:[an('O','A','B',1)]}]);}
+const twoC=(fig,P,r1,r2,t,last)=>{const Q={O:[0,0],P};if(t)Q.T=t;mk(9,fig,fig,Q,()=>[
+ {m:num(1,'Chấm hai điểm O và P; nối OP và dùng thước đo khoảng cách OP = '+P[0]+' cm.'),o:[...pt('O','P'),ln('O','P',1)]},
+ {m:num(2,'Compa tâm O, bán kính '+r1+' cm, vẽ đường tròn (O).'),o:[cir('O',r1)]},
+ {m:num(3,'Compa tâm P, bán kính '+r2+' cm, vẽ đường tròn (P).'),o:[cir('P',r2)]},
+ {m:num(4,last),o:t?pt('T'):[]}])};
+twoC('Hai đường tròn ngoài nhau',[6,0],2,2,null,'Khoảng cách OP = 6 cm lớn hơn tổng hai bán kính (2 + 2 = 4 cm) nên hai đường tròn không có điểm chung: ngoài nhau.');
+twoC('Hai đường tròn tiếp xúc ngoài',[5,0],2,3,[2,0],'Khoảng cách OP = 5 cm bằng tổng hai bán kính (2 + 3) nên hai đường tròn có một điểm chung T nằm trên OP: tiếp xúc ngoài.');
+twoC('Hai đường tròn cắt nhau',[4,0],3,2.5,null,'Khoảng cách OP = 4 cm nhỏ hơn tổng (5,5 cm) và lớn hơn hiệu (0,5 cm) hai bán kính nên hai đường tròn có hai điểm chung: cắt nhau.');
+twoC('Hai đường tròn tiếp xúc trong',[1,0],3,2,[3,0],'Khoảng cách OP = 1 cm bằng hiệu hai bán kính (3 − 2) nên hai đường tròn có một điểm chung T nằm trên đường thẳng OP: tiếp xúc trong.');
+G.forEach(g=>GUIDES.push(g));
+})();
+const gdSleep=ms=>new Promise(r=>setTimeout(r,ms));
+let GMODE='step';
+function guideListHtml(){const gr=LIBG;if(!GUIDES.some(g=>g.gr===gr))return'';let h='<div class="fch">'+(gr==8?'Dựng hình từng bước (lớp 8)':'Dựng hình từng bước (lớp '+gr+')')+'</div><div class="gmode"><button data-gm="step" class="'+(GMODE=='step'?'on':'')+'">Vẽ từng bước</button><button data-gm="ready" class="'+(GMODE=='ready'?'on':'')+'">Hình có sẵn</button></div><p class="gmnote">'+(GMODE=='step'?'Bấm vào hình để xem hướng dẫn vẽ từng bước theo SGK.':'Bấm vào hình để đặt ngay hình hoàn chỉnh vào bảng.')+'</p><div class="fgrid">';
+ GUIDES.forEach((g,i)=>{if(g.gr!==gr)return;const f=LIB[gr].flatMap(c=>c.it).find(it=>it[0]===g.fig);h+=`<button class="fcard" data-gd="${i}" title="${esc(g.title)}">${f?thumbSvg(f[1]):''}<span>${GMODE=='step'?'Vẽ ':''}${esc(g.fig)}</span></button>`});return h+'</div>'}
+const gdPx=n=>({x:GD.ox+GD.P[n][0]*40,y:GD.oy-GD.P[n][1]*40});
+function gdOv(parts){GOV=(GD&&GD.ray||'')+parts.join('');render()}
+const gdLine=(a,b,col,lw,dash)=>`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${col}" stroke-width="${lw}" stroke-linecap="round"${dash?' stroke-dasharray="7 5"':''}/>`;
+const gdDot=(p,col)=>`<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="${col}"/>`;
+function gdCloseTools(){['r','c','e','p'].forEach(k=>{if(show[k]){show[k]=false;$({r:'sR',c:'sC',e:'sE',p:'sP'}[k]).checked=false}})}
+async function gdTween(ok,fn,n,dt){for(let k=1;k<=n;k++){if(!ok())return false;const t=k/n;fn(t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2);render();await gdSleep(dt||18)}return true}
+async function gdRuler(a,b,ok){const dx=b.x-a.x,dy=b.y-a.y,th=Math.atan2(dy,dx);rulerFit(Math.hypot(dx,dy));
+ R.a=th;const nx=-Math.sin(th),ny=Math.cos(th);R.x=a.x+nx*150;R.y=a.y+ny*150;show.r=true;$('sR').checked=true;render();
+ return gdTween(ok,e=>{R.x=a.x+nx*150*(1-e);R.y=a.y+ny*150*(1-e)},22)}
+async function gdEke(a,b,base,ok){const nx=b.x-a.x,ny=b.y-a.y,L=Math.hypot(nx,ny)||1,n={x:nx/L,y:ny/L},bd={x:base.x-a.x,y:base.y-a.y},bl=Math.hypot(bd.x,bd.y)||1,sl={x:bd.x/bl,y:bd.y/bl};
+ /* cạnh góc vuông thứ nhất (hoặc thứ hai) của eke nằm theo hướng nét vẽ; cạnh còn lại nằm trên đường thẳng gốc, về phía điểm base */
+ const useA=(-n.y*bd.x+n.x*bd.y)>=0,ang=useA?Math.atan2(n.y,n.x):Math.atan2(-n.x,n.y);
+ E.la=E.lb=260;E.lock=null;eset(a,0,ang);const ex=E.x,ey=E.y;E.x=ex+sl.x*170;E.y=ey+sl.y*170;show.e=true;$('sE').checked=true;render();
+ return gdTween(ok,t=>{E.x=ex+sl.x*170*(1-t);E.y=ey+sl.y*170*(1-t)},22)}
+async function gdProt(a,b,deg,ok,tg){const th=Math.atan2(b.y-a.y,b.x-a.x);let sg=1;if(tg){const dx=tg.x-a.x,dy=tg.y-a.y;if(dx*Math.sin(th)-dy*Math.cos(th)<0)sg=-1}
+ P.x=a.x;P.y=a.y;P.a=sg>0?th:th+PI;P.lock=null;show.p=true;$('sP').checked=true;render();await gdSleep(700);if(!ok())return false;
+ const ang=t=>th-sg*(deg*PI/180)*t,tip={x:a.x+P.R*Math.cos(ang(1)),y:a.y+P.R*Math.sin(ang(1))};
+ const r=await gdTween(ok,t=>{const q={x:a.x+P.R*Math.cos(ang(t)),y:a.y+P.R*Math.sin(ang(t))};GOV=gdDot(q,'#e03131')},24);if(!r)return false;GOV=gdDot(tip,'#e03131')+`<text x="${tip.x+8}" y="${tip.y-6}" font-size="14" font-weight="700" fill="#e03131">${deg}°</text>`;render();await gdSleep(900);GOV='';return ok()}
+async function gdArc(cn,rcm,d0,d1,ok){const c=gdPx(cn),r=rcm*40,a0=-d0*PI/180,sw=-(d1-d0)*PI/180;C.x=c.x;C.y=c.y;C.r=r;C.phi=a0;C.down=false;C.sw=0;C.a0=a0;show.c=true;$('sC').checked=true;render();await gdSleep(500);if(!ok())return false;
+ const pts=[];const res=await gdTween(ok,t=>{C.phi=a0+sw*t;pts.push({x:c.x+r*Math.cos(C.phi),y:c.y+r*Math.sin(C.phi)});GOV=`<polyline points="${pts.map(q=>q.x.toFixed(1)+','+q.y.toFixed(1)).join(' ')}" fill="none" stroke="${PEN.col}" stroke-width="${PEN.lw}" stroke-linecap="round"/>`},34);if(!res)return false;
+ GOV='';S.shapes.push({t:'a',x:c.x,y:c.y,r,a0,sw,n:++SEQ,col:PEN.col,lw:PEN.lw});return true}
+async function gdStep(i){const g=GD.g,st=g.steps[i],run=GD.run,ok=()=>GD.run===run&&GD;const nS=S.shapes.length,nP=S.pts.length;GD.busy=true;gdUi();
+ try{for(const o of st.o){if(!ok())return false;const k=o[0];
+  if(k=='pt'){const q=gdPx(o[1]),p=addPt({x:q.x,y:q.y});p.name=o[1];p.vis=true;p.lab=true;const L=GD.lc,dx=q.x-L.x,dy=q.y-L.y,l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l;p.lx=ux*15+(ux<-.3?-9:ux>.3?0:-4);p.ly=uy*13+(uy>.3?10:uy<-.3?-2:4);GD.O[o[1]]=p;render();await gdSleep(450)}
+  else if(k=='tool'){const A=gdPx(o[1]),B=gdPx(o[2]);if(!await gdRuler(A,B,ok))return false;await gdSleep(600);gdCloseTools();render()}
+  else if(k=='prot'){const A=gdPx(o[1]),B=gdPx(o[2]);if(!await gdProt(A,B,o[3],ok,o[4]?gdPx(o[4]):null))return false;gdCloseTools();render()}
+  else if(k=='arc'){if(!await gdArc(o[1],o[2],o[3],o[4],ok))return false;gdCloseTools();render();await gdSleep(250)}
+  else if(k=='seg'){const A=gdPx(o[1]),B=gdPx(o[2]),tool=o[3],dash=!!o[5];
+   if(tool=='eke'){if(!await gdEke(A,B,gdPx(o[4]),ok))return false}else if(!await gdRuler(A,B,ok))return false;await gdSleep(600);if(!ok())return false;
+   const res=await gdTween(ok,t=>{const q={x:A.x+(B.x-A.x)*t,y:A.y+(B.y-A.y)*t};gdOv([gdLine(A,q,PEN.col,PEN.lw,dash),gdDot(q,'#e03131')])},36);if(!res)return false;
+   GOV='';S.shapes.push({t:'l',a:GD.O[o[1]]||addPt(A),b:GD.O[o[2]]||addPt(B),n:++SEQ,col:PEN.col,lw:PEN.lw,dash:dash||undefined});render();await gdSleep(450);gdCloseTools();render();await gdSleep(200)}
+  else if(k=='ray'){const A=gdPx(o[1]),B=gdPx(o[2]),L=Math.hypot(B.x-A.x,B.y-A.y)||1,u={x:(B.x-A.x)/L,y:(B.y-A.y)/L},T={x:B.x+u.x*40,y:B.y+u.y*40};
+   if(o[3]=='eke'){if(!await gdEke(A,B,gdPx(o[4]),ok))return false}else if(!await gdRuler(A,T,ok))return false;await gdSleep(600);if(!ok())return false;
+   const res=await gdTween(ok,t=>{const q={x:A.x+(T.x-A.x)*t,y:A.y+(T.y-A.y)*t};gdOv([gdLine(A,q,PEN.col,PEN.lw,false),gdDot(q,'#e03131')])},36);if(!res)return false;
+   GD.ray=gdLine(A,T,PEN.col,PEN.lw,false);GD.rayT=T;GOV=GD.ray;gdCloseTools();render();await gdSleep(300)}
+  else if(k=='mark'){const A=gdPx(o[2]),B=gdPx(o[1]),T=GD.rayT||B;if(!await gdRuler(A,T,ok))return false;await gdSleep(900);if(!ok())return false;
+   const q=addPt({x:B.x,y:B.y});q.name=o[1];q.vis=true;q.lab=true;const L=GD.lc,dx=B.x-L.x,dy=B.y-L.y,l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l;q.lx=ux*15+(ux<-.3?-9:ux>.3?0:-4);q.ly=uy*13+(uy>.3?10:uy<-.3?-2:4);GD.O[o[1]]=q;
+   S.shapes.push({t:'l',a:GD.O[o[2]]||addPt(A),b:q,n:++SEQ,col:PEN.col,lw:PEN.lw,dash:o[3]?true:undefined});GOV='';GD.ray=null;render();await gdSleep(600);gdCloseTools();render();await gdSleep(200)}
+  else if(k=='right'){const V=gdPx(o[1]),p=gdPx(o[2]),q=gdPx(o[3]),a1=Math.atan2(p.y-V.y,p.x-V.x),a2=Math.atan2(q.y-V.y,q.x-V.x),sw=Math.atan2(Math.sin(a2-a1),Math.cos(a2-a1));S.shapes.push({t:'ang',v:GD.O[o[1]]||addPt(V),a1,sw,r:26,right:true,n:++SEQ,col:PEN.col,lw:PEN.lw});render();await gdSleep(300)}
+  else if(k=='ang'){const V=gdPx(o[1]),p=gdPx(o[2]),q=gdPx(o[3]),a1=Math.atan2(p.y-V.y,p.x-V.x),a2=Math.atan2(q.y-V.y,q.x-V.x),sw=Math.atan2(Math.sin(a2-a1),Math.cos(a2-a1));
+   for(let j=0;j<o[4];j++)S.shapes.push({t:'ang',v:GD.O[o[1]]||addPt(V),a1,sw,r:16+j*5,right:false,n:++SEQ,col:PEN.col,lw:PEN.lw});render();await gdSleep(300)}
+  else if(k=='tick'){const A=gdPx(o[1]),B=gdPx(o[2]),n=o[3],L=Math.hypot(B.x-A.x,B.y-A.y)||1,u={x:(B.x-A.x)/L,y:(B.y-A.y)/L},nr={x:-u.y,y:u.x},m={x:(A.x+B.x)/2,y:(A.y+B.y)/2};
+   for(let j=0;j<n;j++){const of=(j-(n-1)/2)*5,q={x:m.x+u.x*of,y:m.y+u.y*of};S.shapes.push({t:'f',d:[{x:q.x-nr.x*5,y:q.y-nr.y*5},{x:q.x+nr.x*5,y:q.y+nr.y*5}],col:PEN.col,lw:PEN.lw})}render();await gdSleep(200)}}
+ }finally{if(GD&&GD.run===run){GD.busy=false;GOV='';gdCloseTools();GD.rec[i]={shapes:S.shapes.slice(nS),pts:S.pts.slice(nP)};render();gdUi()}}
+ return true}
+function gdUi(){const bar=$('gdBar');if(!GD){bar.classList.add('hide');return}bar.classList.remove('hide');const g=GD.g,n=g.steps.length,done=GD.i>=n&&!GD.busy;
+ $('gdT').textContent='Hướng dẫn vẽ: '+g.title;
+ $('gdM').textContent=done?'Hoàn thành. '+g.steps[n-1].m.replace(/^Bước \d+: /,''):GD.busy?g.steps[GD.i].m:GD.i==0?'Bấm "Bước tiếp" để xem từng bước, hoặc "Tự chạy" để xem liên tục ('+n+' bước).':g.steps[GD.i-1].m;
+ $('gdP').textContent=Math.min(GD.i+(GD.busy?1:0),n)+' / '+n;
+ $('gdPrev').disabled=GD.busy||GD.i==0;$('gdNext').disabled=GD.busy;$('gdNext').textContent=done?'Vẽ lại ↺':'Bước tiếp ▶';$('gdAuto').disabled=GD.busy||done}
+function gdRemove(i){const r=GD.rec[i];if(!r)return;S.shapes=S.shapes.filter(s=>!r.shapes.includes(s));S.pts=S.pts.filter(p=>!r.pts.includes(p));GD.rec[i]=null;for(const k in GD.O)if(r.pts.includes(GD.O[k]))delete GD.O[k]}
+function gdStop(){if(GD){GD.run=++GDN;GD.busy=false}GOV='';gdCloseTools()}
+function placeReady(g){const f=LIB[g.gr||8].flatMap(c=>c.it).find(it=>it[0]===g.fig);if(!f)return;gdEnd();document.body.classList.remove('drawer');
+ const sc=svg.clientWidth/BW||1,vw=wrap.clientWidth/sc,vh=wrap.clientHeight/sc;placeFig(f[1](),Math.round(wrap.scrollLeft/sc+vw/2),Math.round(wrap.scrollTop/sc+vh*.45));msg='Đã đặt hình: '+g.title+'.';render()}
+function startGuide(idx){gdStop();const g=GUIDES[idx];document.body.classList.remove('drawer');
+ const xs=Object.values(g.pts).map(q=>q[0]),ys=Object.values(g.pts).map(q=>q[1]),sc=svg.clientWidth/BW||1,vw=wrap.clientWidth/sc,vh=wrap.clientHeight/sc;
+ const ox=Math.round((wrap.scrollLeft/sc+vw/2-(Math.min(...xs)+Math.max(...xs))/2*40)/20)*20,oy=Math.round((wrap.scrollTop/sc+vh*.45+(Math.min(...ys)+Math.max(...ys))/2*40)/20)*20;
+ const lc={x:ox+(Math.min(...xs)+Math.max(...xs))/2*40,y:oy-(Math.min(...ys)+Math.max(...ys))/2*40};
+ GD={g,i:0,rec:[],run:++GDN,busy:false,ox,oy,lc,P:g.pts,O:{}};commit();if(mode!='pen'&&mode!='move')setMode('pen');gdUi();render()}
+async function gdNext(){if(!GD||GD.busy)return;const n=GD.g.steps.length;if(GD.i>=n){for(let k=n-1;k>=0;k--)gdRemove(k);GD.i=0;GD.run=++GDN;render();gdUi();return}
+ const i=GD.i,ok=await gdStep(i);if(ok&&GD&&GD.i==i){GD.i=i+1}else if(GD&&GD.i==i){gdRemove(i)}render();gdUi()}
+function gdPrev(){if(!GD||GD.busy||GD.i==0)return;GD.run=++GDN;GD.i--;gdRemove(GD.i);render();gdUi()}
+async function gdAuto(){if(!GD||GD.busy)return;const run=GD.run;while(GD&&GD.run===run&&GD.i<GD.g.steps.length){const i=GD.i,ok=await gdStep(i);if(!(GD&&GD.run===run))return;if(ok){GD.i=i+1;gdUi()}else{gdRemove(i);return}await gdSleep(900)}render();gdUi()}
+function gdEnd(){gdStop();GD=null;gdUi();render()}
+
 const NM=s=>s.match(/[A-Za-z]'?/g)||[];
 function figBox(sp){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;const ext=(x,y)=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)};
  Object.values(sp.p).forEach(q=>ext(q[0],q[1]));(sp.c||[]).forEach(([n,R])=>{const c=sp.p[n];ext(c[0]-R,c[1]-R);ext(c[0]+R,c[1]+R)});(sp.e||[]).forEach(([cx,cy,rx,ry])=>{ext(cx-rx,cy-ry);ext(cx+rx,cy+ry)});(sp.t||[]).forEach(t=>ext(t[0],t[1]));return{x0,y0,x1,y1}}
@@ -1575,7 +1973,7 @@ function primsSvg(pr,thumb){const st='fill="none" stroke="#2b3445" stroke-width=
 const FIGSZ=()=>280*(+$('fsz').value)/100;
 let LIBG=6,PLACE=null;
 function thumbSvg(fn){let sp;try{sp=fn()}catch(e){return''}return`<svg class="thumb" viewBox="-60 -60 120 120">${primsSvg(figPrims(sp,0,0,100),true)}</svg>`}
-function renderLib(){let h='';LIB[LIBG].forEach((ch,ci)=>{h+=`<div class="fch">${esc(ch.g)}</div><div class="fgrid">`;ch.it.forEach((it,ii)=>h+=`<button class="fcard" data-c="${ci}" data-i="${ii}" title="${esc(it[0])}">${thumbSvg(it[1])}<span>${esc(it[0])}</span></button>`);h+='</div>'});$('libList').innerHTML=h}
+function renderLib(){let h=guideListHtml();LIB[LIBG].forEach((ch,ci)=>{h+=`<div class="fch">${esc(ch.g)}</div><div class="fgrid">`;ch.it.forEach((it,ii)=>h+=`<button class="fcard" data-c="${ci}" data-i="${ii}" title="${esc(it[0])}">${thumbSvg(it[1])}<span>${esc(it[0])}</span></button>`);h+='</div>'});$('libList').innerHTML=h}
 function placeFig(sp,ox,oy){const pr=figPrims(sp,ox,oy,FIGSZ());commit();const M={},np=[],ns=[],pc={col:PEN.col,lw:PEN.lw};
  pr.pts.forEach(t=>{const q=addPt({x:t.x,y:t.y});M[t.n]=q;if(t.vis){q.name=t.n;q.vis=true;q.lab=true;q.lx=t.lx;q.ly=t.ly;np.push(q)}});
  const push=o=>{S.shapes.push(o);ns.push(o)};
@@ -1591,9 +1989,10 @@ function startMove(p,e){if(MK(e)||(!selAll.length&&!selPts.length))return false;
  sh.forEach(s=>{if(s.t=='l'){ps.add(s.a);ps.add(s.b)}else if(s.t=='ang')ps.add(s.v);else if(s.t=='a'){const c=S.pts.find(o=>!o.dead&&Math.hypot(o.x-s.x,o.y-s.y)<2);if(c)ps.add(c)}});
  drag={k:'msel',last:p,ps:[...ps],sh:sh.filter(s=>['a','f','tx','html'].includes(s.t)),tot:{x:0,y:0}};return true}
 function moveSet(D,dx,dy){D.ps.forEach(q=>{q.x+=dx;q.y+=dy});D.sh.forEach(s=>{if(s.t=='f')s.d.forEach(q=>{q.x+=dx;q.y+=dy});else{s.x+=dx;s.y+=dy}})}
-$('libList').onclick=e=>{const b=e.target.closest('.fcard');if(!b)return;const it=LIB[LIBG][+b.dataset.c].it[+b.dataset.i];PLACE={name:it[0],fn:it[1]};document.body.classList.remove('drawer');msg='Bấm vào bảng để đặt hình “'+it[0]+'”. Giữ Shift để đặt nhiều lần, nhấn Esc để hủy.';render()};
+$('libList').onclick=e=>{const gm=e.target.closest('[data-gm]');if(gm){GMODE=gm.dataset.gm;renderLib();return}const gb=e.target.closest('.fcard[data-gd]');if(gb){const g=GUIDES[+gb.dataset.gd];if(GMODE=='ready')placeReady(g);else startGuide(+gb.dataset.gd);return}const b=e.target.closest('.fcard');if(!b)return;const it=LIB[LIBG][+b.dataset.c].it[+b.dataset.i];PLACE={name:it[0],fn:it[1]};document.body.classList.remove('drawer');msg='Bấm vào bảng để đặt hình “'+it[0]+'”. Giữ Shift để đặt nhiều lần, nhấn Esc để hủy.';render()};
 document.querySelectorAll('.gtb').forEach(b=>b.onclick=()=>{LIBG=+b.dataset.g;document.querySelectorAll('.gtb').forEach(x=>x.classList.toggle('on',x==b));renderLib()});
 $('fsz').oninput=e=>{$('fszv').textContent=e.target.value+'%';render()};
+$('gdPrev').onclick=gdPrev;$('gdNext').onclick=gdNext;$('gdAuto').onclick=gdAuto;$('gdEnd').onclick=gdEnd;
 $('tbLib').onclick=()=>{document.body.classList.add('drawer');$('gLib').open=true;if(!$('libList').innerHTML)renderLib();setTimeout(()=>$('gLib').scrollIntoView({block:'start'}),30)};
 
 renderLib();
