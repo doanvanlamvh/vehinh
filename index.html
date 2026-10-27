@@ -299,7 +299,7 @@ body.drawer #p2 .side{display:flex}
 <div class="it"><b>Thu phóng, bàn tay, toàn màn hình</b><div>Dấu + và − (hoặc Ctrl + cuộn chuột) phóng to, thu nhỏ bảng; bấm số % để về 100%. Bàn tay (H) kéo bảng đi các hướng. Nút ngoài cùng bên phải bật chế độ toàn màn hình.</div></div>
 <div class="it"><b>Trang (Sheet)</b><div>Các tab ở dưới bảng là các trang giấy riêng. Bấm ＋ để thêm trang, nhấp đúp vào tên để đổi tên, bấm × để xóa trang.</div></div>
 <h3>Thư viện hình SGK (lớp 6, 7, 8, 9)</h3>
-<p class="fnote">Lớp 8 đã có 40 hình, chia theo Tập 1 (Tứ giác, Định lí Thalès) và Tập 2 (hàm số bậc nhất và đồ thị, tam giác đồng dạng, định lí Pythagore, hình chóp đều). Các hình được dựng theo nội dung từng bài, chưa đối chiếu từng số Ví dụ, Bài tập trong sách; hãy kiểm tra lại số liệu khi dùng.</p>
+<p class="fnote">Thư viện có 164 hình: lớp 6 (48 hình), lớp 7 (36 hình), lớp 8 (40 hình, chia theo Tập 1 và Tập 2) và lớp 9 (40 hình). Các hình được dựng theo nội dung từng bài, chưa đối chiếu từng số Ví dụ, Bài tập trong sách; hãy kiểm tra lại số liệu khi dùng.</p>
 <p>Bấm nút <b>Hình SGK</b> trên thanh công cụ (hình tam giác và đường tròn) để mở thư viện hình trong bảng tùy chọn. Hình được dựng theo chương trình Toán 6 đến 9, sách Kết nối tri thức với cuộc sống, chia theo lớp và theo chương: hình phẳng trong thực tiễn, đối xứng, các hình cơ bản, góc và đường thẳng song song, tam giác bằng nhau, các đường đồng quy trong tam giác, hình khối, Pythagore, tứ giác, định lí Thalès, hình đồng dạng, hệ thức lượng, đường tròn, hình trụ, hình nón, hình cầu.</p>
 <div class="it"><b>Đặt hình lên bảng</b><div>Chọn lớp, bấm vào một hình, rồi bấm vào chỗ cần đặt trên bảng (hình mờ đi theo con trỏ). Giữ Shift để đặt liên tiếp, Esc để hủy. Thanh trượt “Cỡ hình” đổi kích thước. Hình đặt xong gồm các điểm có tên (A, B, C…), đoạn thẳng, cung, ký hiệu góc, dấu bằng nhau, nét đứt… đều là các đối tượng riêng: chọn, đổi màu, đổi kiểu đường, xóa, sửa tên điểm đều được.</div></div>
 <div class="it"><b>Di chuyển nhóm đối tượng</b><div>Sau khi đặt, cả hình đang được chọn: nhấn giữ vào một nét của hình rồi kéo để dời cả hình. Rê chuột chọn nhiều đối tượng rồi kéo cũng dời được cả nhóm. Hoàn tác được.</div></div>
@@ -1049,7 +1049,8 @@ function tgTable(){TG.run=(TG.run||0)+1;TG.anim=null;TG.busy=false;tgBtns();
  const{expr,fn,ty,rows}=I;
  const xmin=Math.min(...rows.map(r=>r.x)),xmax=Math.max(...rows.map(r=>r.x)),ymin=Math.min(...rows.map(r=>r.y)),ymax=Math.max(...rows.map(r=>r.y));
  const rU=Math.max(3.5,Math.max(xmax,0)+1.5),lU=Math.max(3.5,Math.max(-xmin,0)+1.5),uU=Math.max(2.5,Math.max(ymax,0)+1.5),dU=Math.max(2.5,Math.max(-ymin,0)+1.5);
- const kx=tniceK(Math.max(rU,lU,uU,dU),7),ky=kx,px=40/kx,py=px;
+ /* hai trục cùng tỉ lệ: 1 đơn vị = 1 cm = 2 ô li (40 px) trên cả Ox và Oy; chỉ giãn bước chia khi đồ thị quá lớn so với bảng */
+ const _sc=svg.clientWidth/BW||1,_vh=wrap.clientHeight/_sc,kx=TNICE.find(k=>(uU+dU)*40/k<=Math.max(_vh-70,520)&&(rU+lU)*40/k<=Math.max(BW-460,700))||5000,ky=kx,px=40/kx,py=px;
  const R_=rU*px,L_=lU*px,U_=uU*py,D_=dU*py;
  const sc=svg.clientWidth/BW||1,top=wrap.scrollTop/sc,vh=wrap.clientHeight/sc;
  const cover=(document.body.classList.contains('drawer')?330:0)/sc,left=wrap.scrollLeft/sc+cover,ox=Math.ceil((left+L_+50)/20)*20,oy=Math.max(Math.ceil((U_+30)/20)*20,Math.round((top+vh/2+(U_-D_)/2)/20)*20);
@@ -1479,6 +1480,72 @@ const LIB={
 ['Hình nón',()=>({p:{S:Mm(0,7),O:Mm(0,0),a:Mm(-3,0),b:Mm(3,0)},s:'Sa Sb',d:'SO Ob',e:[[0,0,3,1,180,360,false],[0,0,3,1,0,180,true]],t:[[1.4,-0.5,'r'],[0.4,-3.5,'h'],[1.95,-3.7,'l']]})],
 ['Hình cầu',()=>({p:{O:[0,0],A:Mm(4,0)},c:[['O',4]],s:'',d:'OA',e:[[0,0,4,1.2,180,360,false],[0,0,4,1.2,0,180,true]],t:[[2,-0.5,'R']]})]]}]
 };
+
+/* ---- Bổ sung thư viện lớp 6, 7, 9 ---- */
+const triS=(a,b,c,dx)=>{dx=dx||0;const x=(c*c+a*a-b*b)/(2*a),y=Math.sqrt(Math.max(c*c-x*x,0));return{A:Mm(x+dx,y),B:Mm(dx,0),C:Mm(a+dx,0)}};
+const ngon=(n,r,a0)=>{const p={O:[0,0]};for(let i=0;i<n;i++)p[String.fromCharCode(65+i)]=pol([0,0],a0-360*i/n,r);return p};
+const cubL=(w,h,d,sh,extra)=>{const c=cub(w,h,d,sh);c.t=[[w/2-.2,.9,'a'],[w+sh[0]*.55+.15,-sh[1]*.4+.5,'b'],[w-.9,-h*.3,'c']];if(extra)c.d+=' '+extra;return c};
+/* LỚP 6 */
+LIB[6][0].it.push(
+['Hình chữ nhật: chiều dài a, chiều rộng b',()=>({p:{A:Mm(0,6),B:Mm(0,0),C:Mm(10,0),D:Mm(10,6)},s:'AB BC CD DA',g:[['A','D','B','r'],['B','A','C','r'],['C','B','D','r'],['D','C','A','r']],L:[['B','C','a',1],['A','B','b',1]]})],
+['Hình vuông cạnh a',()=>({p:{A:Mm(0,8),B:Mm(0,0),C:Mm(8,0),D:Mm(8,8)},s:'AB BC CD DA',k:tk('AB BC CD DA'),g:[['B','A','C','r']],L:[['B','C','a',1]]})],
+['Hình bình hành: đáy a và đường cao h',()=>({p:{A:Mm(2,6),B:Mm(0,0),C:Mm(8,0),D:Mm(10,6),H:Mm(2,0)},s:'AB BC CD DA',d:'AH',g:[['H','A','C','r']],L:[['B','C','a',1],['A','H','h',1]]})],
+['Hình thoi: hai đường chéo m, n',()=>({p:hoi(),s:'AB BC CD DA AC BD',k:tk('AB BC CD DA'),g:[['O','A','B','r']],t:[[6.5,-6.6,'n'],[9.4,-3.3,'m']]})],
+['Hình thang cân: đáy và đường cao',()=>({p:{A:Mm(2,5),B:Mm(8,5),C:Mm(10,0),D:Mm(0,0),H:Mm(2,0)},s:'AB BC CD DA',d:'AH',k:[['A','D',1],['B','C',1]],g:[['H','A','C','r']],L:[['C','D','a',1],['A','B','b',-1],['A','H','h',1]]})],
+['Lục giác đều: sáu tam giác đều',()=>({p:ngon(6,5,180),s:'AB BC CD DE EF FA OA OB OC OD OE OF',k:tk('AB BC CD DE EF FA')})]);
+LIB[6][1].it.push(
+['Tam giác đều: ba trục đối xứng',()=>{const p=EQ();p.p=mid(p.B,p.C);p.q=mid(p.C,p.A);p.r=mid(p.A,p.B);return{p,s:'AB BC CA',d:'Ap Bq Cr',k:tk('AB BC CA')}}],
+['Hình vuông: bốn trục đối xứng',()=>({p:{A:Mm(0,10),B:Mm(0,0),C:Mm(10,0),D:Mm(10,10),p:Mm(0,5),q:Mm(10,5),r:Mm(5,0),s:Mm(5,10),u:Mm(-1,11),v:Mm(11,-1),w:Mm(11,11),z:Mm(-1,-1)},s:'AB BC CD DA',d:'uv wz pq rs'})],
+['Hình thoi: hai trục đối xứng',()=>({p:hoi(),s:'AB BC CD DA',d:'AC BD',k:tk('AB BC CD DA')})],
+['Hình thang cân: trục đối xứng',()=>({p:{A:Mm(2,5),B:Mm(8,5),C:Mm(10,0),D:Mm(0,0),p:Mm(5,6.4),q:Mm(5,-1.4)},s:'AB BC CD DA',d:'pq',k:[['A','D',1],['B','C',1]]})],
+['Tâm đối xứng: hình chữ nhật',()=>{const r=recT();r.p.O=mid(r.p.A,r.p.C);r.s+=' AC BD';r.k=[['A','O',1],['O','C',1],['B','O',2],['O','D',2]];return r}],
+['Tâm đối xứng: lục giác đều',()=>({p:ngon(6,5,180),s:'AB BC CD DE EF FA AD BE CF',k:[['A','O',1],['O','D',1],['B','O',2],['O','E',2],['C','O',3],['O','F',3]]})],
+['Tâm đối xứng: đoạn thẳng',()=>({p:{A:Mm(0,0),O:Mm(5,0),B:Mm(10,0)},s:'AB',k:[['A','O',1],['O','B',1]]})]);
+LIB[6][2].it.push(
+['Điểm nằm giữa hai điểm',()=>({p:{A:Mm(0,0),M:Mm(4,0),B:Mm(10,0)},s:'AM MB'})],
+['Điểm thuộc và không thuộc đường thẳng',()=>({p:{A:Mm(3,0),B:Mm(7,3),a:Mm(-1,0),b:Mm(11,0)},s:'ab',t:[[11.4,-0.8,'d']]})],
+['Hai tia đối nhau',()=>({p:{O:Mm(0,0),a:Mm(-6,0),b:Mm(6,0)},s:'Oa Ob',t:[[-6.6,0.6,'x'],[6.2,0.6,'y']]})],
+['Hai đoạn thẳng bằng nhau',()=>({p:{A:Mm(0,3),B:Mm(7,3),C:Mm(0,0),D:Mm(7,0)},s:'AB CD',k:[['A','B',1],['C','D',1]]})],
+['So sánh hai đoạn thẳng',()=>({p:{A:Mm(0,3),B:Mm(5,3),C:Mm(0,0),D:Mm(9,0),u:Mm(5,0)},s:'AB CD',d:'Bu',t:[[4.4,-4.2,'AB < CD']]})],
+['Độ dài đoạn thẳng: AM + MB = AB',()=>({p:{A:Mm(0,0),M:Mm(4,0),B:Mm(10,0)},s:'AM MB',L:[['A','M','a',1],['M','B','b',1]]})],
+['Điểm nằm trong góc xOy',()=>({p:{O:[0,0],x:Mm(10,0),y:pol([0,0],60,10),M:pol([0,0],28,6)},s:'Ox Oy',g:[['O','x','y',1]],t:[[10.5,-0.2,'x'],[pol([0,0],60,10.8)[0],pol([0,0],60,10.8)[1],'y']]})],
+['Hai góc kề nhau',()=>({p:{O:[0,0],x:Mm(10,0),z:pol([0,0],35,10),y:pol([0,0],85,10)},s:'Ox Oz Oy',g:[['O','x','z',1],['O','z','y',2]],t:[[10.5,-0.2,'x'],[pol([0,0],35,10.8)[0],pol([0,0],35,10.8)[1],'z'],[pol([0,0],85,10.8)[0],pol([0,0],85,10.8)[1],'y']]})],
+['Hai góc bằng nhau',()=>({p:{O:[0,0],x:Mm(8,0),y:pol([0,0],50,8),P:Mm(14,0),u:Mm(22,0),v:add(Mm(14,0),pol([0,0],50,8))},s:'Ox Oy Pu Pv',g:[['O','x','y',1],['P','u','v',1]]})]);
+/* LỚP 7 */
+LIB[7][0].it.push(
+['Dấu hiệu nhận biết hai đường thẳng song song',()=>{const A=Mm(6,4),B=Mm(3,0);return{p:{A,B,p:Mm(-1,4),q:Mm(11,4),r:Mm(-1,0),s:Mm(11,0),u:Mm(1.5,-2),v:Mm(7.5,6)},s:'pq rs uv',g:[['A','p','B',1],['B','s','A',1]],t:[[11.5,-4.2,'a'],[11.5,-0.2,'b'],[7.9,-6.3,'c'],[-0.8,-2,'a // b']]}}],
+['Hai góc trong cùng phía (bù nhau)',()=>{const A=Mm(6,4),B=Mm(3,0);return{p:{A,B,p:Mm(-1,4),q:Mm(11,4),r:Mm(-1,0),s:Mm(11,0),u:Mm(1.5,-2),v:Mm(7.5,6)},s:'pq rs uv',g:[['A','q','B',1],['B','s','A',2]],t:[[11.5,-4.2,'a'],[11.5,-0.2,'b'],[7.9,-6.3,'c']]}}],
+['Từ vuông góc đến song song',()=>({p:{A:Mm(5,5),B:Mm(5,0),p:Mm(0,5),q:Mm(10,5),r:Mm(0,0),s:Mm(10,0),u:Mm(5,-1.5),v:Mm(5,6.5)},s:'pq rs uv',g:[['A','q','B','r'],['B','s','A','r']],t:[[10.5,-5.2,'a'],[10.5,-0.2,'b'],[5.4,-6.8,'c']]})],
+['Ba đường thẳng song song',()=>({p:{p:Mm(0,6),q:Mm(10,6),r:Mm(0,3),s:Mm(10,3),u:Mm(0,0),v:Mm(10,0)},s:'pq rs uv',t:[[10.5,-6.2,'a'],[10.5,-3.2,'b'],[10.5,-0.2,'c']]})]);
+LIB[7][1].it.push(
+['Tam giác vuông cân',()=>({p:{A:Mm(0,0),B:Mm(0,7),C:Mm(7,0)},s:'AB BC CA',k:[['A','B',1],['A','C',1]],g:[['A','B','C','r'],['B','A','C',1],['C','A','B',1]]})],
+['Tam giác cân: trung tuyến AM',()=>{const p={A:Mm(5,8),B:Mm(0,0),C:Mm(10,0)};p.M=mid(p.B,p.C);return{p,s:'AB BC CA AM',k:[['A','B',1],['A','C',1],['B','M',2],['M','C',2]],g:[['M','A','C','r'],['A','B','M',1],['A','M','C',1]]}}],
+['Quan hệ góc và cạnh đối diện (AB > AC)',()=>({p:triS(7,5,8),s:'AB BC CA',g:[['B','C','A',2],['C','A','B',1]],L:[['A','B','8',1],['A','C','5',1],['B','C','7',1]]})],
+['Điểm trong tam giác: bất đẳng thức tam giác',()=>({p:{A:Mm(3,8),B:Mm(0,0),C:Mm(10,1),M:Mm(4.5,3)},s:'AB BC CA MA MB MC'})]);
+LIB[7][2].it.push(
+['Hình hộp chữ nhật: ba kích thước a, b, c',()=>cubL(7,4.5,3.5,[3.2,2.4])],
+['Hình hộp chữ nhật: đường chéo AC\'',()=>cubL(7,4.5,3.5,[3.2,2.4],"AC'")],
+['Hình lập phương cạnh a',()=>{const c=cub(5,5,5,[2.6,2]);c.t=[[2.3,.9,'a']];return c}],
+['Hình lập phương: đường chéo AC\'',()=>{const c=cub(5,5,5,[2.6,2]);c.d+=" AC'";return c}]);
+/* LỚP 9 */
+LIB[9][0].it.push(
+['Cạnh đối, cạnh kề, cạnh huyền',()=>({p:{A:Mm(0,0),B:Mm(8,0),C:Mm(0,6)},s:'AB BC CA',g:[['A','B','C','r'],['B','A','C',1]],L:[['A','C','cạnh đối',1],['A','B','cạnh kề',1],['B','C','cạnh huyền',1]]})],
+['Hệ thức giữa cạnh và góc (b = a·sin B)',()=>({p:{A:Mm(0,0),B:Mm(8,0),C:Mm(0,6)},s:'AB BC CA',g:[['A','B','C','r'],['B','A','C',1],['C','A','B',2]],L:[['B','C','a',1],['C','A','b',1],['A','B','c',1]]})],
+['Hai góc phụ nhau trong tam giác vuông',()=>({p:{A:Mm(0,0),B:Mm(8,0),C:Mm(0,6)},s:'AB BC CA',g:[['A','B','C','r'],['B','A','C',1],['C','A','B',2]],t:[[6.2,-0.6,'α'],[0.5,-4.8,'β']]})],
+['Ứng dụng: đo chiều cao bằng góc nâng',()=>({p:{B:Mm(0,0),A:Mm(0,8),C:Mm(11,0)},s:'AB BC CA',g:[['B','A','C','r'],['C','B','A',1]],L:[['A','B','h',1],['B','C','d',1]],t:[[8.4,-0.8,'α']]})]);
+LIB[9][1].it.push(
+['Cung và dây cung',()=>{const O=[0,0];return{p:{O,A:pol(O,35,5),B:pol(O,145,5)},c:[['O',5]],s:'AB OA OB',t:[[-1.6,-6,'cung nhỏ'],[-1.6,6.9,'cung lớn']]}}],
+['Đường kính vuông góc với dây',()=>({p:{O:[0,0],A:Mm(0,5),B:Mm(0,-5),C:Mm(-4,3),D:Mm(4,3),H:Mm(0,3)},c:[['O',5]],s:'AB CD',k:[['C','H',1],['H','D',1]],g:[['H','D','A','r']]})],
+['Khoảng cách từ tâm đến dây',()=>({p:{O:[0,0],A:Mm(-4,3),B:Mm(4,3),H:Mm(0,3)},c:[['O',5]],s:'AB OA OB OH',k:[['A','H',1],['H','B',1]],g:[['H','B','O','r']]})],
+['Hai dây bằng nhau cách đều tâm',()=>({p:{O:[0,0],A:Mm(-4,3),B:Mm(4,3),C:Mm(3,4),D:Mm(3,-4),H:Mm(0,3),K:Mm(3,0)},c:[['O',5]],s:'AB CD OH OK',k:[['A','B',2],['C','D',2],['O','H',1],['O','K',1]],g:[['H','B','O','r'],['K','C','O','r']]})],
+['Độ dài cung tròn (số đo n°)',()=>{const O=[0,0];return{p:{O,A:pol(O,20,5),B:pol(O,110,5)},s:'OA OB',e:[[0,0,5,5,20,110,false]],g:[['O','A','B',1]],t:[[1.2,-1.2,'n°']]}}],
+['Hình quạt tròn OAB',()=>{const O=[0,0];return{p:{O,A:pol(O,20,5),B:pol(O,110,5)},s:'OA OB',e:[[0,0,5,5,20,110,false]],g:[['O','A','B',1]],L:[['O','A','R',1]],t:[[1.2,-1.2,'n°']]}}],
+['Hình vành khuyên',()=>{const O=[0,0];return{p:{O,A:pol(O,30,5),B:pol(O,150,3)},c:[['O',5],['O',3]],s:'OA OB',L:[['O','A','R',1],['O','B','r',1]]}}],
+['Góc nội tiếp cùng chắn một cung',()=>{const O=[0,0];return{p:{O,A:pol(O,200,5),B:pol(O,340,5),C:pol(O,70,5),D:pol(O,115,5)},c:[['O',5]],s:'CA CB DA DB AB',g:[['C','A','B',1],['D','A','B',1]]}}],
+['Góc nội tiếp và góc ở tâm cùng chắn một cung',()=>{const O=[0,0];return{p:{O,A:pol(O,230,5),B:pol(O,310,5),C:pol(O,85,5)},c:[['O',5]],s:'OA OB CA CB',g:[['O','A','B',2],['C','A','B',1]]}}],
+['Tứ giác nội tiếp: hai góc đối bù nhau',()=>{const O=[0,0];return{p:{O,A:pol(O,100,5),B:pol(O,200,5),C:pol(O,300,5),D:pol(O,30,5)},c:[['O',5]],s:'AB BC CD DA',g:[['A','D','B',1],['C','B','D',1],['B','A','C',2],['D','C','A',2]]}}],
+['Hình chữ nhật nội tiếp đường tròn',()=>({p:{O:[0,0],A:Mm(-4,3),B:Mm(-4,-3),C:Mm(4,-3),D:Mm(4,3)},c:[['O',5]],s:'AB BC CD DA AC BD',g:[['A','D','B','r']]})],
+['Ngũ giác đều nội tiếp đường tròn',()=>({p:ngon(5,5,90),c:[['O',5]],s:'AB BC CD DE EA',k:tk('AB BC CD DE EA')})]);
 
 const NM=s=>s.match(/[A-Za-z]'?/g)||[];
 function figBox(sp){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;const ext=(x,y)=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)};
